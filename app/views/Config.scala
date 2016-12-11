@@ -9,5 +9,6 @@ case class Config(
   shortDescription: String,
   description: String,
   sponsorEmail: String,
+  supportEmail: String,
   cdn: Boolean
 )

@@ -14,3 +14,5 @@ libraryDependencies ++= Seq(
 routesGenerator := InjectedRoutesGenerator
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
+
+herokuAppName in Compile := "polar-atoll-52082"

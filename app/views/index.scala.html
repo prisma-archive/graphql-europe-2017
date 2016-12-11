@@ -6,167 +6,172 @@
 <!DOCTYPE html>
 
 <html lang="en">
-    <head>
-      @meta(config)
+  <head>
+    @meta(config)
 
-      <title>@config.name - @config.shortDescription</title>
+    <title>@config.name - @config.shortDescription</title>
 
-      @font()
+    @font()
 
-      @libsTop(config.cdn)
-      <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("lib/index.css")">
-    </head>
-    <body>
-      <div class="top-gradient"></div>
+    @libsTop(config.cdn)
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("lib/index.css")">
+  </head>
+  <body>
+    <div class="top-gradient"></div>
+    <div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills float-xs-right">
+            <li class="nav-item fade-in f1"><a class="nav-link" href="#about">About</a></li>
+            <li class="nav-item fade-in f2"><a class="nav-link" href="#attend">Attend</a></li>
+            <li class="nav-item fade-in f3"><a class="nav-link" href="#speakers">Speakers</a></li>
+            <li class="nav-item fade-in f4"><a class="nav-link" href="#sponsors">Sponsors</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <img class="cloud cloud-tl" src="@routes.Assets.versioned("image/cloud-tl.svg")" />
+    <img class="cloud cloud-tr" src="@routes.Assets.versioned("image/cloud-tr.svg")" />
+    <img class="cloud cloud-br" src="@routes.Assets.versioned("image/cloud-br.svg")" />
+    <img class="cloud cloud-bl" src="@routes.Assets.versioned("image/cloud-bl.svg")" />
+
+    <div class="main-header">
+      <div class="main-header-content">
+        <img class="logo" src="@routes.Assets.versioned("image/logo.svg")" />
+        <div class="main-header-text">
+          <div class="fade-in f0 subtitle">@config.name</div>
+          <div class="fade-in f1 description">@config.description</div>
+          <div class="fade-in f2 location">@config.location.toUpperCase</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row fade-in f3" id="attend">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div class="subscription-form">
+            <div class="window-header">
+              <div class="window-button"></div>
+              <div class="window-button"></div>
+              <div class="window-button"></div>
+            </div>
+            <div class="window-body">
+              <div class="form-code-i1"><span class="form-code-keyword">subscription</span> <span class="form-code-normal">@("{")</span></div>
+              <div class="form-code-i2"><span class="form-code-keyword">conferenceUpdates</span><span class="form-code-normal">(</span></div>
+              <div class="form-code-i3"><span class="form-code-comment"># enter your name</span></div>
+              <div class="form-code-i3"><span class="form-code-keyword">name</span><span class="form-code-normal">:</span> Input!</div>
+              <div class="form-code-i3"><span class="form-code-comment"># enter your email</span></div>
+              <div class="form-code-i3"><span class="form-code-keyword">email</span><span class="form-code-normal">:</span> Input!</div>
+              <div class="form-code-i2"><span class="form-code-normal">) {</span> </div>
+              <div class="form-code-i3"><span class="form-code-keyword">message</span></div>
+              <div class="form-code-i2"><span class="form-code-normal">@}</span></div>
+              <div class="form-code-i1"><span class="form-code-normal">}</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+
+      <div id="about" class="row make-space content-row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8" style="text-align: center">
+          <h2>Join GraphQL Europe!</h2>
+          <p>
+            GraphQL is an application data query language that lets developers describe the complex, nested data dependencies of modern applications.
+          </p>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+
+      <div class="beautiful-line"></div>
+
+      <div class="row" id="speakers">
+        <div class="col-md-2">
+          <h2>Speakers</h2>
+        </div>
+        <div class="col-md-8">
+          <p>
+            More speakers to be confirmed. A call for papers will be opened in early 2017. Add your name to our waitlist if you are interested in speaking and we will contact you to let you know about the opening of the CPA.
+          </p>
+        </div>
+        <div class="col-md-2">
+          <a class="btn btn-lg btn-success register-button" href="#" role="button">Register</a>
+        </div>
+      </div>
+
+      <div class="row" style="padding-top: 40px">
+        @speakers.map { s =>
+          @speaker(s)
+        }
+      </div>
+
+      <div class="beautiful-line"></div>
+
+      <div class="row content-row" id="sponsors">
+        <div class="col-md-8">
+          <h2>Interested in sponsoring?</h2>
+          <p>
+            Drop us an email at <a href="mailto:@config.sponsorEmail">@config.sponsorEmail</a>
+          </p>
+        </div>
+        <div class="col-md-4">
+          <img class="logo-grey" src="@routes.Assets.versioned("image/logo-grey.svg")" />
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bg" style="margin-top: 100px">
       <div class="container">
-        <div class="header clearfix">
-          <nav>
-            <ul class="nav nav-pills float-xs-right">
-              <li class="nav-item fade-in f1"><a class="nav-link" href="#about">About</a></li>
-              <li class="nav-item fade-in f2"><a class="nav-link" href="#attend">Attend</a></li>
-              <li class="nav-item fade-in f3"><a class="nav-link" href="#speakers">Speakers</a></li>
-              <li class="nav-item fade-in f4"><a class="nav-link" href="#sponsors">Sponsors</a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
+        <footer class="footer">
+          <div style="text-align: center">
+            <div class="subtitle" style="padding-top: 100px; padding-bottom: 15px">Interested in joining us?</div>
+            <div class="description-footer" style="padding-bottom: 25px">Add your name to our waitlist and you will be the first to hear!</div>
 
-      <img class="cloud cloud-tl" src="@routes.Assets.versioned("image/cloud-tl.svg")" />
-      <img class="cloud cloud-tr" src="@routes.Assets.versioned("image/cloud-tr.svg")" />
-      <img class="cloud cloud-br" src="@routes.Assets.versioned("image/cloud-br.svg")" />
-      <img class="cloud cloud-bl" src="@routes.Assets.versioned("image/cloud-bl.svg")" />
-
-      <div class="main-header">
-        <div class="main-header-content">
-          <img class="logo" src="@routes.Assets.versioned("image/logo.svg")" />
-          <div class="main-header-text">
-            <div class="fade-in f0 subtitle">@config.name</div>
-            <div class="fade-in f1 description">@config.description</div>
-            <div class="fade-in f2 location">@config.location.toUpperCase</div>
+            <form class="form-inline footer-form" style="padding-bottom: 100px">
+              <div class="form-group">
+                <input type="text" class="form-control" id="bottomRegisterName" placeholder="Your name">
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" id="bottomRegisterEmail" placeholder="Add your email">
+              </div>
+              <button id="registerButton" type="submit" class="btn btn-primary footer-button">Register</button>
+            </form>
           </div>
-        </div>
-      </div>
 
-      <div class="container fade-in f3">
-        <div class="row" id="attend">
-          <div class="col-md-2"></div>
-          <div class="col-md-8">
-            <div class="subscription-form">
-              <div class="window-header">
-                <div class="window-button"></div>
-                <div class="window-button"></div>
-                <div class="window-button"></div>
-              </div>
-              <div class="window-body">
-                <div class="form-code-i1"><span class="form-code-keyword">subscription</span> <span class="form-code-normal">@("{")</span></div>
-                <div class="form-code-i2"><span class="form-code-keyword">conferenceUpdates</span><span class="form-code-normal">(</span></div>
-                <div class="form-code-i3"><span class="form-code-comment"># enter your name</span></div>
-                <div class="form-code-i3"><span class="form-code-keyword">name</span><span class="form-code-normal">:</span> Input!</div>
-                <div class="form-code-i3"><span class="form-code-comment"># enter your email</span></div>
-                <div class="form-code-i3"><span class="form-code-keyword">email</span><span class="form-code-normal">:</span> Input!</div>
-                <div class="form-code-i2"><span class="form-code-normal">) {</span> </div>
-                <div class="form-code-i3"><span class="form-code-keyword">message</span></div>
-                <div class="form-code-i2"><span class="form-code-normal">@}</span></div>
-                <div class="form-code-i1"><span class="form-code-normal">}</span></div>
-              </div>
+          <div style="vertical-align: middle">
+            <div style="float: left; padding-top: 32px;">&copy; 2016 GraphQL-Europe</div>
+            <div class="header" style="float: right">
+              <nav>
+                <ul class="nav nav-pills float-xs-right">
+                  <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#sponsors">Sponsors</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#code-of-conduct">Code of Conduct</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#imprint">Imprint</a></li>
+                </ul>
+              </nav>
             </div>
           </div>
-          <div class="col-md-2"></div>
-        </div>
-
-        <div id="about" class="row make-space content-row">
-          <div class="col-md-2"></div>
-          <div class="col-md-8" style="text-align: center">
-            <h2>Join GraphQL Europe!</h2>
-            <p>
-              GraphQL is an application data query language that lets developers describe the complex, nested data dependencies of modern applications.
-            </p>
-          </div>
-          <div class="col-md-2"></div>
-        </div>
-
-        <div class="beautiful-line"></div>
-
-        <div class="row" id="speakers">
-          <div class="col-md-2">
-            <h2>Speakers</h2>
-          </div>
-          <div class="col-md-8">
-            <p>
-              More speakers to be confirmed. A call for papers will be opened in early 2017. Add your name to our waitlist if you are interested in speaking and we will contact you to let you know about the opening of the CPA.
-            </p>
-          </div>
-          <div class="col-md-2">
-            <a class="btn btn-lg btn-success register-button" href="#" role="button">Register</a>
-          </div>
-        </div>
-
-        <div class="row" style="padding-top: 40px">
-          @speakers.map { s =>
-            @speaker(s)
-          }
-        </div>
-
-        <div class="beautiful-line"></div>
-
-        <div class="row content-row" id="sponsors">
-          <div class="col-md-8">
-            <h2>Interested in sponsoring?</h2>
-            <p>
-              Drop us an email at <a href="mailto:@config.sponsorEmail">@config.sponsorEmail</a>
-            </p>
-          </div>
-          <div class="col-md-4">
-            <img class="logo-grey" src="@routes.Assets.versioned("image/logo-grey.svg")" />
-          </div>
-        </div>
-
+        </footer>
       </div>
+    </div>
 
-      <div class="footer-bg" style="margin-top: 100px">
-        <div class="container">
-          <footer class="footer">
-            <div style="text-align: center">
-              <div class="subtitle" style="padding-top: 100px; padding-bottom: 15px">Interested in joining us?</div>
-              <div class="description-footer" style="padding-bottom: 25px">Add your name to our waitlist and you will be the first to hear!</div>
+    <div class="cloud-bbl-wrapper">
+      <img class="cloud-bbl" src="@routes.Assets.versioned("image/cloud-bbl.svg")" />
+    </div>
+    <div class="cloud-bbr-wrapper">
+      <img class="cloud-bbr" src="@routes.Assets.versioned("image/cloud-bbr.svg")" />
+    </div>
 
-              <form class="form-inline footer-form" style="padding-bottom: 100px">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="exampleInputName2" placeholder="Your name">
-                </div>
-                <div class="form-group">
-                  <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Add your email">
-                </div>
-                <button type="submit" class="btn btn-primary footer-button">Register</button>
-              </form>
-            </div>
+    @libsBottom(config.cdn)
+    <script>
+      window.graphCoolProjectKey = "@config.graphCoolProjectKey"
+      window.supportEmail = "@config.supportEmail"
+    </script>
 
-            <div style="vertical-align: middle">
-              <div style="float: left; padding-top: 32px;">&copy; 2016 GraphQL-Europe</div>
-              <div class="header" style="float: right">
-                <nav>
-                  <ul class="nav nav-pills float-xs-right">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#sponsors">Sponsors</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#code-of-conduct">Code of Conduct</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#imprint">Imprint</a></li>
-                  </ul>
-                </nav>
-              </div>
-            </div>
-          </footer>
-        </div>
-      </div>
-
-      <div class="cloud-bbl-wrapper">
-        <img class="cloud-bbl" src="@routes.Assets.versioned("image/cloud-bbl.svg")" />
-      </div>
-      <div class="cloud-bbr-wrapper">
-        <img class="cloud-bbr" src="@routes.Assets.versioned("image/cloud-bbr.svg")" />
-      </div>
-
-      @libsBottom(config.cdn)
-      <script src="@routes.Assets.versioned("lib/index.js")"></script>
-      @ga(config.gaCode)
-    </body>
+    <script src="@routes.Assets.versioned("lib/index.js")"></script>
+    @ga(config.gaCode)
+  </body>
 </html>
