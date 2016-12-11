@@ -1,0 +1,27 @@
+@import views.Speaker
+
+@(speaker: Speaker)
+
+<div class="col-md-4 speaker">
+  @speaker.photo.map { photo =>
+    <img src="@routes.Assets.versioned("image/speakers/" + photo)">
+  }.getOrElse {
+    <div class="photo-placeholder"></div>
+  }
+
+  @speaker.githubUrl.map { gh =>
+    <a target="_blank" class="speaker-icon" href="https://github.com/@gh"><i class="fa fa-github" aria-hidden="true"></i></a>
+  }.getOrElse("")
+
+  @speaker.twitterUrl.map { t =>
+    <a target="_blank" class="speaker-icon" href="https://twitter.com/@t"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  }.getOrElse("")
+
+  <div class="speaker-name">@speaker.name.toUpperCase</div>
+  @speaker.description.map { d =>
+    <div class="speaker-description">@d</div>
+  }.getOrElse("")
+  @speaker.company.map { c =>
+    <div class="speaker-company">@c</div>
+  }.getOrElse("")
+</div>

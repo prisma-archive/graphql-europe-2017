@@ -1,0 +1,48 @@
+@import views.Config
+@(config: Config)
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="GraphQL,conference,Europe,Berlin,2017" />
+
+<meta name="description" content="@config.name - @config.location - @config.description">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="@config.canonicalUrl">
+<meta property="og:title" content="@config.name - @config.location - @config.shortDescription">
+<meta property="og:description" content="@config.name - @config.location - @config.description">
+@*TODO: FB image*@
+@*<meta property="og:image:url" content="TODO: URL">*@
+
+<meta name="twitter:card" content="summary_large_image">
+@*TODO: Twitter account*@
+@*<meta name="twitter:site" content="@@foobar">*@
+@*TODO: Twitter account*@
+@*<meta name="twitter:creator" content="@@foobar">*@
+<meta name="twitter:title" content="@config.name - @config.shortDescription">
+<meta name="twitter:description" content="@config.name - @config.description">
+@*TODO: Twitter Image*@
+@*<meta name="twitter:image" content="TODO: URL">*@
+
+<link rel="canonical" href="@config.canonicalUrl" />
+
+<!--favicon -->
+<link rel="apple-touch-icon" sizes="57x57" href="@routes.Assets.versioned("favicon/logo-57.png")">
+<link rel="apple-touch-icon" sizes="60x60" href="@routes.Assets.versioned("favicon/logo-60.png")">
+<link rel="apple-touch-icon" sizes="72x72" href="@routes.Assets.versioned("favicon/logo-72.png")">
+<link rel="apple-touch-icon" sizes="76x76" href="@routes.Assets.versioned("favicon/logo-76.png")">
+<link rel="apple-touch-icon" sizes="114x114" href="@routes.Assets.versioned("favicon/logo-114.png")">
+<link rel="apple-touch-icon" sizes="120x120" href="@routes.Assets.versioned("favicon/logo-120.png")">
+<link rel="apple-touch-icon" sizes="144x144" href="@routes.Assets.versioned("favicon/logo-144.png")">
+<link rel="apple-touch-icon" sizes="152x152" href="@routes.Assets.versioned("favicon/logo-152.png")">
+<link rel="apple-touch-icon" sizes="180x180" href="@routes.Assets.versioned("favicon/logo-180.png")">
+<link rel="icon" type="image/png" sizes="192x192"  href="@routes.Assets.versioned("favicon/logo-192.png")">
+<link rel="icon" type="image/png" sizes="32x32" href="@routes.Assets.versioned("favicon/logo-32.png")">
+<link rel="icon" type="image/png" sizes="96x96" href="@routes.Assets.versioned("favicon/logo-96.png")">
+<link rel="icon" type="image/png" sizes="16x16" href="@routes.Assets.versioned("favicon/logo-16.png")">
+<link rel="manifest" href="/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="@routes.Assets.versioned("favicon/logo-144.png")">
+<meta name="theme-color" content="#ffffff">
