@@ -48,7 +48,8 @@
     </div>
 
     <div class="container">
-      <div class="row fade-in f3" id="attend">
+      @*<div class="row fade-in f3" id="attend">*@
+      <div class="row" id="attend">
         <div class="col-md-2"></div>
         <div class="col-md-8">
           <div class="subscription-form">
@@ -60,10 +61,10 @@
             <div class="window-body">
               <div class="form-code-i1"><span class="form-code-keyword">subscription</span> <span class="form-code-normal">@("{")</span></div>
               <div class="form-code-i2"><span class="form-code-keyword">conferenceUpdates</span><span class="form-code-normal">(</span></div>
-              <div class="form-code-i3"><span class="form-code-comment"># enter your name</span></div>
-              <div class="form-code-i3"><span class="form-code-keyword">name</span><span class="form-code-normal">:</span> Input!</div>
-              <div class="form-code-i3"><span class="form-code-comment"># enter your email</span></div>
-              <div class="form-code-i3"><span class="form-code-keyword">email</span><span class="form-code-normal">:</span> Input!</div>
+              <div class="form-code-i3"><label for="topRegisterName" class="form-code-comment"># enter your name</label></div>
+              <div class="form-code-i3"><label for="topRegisterName" class="form-code-keyword">name</label><span class="form-code-normal">:</span> <span class="form-code-input">"<input type="text" class="form-control hidden-input" id="topRegisterName">"</span></div>
+              <div class="form-code-i3"><label for="topRegisterEmail" class="form-code-comment"># enter your email</label></div>
+              <div class="form-code-i3"><label for="topRegisterEmail" class="form-code-keyword">email</label><span class="form-code-normal">:</span> <span class="form-code-input">"<input type="text" class="form-control hidden-input" id="topRegisterEmail">"</span></div>
               <div class="form-code-i2"><span class="form-code-normal">) {</span> </div>
               <div class="form-code-i3"><span class="form-code-keyword">message</span></div>
               <div class="form-code-i2"><span class="form-code-normal">@}</span></div>

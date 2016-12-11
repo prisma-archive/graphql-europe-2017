@@ -36,6 +36,8 @@ $(function() {
         exit: 'animated fadeOutUp'
       }
     });
+
+    $("#bottomRegisterName, #bottomRegisterEmail, #topRegisterName, #topRegisterEmail").val("")
   }
 
   function showError(message) {
@@ -104,10 +106,18 @@ $(function() {
 
   function setupHandlers() {
     $('#registerButton').on('click', function (e) {
+      e.preventDefault()
       subscribe($('#bottomRegisterName').val(), $('#bottomRegisterEmail').val())
-    })
+    });
+
+    $('.hidden-input').keypress(function(e) {
+      if(e.which == 13) {
+        subscribe($('#topRegisterName').val(), $('#topRegisterEmail').val())
+      }
+    });
   }
 
   setupSmoothScrolling()
   setupHandlers()
+
 });

@@ -378,6 +378,7 @@ h2 {
   padding-right: 45px;
   padding-top: 15px;
   padding-bottom: 15px;
+  font-size: 1.3rem;
 }
 
 .footer-button:hover, .footer-button:active, .footer-button:focus {
@@ -388,8 +389,27 @@ h2 {
 
 .footer-form input {
   padding: 15px;
+  font-size: 1.3rem;
 }
 
 #bottomRegisterEmail {
   width: 350px;
+}
+
+.hidden-input, .hidden-input:focus {
+  border: none;
+  display: inline-block;
+  width: 300px;
+  padding: 1px;
+  background: transparent;
+  outline: none;
+  font-size: 1.3rem;
+  border-bottom: 1px solid #487449;
+  border-radius: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.form-code-input, .form-code-input input {
+  color: #487449 !important;
 }
