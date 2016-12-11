@@ -1,4 +1,7 @@
-/* Space out content a bit */
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -8,10 +11,6 @@ body {
 
 * {
   font-family: "proxima-nova",sans-serif;
-}
-
-.container-narrow > hr {
-  margin: 2rem 0;
 }
 
 .header {
@@ -129,7 +128,7 @@ body {
   }
 }
 
-a, a:visited, a:focus {
+a, a:visited, a:focus, .navbar-light .navbar-nav .nav-link  {
   color: #db3f74;
 }
 
@@ -304,6 +303,8 @@ h2 {
 
 .speaker img {
   max-width: 100%;
+  display: block;
+  margin: 0 auto;
 }
 
 .speaker-name {
@@ -392,6 +393,10 @@ h2 {
   font-size: 1.3rem;
 }
 
+#bottomRegisterName {
+  width: 300px;
+}
+
 #bottomRegisterEmail {
   width: 350px;
 }
@@ -412,4 +417,171 @@ h2 {
 
 .form-code-input, .form-code-input input {
   color: #487449 !important;
+}
+
+.navbar-light {
+  background: none;
+}
+
+.navbar-light .navbar-toggler {
+  color: #db3f74;
+}
+
+.navbar-light {
+  z-index: 100;
+}
+
+.footer {
+  position: relative;
+  z-index: 100;
+}
+
+@media only screen and (max-width: 770px) {
+  .nav-pills .nav-link {
+    padding-left: .6em;
+    padding-right: .6em;
+  }
+
+  .cloud-bbl {
+    position: absolute;
+    height: 150px;
+    top: -150px;
+  }
+
+  .cloud-bbr {
+    position: absolute;
+    height: 150px;
+    top: -150px;
+    left: -164px;
+  }
+
+  .cloud {
+    height: 50vh;
+  }
+
+  .cloud-bl {
+    top: 60vh;
+  }
+
+  .cloud-br {
+    top: 60vh;
+  }
+
+  .hidden-input, .hidden-input:focus {
+    width: 250px;
+  }
+
+  .logo-grey {
+    width: 9em;
+  }
+
+  #speakers .col-md-2 {
+    width: 250px;
+  }
+
+  .main-header-content {
+    top: 65%;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+
+  .navbar-toggleable-xs {
+    background-color: #eeeeee;
+    margin-top: 10px;
+    opacity: 0.7;
+    border-radius: 5px;
+    position: absolute;
+  }
+
+  .navbar-toggleable-xs .navbar-nav {
+    float: left !important;
+  }
+}
+
+/* ipad portrait */
+@media only screen and (max-width: 650px) {
+  .cloud {
+    height: 50vh;
+  }
+
+  .cloud-bl {
+    top: 60vh;
+  }
+
+  .cloud-br {
+    top: 60vh;
+  }
+
+  .cloud-bbl {
+    position: absolute;
+    height: 150px;
+    top: -150px;
+  }
+
+  .cloud-bbr {
+    position: absolute;
+    height: 150px;
+    top: -150px;
+    left: -164px;
+  }
+}
+
+/* phone portrait */
+@media only screen and (max-width: 480px) {
+  .cloud {
+    height: 40vh;
+  }
+
+  .cloud-bl {
+    top: 60vh;
+  }
+
+  .cloud-br {
+    top: 60vh;
+  }
+
+  .hidden-input, .hidden-input:focus {
+    width: 150px;
+  }
+
+  #bottomRegisterEmail, #bottomRegisterName {
+    width: 330px;
+  }
+
+  .subtitle {
+    font-size: 5vh;
+  }
+
+  .cloud-bbl {
+    position: absolute;
+    height: 150px;
+    top: -150px;
+  }
+
+  .cloud-bbr {
+    position: absolute;
+    height: 150px;
+    top: -150px;
+    left: -164px;
+  }
+
+  .main-header-content {
+    top: 50%;
+  }
+}
+
+/* phone 5 */
+@media only screen and (max-width: 320px) {
+  .hidden-input, .hidden-input:focus {
+    width: 110px;
+  }
+
+  #bottomRegisterEmail, #bottomRegisterName {
+    width: 280px;
+  }
+
+  .logo-grey {
+    width: 11em;
+  }
 }

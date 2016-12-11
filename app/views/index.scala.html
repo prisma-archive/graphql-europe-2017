@@ -20,13 +20,16 @@
     <div class="top-gradient"></div>
     <div class="container">
       <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills float-xs-right">
-            <li class="nav-item fade-in f1"><a class="nav-link" href="#about">About</a></li>
-            <li class="nav-item fade-in f2"><a class="nav-link" href="#attend">Attend</a></li>
-            <li class="nav-item fade-in f3"><a class="nav-link" href="#speakers">Speakers</a></li>
-            <li class="nav-item fade-in f4"><a class="nav-link" href="#sponsors">Sponsors</a></li>
-          </ul>
+        <nav class="navbar navbar-light bg-faded">
+          <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation"></button>
+          <div class="collapse navbar-toggleable-xs" id="navbar-header">
+            <ul class="nav navbar-nav nav-pills float-xs-right">
+              <li class="nav-item fade-in f1"><a class="nav-link" href="#about">About</a></li>
+              <li class="nav-item fade-in f2"><a class="nav-link" href="#attend">Attend</a></li>
+              <li class="nav-item fade-in f3"><a class="nav-link" href="#speakers">Speakers</a></li>
+              <li class="nav-item fade-in f4"><a class="nav-link" href="#sponsors">Sponsors</a></li>
+            </ul>
+          </div>
         </nav>
       </div>
     </div>
@@ -157,13 +160,13 @@
           </div>
         </footer>
       </div>
-    </div>
 
-    <div class="cloud-bbl-wrapper">
-      <img class="cloud-bbl" src="@routes.Assets.versioned("image/cloud-bbl.svg")" />
-    </div>
-    <div class="cloud-bbr-wrapper">
-      <img class="cloud-bbr" src="@routes.Assets.versioned("image/cloud-bbr.svg")" />
+      <div class="cloud-bbl-wrapper">
+        <img class="cloud-bbl" src="@routes.Assets.versioned("image/cloud-bbl.svg")" />
+      </div>
+      <div class="cloud-bbr-wrapper">
+        <img class="cloud-bbr" src="@routes.Assets.versioned("image/cloud-bbr.svg")" />
+      </div>
     </div>
 
     @libsBottom(config.cdn)
