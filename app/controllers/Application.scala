@@ -22,7 +22,7 @@ class Application @Inject() (config: Configuration) extends Controller {
 
   val conf = config.underlying.as[Config]("graphqlEurope")
 
-  def index = Action {
-    Ok(views.html.index(conf, speakers))
+  def index = Action { req ⇒
+    Ok(views.html.index(conf, speakers, req.queryString.contains("dark"), req.queryString.contains("topLogo")))
   }
 }

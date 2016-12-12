@@ -1,7 +1,9 @@
 @import views.Config
 @import views.Speaker
 
-@(config: Config, speakers: List[Speaker])
+@(config: Config, speakers: List[Speaker], dark: Boolean, topLogo: Boolean)
+
+@prefix = @{if (dark) "-dark" else ""}
 
 <!DOCTYPE html>
 
@@ -15,14 +17,26 @@
 
     @libsTop(config.cdn)
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("lib/index.css")">
+
+    @if(dark) {
+      <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("lib/index-dark.css")">
+    }
   </head>
   <body>
-    <div class="top-gradient"></div>
+    @if(dark) {
+      <div class="form-bg"></div>
+    }
+
+    <div class="top-gradient@prefix"></div>
+
     <div class="container">
       <div class="header clearfix">
         <nav class="navbar navbar-light bg-faded">
           <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation"></button>
           <div class="collapse navbar-toggleable-xs" id="navbar-header">
+            @if(topLogo) {
+              <img class="top-logo" src="@routes.Assets.versioned("image/top-logo.svg")" />
+            }
             <ul class="nav navbar-nav nav-pills float-xs-right">
               <li class="nav-item fade-in f1"><a class="nav-link" href="#about">About</a></li>
               <li class="nav-item fade-in f2"><a class="nav-link" href="#attend">Attend</a></li>
@@ -34,10 +48,10 @@
       </div>
     </div>
 
-    <img class="cloud cloud-tl" src="@routes.Assets.versioned("image/cloud-tl.svg")" />
-    <img class="cloud cloud-tr" src="@routes.Assets.versioned("image/cloud-tr.svg")" />
-    <img class="cloud cloud-br" src="@routes.Assets.versioned("image/cloud-br.svg")" />
-    <img class="cloud cloud-bl" src="@routes.Assets.versioned("image/cloud-bl.svg")" />
+    <img class="cloud cloud-tl" src="@routes.Assets.versioned(s"image/cloud-tl$prefix.svg")" />
+    <img class="cloud cloud-tr" src="@routes.Assets.versioned(s"image/cloud-tr$prefix.svg")" />
+    <img class="cloud cloud-br" src="@routes.Assets.versioned(s"image/cloud-br$prefix.svg")" />
+    <img class="cloud cloud-bl" src="@routes.Assets.versioned(s"image/cloud-bl$prefix.svg")" />
 
     <div class="main-header">
       <div class="main-header-content">
@@ -51,8 +65,7 @@
     </div>
 
     <div class="container">
-      @*<div class="row fade-in f3" id="attend">*@
-      <div class="row" id="attend">
+      <div class="row fade-in f3" id="attend">
         <div class="col-md-2"></div>
         <div class="col-md-8">
           <div class="subscription-form">
@@ -95,11 +108,13 @@
         <div class="col-md-2">
           <h2>Speakers</h2>
         </div>
-        <div class="col-md-8">
-          <p>
+        <div class="col-md-1"></div>
+        <div class="col-md-6">
+          <p class="smaller-font">
             More speakers to be confirmed. A call for papers will be opened in early 2017. Add your name to our waitlist if you are interested in speaking and we will contact you to let you know about the opening of the CPA.
           </p>
         </div>
+        <div class="col-md-1"></div>
         <div class="col-md-2">
           <a class="btn btn-lg btn-success register-button" href="#attend" role="button">Register</a>
         </div>
@@ -115,7 +130,7 @@
 
       <div class="row content-row" id="sponsors">
         <div class="col-md-8">
-          <h2>Interested in sponsoring?</h2>
+          <h2 style="padding-top: 85px">Interested in sponsoring?</h2>
           <p>
             Drop us an email at <a href="mailto:@config.sponsorEmail">@config.sponsorEmail</a>
           </p>
@@ -131,10 +146,10 @@
       <div class="container">
         <footer class="footer">
           <div style="text-align: center">
-            <div class="subtitle" style="padding-top: 100px; padding-bottom: 15px">Interested in joining us?</div>
+            <div class="subtitle-footer" style="padding-top: 200px; padding-bottom: 15px">Interested in joining us?</div>
             <div class="description-footer" style="padding-bottom: 25px">Add your name to our waitlist and you will be the first to hear!</div>
 
-            <form class="form-inline footer-form" style="padding-bottom: 100px">
+            <form class="form-inline footer-form" style="padding-bottom: 200px">
               <div class="form-group">
                 <input type="text" class="form-control" id="bottomRegisterName" placeholder="Your name">
               </div>
@@ -146,7 +161,7 @@
           </div>
 
           <div style="vertical-align: middle">
-            <div style="float: left; padding-top: 32px;">&copy; 2016 GraphQL-Europe</div>
+            <div style="float: left; padding-top: 32px;" class="footer-copy">&copy; 2016 GraphQL-Europe</div>
             <div class="header" style="float: right">
               <nav>
                 <ul class="nav nav-pills float-xs-right">
