@@ -1,5 +1,11 @@
 $(function() {
-  var successMessage = "Thanks for subscribing!"
+  var successMessage =
+    "<pre class='message-code'><code>{<br>" +
+    "  \"data\": {<br>" +
+    "    \"message\": \"Thanks for subscribing!\"<br>" +
+    "  }<br>" +
+    "}</code></pre>"
+
   var unexpectedErrorMessage = "Oops, something unexpected happened :( We are sorry for this. Please drop us an e-mail at " + supportEmail
   var graphCoolProject = "https://api.graph.cool/simple/v1/" + graphCoolProjectKey;
   var registerQuery =
@@ -108,6 +114,11 @@ $(function() {
     $('#registerButton').on('click', function (e) {
       e.preventDefault()
       subscribe($('#bottomRegisterName').val(), $('#bottomRegisterEmail').val())
+    });
+
+    $('.execute-button').on('click', function (e) {
+      e.preventDefault()
+      subscribe($('#topRegisterName').val(), $('#topRegisterEmail').val())
     });
 
     $('.hidden-input').keypress(function(e) {

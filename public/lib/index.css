@@ -136,13 +136,14 @@ body {
 
 a, a:visited, a:focus, .navbar-light .navbar-nav .nav-link  {
   color: #db3f74;
+  transition: color 0.1s ease-out;
 }
 
 a:hover, a:active {
   color: #ad3664 !important;
 }
 
-.register-button, .register-button:visited {
+.register-button, .register-button:visited, .register-button:focus {
   border: none;
   border-radius: 40px;
   background-color: #db3f74;
@@ -264,6 +265,10 @@ a:hover, a:active {
 
 .form-code-i3 {
   padding-left: 45px;
+  font-family: "roboto-mono";
+}
+
+.message-code {
   font-family: "roboto-mono";
 }
 
@@ -468,6 +473,30 @@ h2 {
 
 .smaller-font {
   font-size: 0.9em;
+}
+
+.execute-button {
+  background: -webkit-linear-gradient(#fdfdfd, #d2d3d6);
+  background: linear-gradient(#fdfdfd, #d2d3d6);
+  border: 1px solid rgba(0,0,0,0.25);
+  border-radius: 50%;
+  box-shadow: 0 1px 0 #fff;
+  cursor: pointer;
+  fill: #444;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  width: 50px;
+  position: absolute;
+  bottom: 21px;
+  right: 39px;
+  padding-top: 4px;
+}
+
+.execute-button:active {
+  background: -webkit-linear-gradient(#e6e6e6, #c0c0c0);
+  background: linear-gradient(#e6e6e6, #c0c0c0);
+  box-shadow: 0 1px 0 #fff, inset 0 0 2px rgba(0, 0, 0, 0.3), inset 0 0 6px rgba(0, 0, 0, 0.2);
 }
 
 @media only screen and (max-width: 770px) {
