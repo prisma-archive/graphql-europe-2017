@@ -18,9 +18,7 @@
   }.getOrElse("")
 
   <div class="speaker-name">@speaker.name.toUpperCase</div>
-  @speaker.description.map { d =>
-    <div class="speaker-description">@d</div>
-  }.getOrElse("")
+  <div class="speaker-description">@speaker.talkTitle.getOrElse("TBA")</div>
   @speaker.company.map { c =>
     <div class="speaker-company">@c</div>
   }.getOrElse("")

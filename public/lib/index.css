@@ -330,11 +330,23 @@ h2 {
   padding-left: 8px;
   padding-right: 8px;
   color: #CACACA !important;
+  -webkit-transition: all .6s ease;
+  -webkit-backface-visibility: hidden;
+  -webkit-transition: 0.2s all ease-in;
+  -o-transition: 0.2s all ease-in;
+  -moz-transition: 0.2s all ease-in;
+  transition: 0.2s all ease-in;
 }
 
 .speaker-photo {
   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
+  -webkit-transition: all .6s ease;
+  -webkit-backface-visibility: hidden;
+  -webkit-transition: 0.2s all ease-in;
+  -o-transition: 0.2s all ease-in;
+  -moz-transition: 0.2s all ease-in;
+  transition: 0.2s all ease-in;
 }
 
 .speaker-photo:hover {

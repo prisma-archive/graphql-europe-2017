@@ -13,10 +13,28 @@ class Application @Inject() (config: Configuration) extends Controller {
     Speaker(
       name = "Lee Byron",
       photo = Some("lee-byron.jpg"),
-      description = Some("GraphQL and Development speaker"),
+      talkTitle = None,
       company = Some("Facebook"),
       twitterUrl = Some("leeb"),
       githubUrl = Some("leebyron")
+    ),
+
+    Speaker(
+      name = "Sashko Stubailo",
+      photo = Some("sashko-stubailo.jpg"),
+      talkTitle = None,
+      company = Some("Apollo"),
+      twitterUrl = Some("stubailo"),
+      githubUrl = Some("stubailo")
+    ),
+
+    Speaker(
+      name = "This can be you!",
+      photo = Some("you.jpg"),
+      talkTitle = Some("Register today"),
+      company = None,
+      twitterUrl = None,
+      githubUrl = None
     )
   )
 
