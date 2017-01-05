@@ -32,18 +32,24 @@ $(function() {
     });
   }
 
-  function showSuccess() {
-    $.notify({
-      message: successMessage
-    },{
-      type: 'success',
-      allow_dismiss: false,
-      placement: {from: "top", align: "right"},
-      animate: {
-        enter: 'animated fadeInDown',
-        exit: 'animated fadeOutUp'
-      }
-    });
+  function showSuccess(topForm) {
+    if (!topForm) {
+      $.notify({
+        message: successMessage
+      },{
+        type: 'success',
+        allow_dismiss: false,
+        placement: {from: "top", align: "right"},
+        animate: {
+          enter: 'animated fadeInDown',
+          exit: 'animated fadeOutUp'
+        }
+      });
+    } else {
+      $(".window-result").slideDown()
+      $(".execute-button").hide()
+    }
+
 
     $("#bottomRegisterName, #bottomRegisterEmail, #topRegisterName, #topRegisterEmail").val("")
   }
@@ -67,7 +73,7 @@ $(function() {
     return re.test(email);
   }
 
-  function subscribe(name, email) {
+  function subscribe(topForm, name, email) {
     if (name.trim().length == 0) {
       showError("Name is empty.")
       return
@@ -103,7 +109,7 @@ $(function() {
 
           showError(message)
         } else {
-          showSuccess()
+          showSuccess(topForm)
         }
       })
       .catch(function (data) {
@@ -115,17 +121,17 @@ $(function() {
   function setupHandlers() {
     $('#registerButton').on('click', function (e) {
       e.preventDefault()
-      subscribe($('#bottomRegisterName').val(), $('#bottomRegisterEmail').val())
+      subscribe(false, $('#bottomRegisterName').val(), $('#bottomRegisterEmail').val())
     });
 
     $('.execute-button').on('click', function (e) {
       e.preventDefault()
-      subscribe($('#topRegisterName').val(), $('#topRegisterEmail').val())
+      subscribe(true, $('#topRegisterName').val(), $('#topRegisterEmail').val())
     });
 
     $('.hidden-input').keypress(function(e) {
       if(e.which == 13) {
-        subscribe($('#topRegisterName').val(), $('#topRegisterEmail').val())
+        subscribe(true, $('#topRegisterName').val(), $('#topRegisterEmail').val())
       }
     });
   }

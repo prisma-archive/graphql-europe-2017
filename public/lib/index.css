@@ -268,6 +268,11 @@ a:hover, a:active {
   font-family: "roboto-mono";
 }
 
+.form-code-i4 {
+  padding-left: 60px;
+  font-family: "roboto-mono";
+}
+
 .message-code {
   font-family: "roboto-mono";
 }
@@ -278,6 +283,14 @@ a:hover, a:active {
 
 .form-code-comment {
   color: #8a8a8a;
+}
+
+.window-result {
+  background-color: #f7f7f7;
+  padding-top: 15px;
+  margin-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 10px;
 }
 
 .make-space {
