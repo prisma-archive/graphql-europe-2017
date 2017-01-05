@@ -2,7 +2,9 @@ $(function() {
   var successMessage =
     "<pre class='message-code'><code>{<br>" +
     "  \"data\": {<br>" +
-    "    \"message\": \"Thanks for subscribing!\"<br>" +
+    "    \"conferenceUpdates\": {<br>" +
+    "      \"message\": \"Thanks for subscribing!\"<br>" +
+    "    }<br>" +
     "  }<br>" +
     "}</code></pre>"
 

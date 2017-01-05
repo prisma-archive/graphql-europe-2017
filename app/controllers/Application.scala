@@ -13,7 +13,7 @@ class Application @Inject() (config: Configuration) extends Controller {
     Speaker(
       name = "Lee Byron",
       photo = Some("lee-byron.jpg"),
-      talkTitle = None,
+      talkTitle = Some("Keynote"),
       company = Some("Facebook"),
       twitterUrl = Some("leeb"),
       githubUrl = Some("leebyron")
