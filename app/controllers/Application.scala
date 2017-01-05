@@ -30,7 +30,7 @@ class Application @Inject() (config: Configuration) extends Controller {
 
     Speaker(
       name = "This can be you!",
-      photo = Some("you.jpg"),
+      photo = Some("you.png"),
       talkTitle = Some("Register today"),
       company = None,
       twitterUrl = None,

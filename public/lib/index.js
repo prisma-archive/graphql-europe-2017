@@ -9,11 +9,11 @@ $(function() {
     "}</code></pre>"
 
   var unexpectedErrorMessage = "Oops, something unexpected happened :( We are sorry for this. Please drop us an e-mail at " + supportEmail
-  var graphCoolProject = "https://api.graph.cool/simple/v1/" + graphCoolProjectKey;
+  var graphCoolProject = "https://api.graph.cool/relay/v1/" + graphCoolProjectKey;
   var registerQuery =
     "mutation RegisterSubscriber($name: String!, $email: String!) {" +
-    "  createSubscriber(name: $name, email: $email) {" +
-    "    id" +
+    "  createSubscriber(input: {clientMutationId: \"1\", name: $name, email: $email}) {" +
+    "    clientMutationId" +
     "  }" +
     "}";
 
