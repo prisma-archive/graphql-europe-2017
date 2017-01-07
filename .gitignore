@@ -11,6 +11,3 @@ target
 /node_modules
 
 *.iml
-
-# webpack output
-/public/*.*
