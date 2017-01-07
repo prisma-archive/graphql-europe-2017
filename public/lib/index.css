@@ -21,7 +21,7 @@ body {
 }
 
 .main-header {
-  height: 70vh;
+  height: 60vh;
   width: 100%;
   min-height: 450px;
   text-align: center;
@@ -42,14 +42,13 @@ body {
 
 .logo {
   max-width: 30vh;
-  max-height: 30vh;
+  max-height: 28vh;
   padding-top: 1.5em;
-  padding-bottom: 1.5em;
+  padding-bottom: 0.9em;
 }
 
 .main-header-text {
   width: 80vw;
-  margin-top: 10px;
   margin-bottom: 60px;
 
   color: #1f2228;
@@ -78,12 +77,13 @@ body {
 .location {
   font-size: 2.5vh;
   font-weight: 100;
+  padding-top: 15px;
 }
 
 .cloud {
   position: absolute;
   z-index: -10;
-  opacity: 0.5;
+  opacity: 0.35;
 
   width: auto;
   height: 85vh;
@@ -101,12 +101,12 @@ body {
 
 .cloud-bl {
   left: 0;
-  top: 40vh;
+  top: 50vh;
 }
 
 .cloud-br {
   right: 0;
-  top: 40vh;
+  top: 50vh;
 }
 
 .top-gradient {
