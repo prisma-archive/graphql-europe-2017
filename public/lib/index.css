@@ -21,7 +21,7 @@ body {
 }
 
 .main-header {
-  height: 60vh;
+  height: 65vh;
   width: 100%;
   min-height: 450px;
   text-align: center;
@@ -65,12 +65,12 @@ body {
 }
 
 .subtitle-footer {
-  font-size: 7vh;
+  font-size: 8vh;
   font-weight: 700;
 }
 
 .description-footer {
-  font-size: 2vh;
+  font-size: 3vh;
   font-weight: 400;
 }
 
@@ -388,8 +388,8 @@ h2 {
 
 .cloud-bbl {
   position: absolute;
-  height: 600px;
-  top: -600px;
+  height: 400px;
+  top: -400px;
 }
 
 .cloud-bbr-wrapper {
@@ -400,9 +400,9 @@ h2 {
 
 .cloud-bbr {
   position: absolute;
-  height: 600px;
-  top: -600px;
-  left: -654px;
+  height: 400px;
+  top: -400px;
+  left: -438px;
 }
 
 .form-control:focus {
@@ -419,7 +419,7 @@ h2 {
   padding-right: 45px;
   padding-top: 15px;
   padding-bottom: 15px;
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 
 .footer-button:hover, .footer-button:active, .footer-button:focus {
@@ -430,15 +430,15 @@ h2 {
 
 .footer-form input {
   padding: 15px;
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 
 #bottomRegisterName {
-  width: 250px;
+  width: 150px;
 }
 
 #bottomRegisterEmail {
-  width: 350px;
+  width: 250px;
 }
 
 .hidden-input, .hidden-input:focus {
@@ -674,7 +674,8 @@ h2 {
 /* footer from dark theme */
 
 .footer-bg {
-  background: url(/assets/image/bg-dark.jpg) no-repeat center center;
+  background: url(/assets/image/bg-dark-alt.jpg) no-repeat center center;
+  background-color: #1f2228;
 }
 .subtitle-footer, .description-footer, .footer-copy {
   color: white;
@@ -745,6 +746,6 @@ footer .navbar-light .navbar-nav .nav-link:active {
   display: inline-block;
   width: auto;
   min-width: 247px;
-  max-height: 45px;
+  max-height: 40px;
   padding: 0;
 }
