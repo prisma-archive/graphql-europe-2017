@@ -13,16 +13,14 @@
 <meta property="og:url" content="@config.canonicalUrl">
 <meta property="og:title" content="@config.name - @config.location - @config.shortDescription">
 <meta property="og:description" content="@config.name - @config.location - @config.description">
-@*TODO: FB image*@
-@*<meta property="og:image:url" content="TODO: URL">*@
+<meta property="og:image:url" content="@config.canonicalUrl@routes.Assets.versioned("image/share-graphql-europe.png")">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@@graphqleu">
 <meta name="twitter:creator" content="@@graphqleu">
 <meta name="twitter:title" content="@config.name - @config.shortDescription">
 <meta name="twitter:description" content="@config.name - @config.description">
-@*TODO: Twitter Image*@
-@*<meta name="twitter:image" content="TODO: URL">*@
+<meta name="twitter:image" content="@config.canonicalUrl@routes.Assets.versioned("image/share-graphql-europe.png")">
 
 <link rel="canonical" href="@config.canonicalUrl" />
 
