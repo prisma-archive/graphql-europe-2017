@@ -1,0 +1,37 @@
+@import views.Config
+
+@(config: Config, title: String)(content: Html)
+
+@main(config, title, Some("secondary-body")) {
+  <div class="secondary-header">
+    <div class="container">
+      <div class="header clearfix">
+        <nav class="navbar navbar-light bg-faded">
+          <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation"></button>
+          <div class="collapse navbar-toggleable-xs" id="navbar-header">
+            <img class="top-logo" src="@routes.Assets.versioned("image/top-logo.svg")" />
+
+            <ul class="nav navbar-nav nav-pills float-xs-right">
+              <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+              <li class="nav-item"><a class="nav-link" href="/#attend">Attend</a></li>
+              <li class="nav-item"><a class="nav-link" href="/#speakers">Speakers</a></li>
+              <li class="nav-item"><a class="nav-link" href="/#sponsors">Sponsors</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  @content
+
+  <div class="secondary-end-space"></div>
+
+  <div class="secondary-footer">
+    <div class="container">
+      <footer class="footer">
+      @footerNav(config)
+      </footer>
+    </div>
+  </div>
+}

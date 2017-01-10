@@ -43,4 +43,7 @@ class Application @Inject() (config: Configuration) extends Controller {
   def index = Action { req ⇒
     Ok(views.html.index(conf, speakers, req.queryString.contains("dark"), req.queryString.contains("topLogo")))
   }
+
+  def codeOfConduct = Action(Ok(views.html.codeOfConduct(conf)))
+  def imprint = Action(Ok(views.html.imprint(conf)))
 }

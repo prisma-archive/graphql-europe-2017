@@ -1,3 +1,7 @@
+html {
+  height: 100%;
+}
+
 html, body {
   overflow-x: hidden;
 }
@@ -7,6 +11,11 @@ body {
   margin: 0;
   font-size: 1.2em;
   color: #1f2228;
+}
+
+.secondary-body {
+  min-height: 100%;
+  position: relative;
 }
 
 * {
@@ -769,7 +778,7 @@ footer .navbar-light .navbar-nav .nav-link:active {
 .bottom-logo {
   display: inline-block;
   width: auto;
-  min-width: 247px;
+  min-width: 220px;
   max-height: 40px;
   padding: 0;
 }
@@ -786,4 +795,51 @@ footer .navbar-light .navbar-nav .nav-link:active {
 
 .contact-link:hover {
   border-color: #db3f74 !important;
+}
+
+.secondary-footer {
+  background-color: #1f2228;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.secondary-end-space {
+  display: block;
+  height: 150px;
+}
+
+.secondary-header {
+  background-color: #f56199;
+}
+
+.secondary-header .nav-item a,
+.secondary-header .nav-item a:visited,
+.secondary-header .nav-item a:focus,
+.secondary-header .navbar-light .navbar-nav .nav-link,
+.secondary-header .navbar-light .navbar-nav .nav-link:visited,
+.secondary-header .navbar-light .navbar-nav .nav-link:focus {
+  color: white;
+}
+
+.secondary-header .nav-item a:hover,
+.secondary-header .nav-item a:active,
+.secondary-header .navbar-light .navbar-nav .nav-link:hover,
+.secondary-header .navbar-light .navbar-nav .nav-link:active {
+  color: #db3f74; !important;
+}
+
+.secondary-body h1 {
+  padding-top: 50px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #c9ced6;
+  margin-bottom: 30px;
+}
+
+.secondary-body .header, .secondary-body .navbar-light {
+  padding-left: 0px;
+  padding-right: 0px;
 }

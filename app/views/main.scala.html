@@ -1,0 +1,30 @@
+@import views.Config
+
+@(config: Config, title: String, bodyClass: Option[String] = None)(content: Html)
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    @meta(config)
+
+    <title>@config.name - @title</title>
+
+    @font()
+
+    @libsTop(config.cdn)
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("lib/index.css")">
+  </head>
+  <body class="@bodyClass.getOrElse("")">
+    @content
+
+    @libsBottom(config.cdn)
+    <script>
+        window.graphCoolProjectKey = "@config.graphCoolProjectKey";
+        window.supportEmail = "@config.supportEmail";
+    </script>
+
+    <script src="@routes.Assets.versioned("lib/index.js")"></script>
+    @ga(config.gaCode)
+  </body>
+</html>
