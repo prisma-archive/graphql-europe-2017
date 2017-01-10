@@ -773,3 +773,17 @@ footer .navbar-light .navbar-nav .nav-link:active {
   max-height: 40px;
   padding: 0;
 }
+
+.contact-link {
+  border: 1px solid white;
+  border-radius: 50% !important;
+  width: 47px !important;
+  text-align: center;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  height: 47px !important;
+}
+
+.contact-link:hover {
+  border-color: #db3f74 !important;
+}
