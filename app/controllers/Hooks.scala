@@ -53,8 +53,14 @@ class Hooks @Inject() (config: Configuration, sunscribers: SubscriberRepo) exten
   }
 
   private def sendEmail(sub: Subscriber): Future[Unit] = {
-    log.info("Sending email to " + sub.email)
-    Future.successful(())
-  }
+    if (sub.email.endsWith("test123.com")) {
+      log.info("Test email: " + sub.email + ". No notification was sent.")
 
+      Future.successful(())
+    } else {
+      log.info("Sending an email to " + sub.email)
+
+      Future.successful(())
+    }
+  }
 }
