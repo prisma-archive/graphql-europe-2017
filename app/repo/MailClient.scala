@@ -12,15 +12,15 @@ import scala.collection.JavaConverters._
 class MailClient @Inject()(config: Configuration) {
   val log = Logger(this.getClass)
 
+  def isConfigured = config.getString("mail.userName").getOrElse("").nonEmpty
+
   def send(
     to: String,
     subject: String,
     text: String,
     html: String
   ): Unit = {
-    val userName = config.getString("mail.userName").getOrElse("")
-
-    if (userName.trim.nonEmpty) {
+    if (isConfigured) {
       val email = new HtmlEmail()
 
       email.setHostName(config.getString("mail.smtpHost").get)

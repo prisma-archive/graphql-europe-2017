@@ -62,7 +62,7 @@ class Hooks @Inject() (config: Configuration, subscribers: SubscriberRepo, mailC
 
   private def sendSubscriptionConfirmation(id: String): Future[Result] = {
     subscribers.byId(id).flatMap {
-      case Some(subscriber) if !subscriber.notified && !subscriber.unsubscribed ⇒
+      case Some(subscriber) if !subscriber.notified && !subscriber.unsubscribed && mailClient.isConfigured ⇒
         sendEmail(subscriber)
           .flatMap(_ ⇒ subscribers.notified(id))
           .map(_ ⇒ Ok("Done"))
@@ -79,11 +79,11 @@ class Hooks @Inject() (config: Configuration, subscribers: SubscriberRepo, mailC
 
       Future.successful(())
     } else {
-      log.info("Sending an email to " + sub.email)
+      log.info("Sending an email to subscriber with id" + sub.id)
 
       Future.fromTry(Try {
         mailClient.send(
-          to = "oleg.ilyenko@gmail.com",
+          to = sub.email,
           subject = "Thanks for subscribing to GraphQL-Europe updates!",
           text =
             s"""Thanks for subscribing, <strong>@subscriber.name</strong>!
