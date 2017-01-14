@@ -7,6 +7,8 @@ GET         /                      controllers.Application.index
 GET         /code-of-conduct       controllers.Application.codeOfConduct
 GET         /imprint               controllers.Application.imprint
 
+GET         /unsubscribe/:id       controllers.Hooks.unsubscribe(id)
+
 POST        /subscriber-created    controllers.Hooks.subscriberCreated
 
 # Map static resources from the /public folder to the /assets URL path

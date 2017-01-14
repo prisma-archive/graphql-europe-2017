@@ -21,9 +21,35 @@ class SubscriberRepo @Inject() (client: GraphCoolClient) {
             id
             name
             email
+            notified
+            unsubscribed
           }
         }
       """,
       "id" → JsString(id)
     ).map(res ⇒ (res \ "data" \ "Subscriber").asOpt[Subscriber])
+
+  def notified(id: String): Future[Unit] =
+    client.request(
+      """
+        mutation($id: ID!) {
+          updateSubscriber(id: $id, notified: true) {
+            id
+          }
+        }
+      """,
+      "id" → JsString(id)
+    ).map(res ⇒ ())
+
+  def unsubscribe(id: String): Future[Unit] =
+    client.request(
+      """
+        mutation($id: ID!) {
+          updateSubscriber(id: $id, unsubscribed: true) {
+            id
+          }
+        }
+      """,
+      "id" → JsString(id)
+    ).map(res ⇒ ())
 }

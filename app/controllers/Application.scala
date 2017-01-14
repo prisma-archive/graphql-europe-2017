@@ -9,9 +9,8 @@ import net.ceedubs.ficus.Ficus._
 import net.ceedubs.ficus.readers.ArbitraryTypeReader._
 import repo.{GraphCoolClient, SubscriberRepo}
 import views.{Config, Speaker}
-import scala.concurrent.ExecutionContext.Implicits.global
 
-class Application @Inject() (config: Configuration, sunscribers: SubscriberRepo) extends Controller {
+class Application @Inject() (config: Configuration) extends Controller {
   val speakers = List(
     Speaker(
       name = "Lee Byron",
