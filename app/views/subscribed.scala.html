@@ -1,0 +1,135 @@
+@import views.Config
+@import model.Subscriber
+
+@(config: Config, subscriber: Subscriber)
+
+<html>
+  <head>
+    @meta(config)
+
+    <title>Thanks for subscribing, @subscriber.name!</title>
+
+    <style type="text/css">
+      * {
+        font-family: sans-serif;
+      }
+
+      body {
+        padding: 0;
+        margin: 0;
+        background-color: #F3F3F3;
+      }
+
+      #main-content {
+        padding-top: 100px;
+        text-align: center;
+        color: #1f2228;
+      }
+
+      #main-box {
+        background-color: white;
+        border: 2px solid #E2E8F0;
+        display: inline-block;
+        width: 600px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        padding-left: 100px;
+        padding-right: 100px;
+      }
+
+      #logo {
+        width: 150px;
+        height: auto;
+        padding-bottom: 10px;
+      }
+
+      h1 {
+        font-size: 2.5em;
+        font-weight: normal;
+      }
+
+      p {
+        font-size: 1.2em;
+      }
+
+      #share {
+        padding-top: 50px;
+        padding-bottom: 30px;
+      }
+
+      #share img {
+        width: 70px;
+      }
+
+      #first-share {
+        padding-right: 20px;
+      }
+
+      a, a:visited {
+        color: #757576;
+        text-decoration: none;
+      }
+
+      a:hover, a:active {
+        color: #303031;
+      }
+
+      #links, #copy {
+        font-size: 1.3em;
+        color: #757576;
+      }
+
+      #copy {
+        padding-top: 10px;
+      }
+
+      .link-separator {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div id="main-content">
+        <section id="main-box">
+          <a href="@config.canonicalUrl">
+            <img id="logo" src="@config.canonicalUrl/assets/image/graphql-europe-logo.png" alt="GraphQL-Europe Logo">
+          </a>
+          
+          <h1>Thanks for subscribing, <strong>@subscriber.name</strong>!</h1>
+
+          <p>You've been added to our newsletter list and now be among the first to hear about updates around the conference.</p>
+        </section>
+
+        <section id="share">
+          <a id="first-share" href="https://twitter.com/@@graphqleu" target="_blank">
+            <img src="@config.canonicalUrl/assets/image/email-twitter.png">
+          </a>
+
+          <a href="mailto:@config.supportEmail">
+            <img src="@config.canonicalUrl/assets/image/email.png">
+          </a>
+        </section>
+
+        <section id="links">
+          <a id="first-link" href="mailto:@config.supportEmail">
+            Contact
+          </a>
+          <span class="link-separator">|</span>
+          <a href="@config.canonicalUrl/unsubscribe/@subscriber.id">
+            Unsubscribe
+          </a>
+          <span class="link-separator">|</span>
+          <a href="@config.canonicalUrl/subscribed/@subscriber.id">
+            View In Browser
+          </a>
+        </section>
+
+        <section id="copy">
+          2017 &copy; <a href="@config.canonicalUrl">GraphQL-Europe</a>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

@@ -7,7 +7,9 @@ GET         /                      controllers.Application.index
 GET         /code-of-conduct       controllers.Application.codeOfConduct
 GET         /imprint               controllers.Application.imprint
 
+GET         /subscribed/:id        controllers.Hooks.subscribed(id)
 GET         /unsubscribe/:id       controllers.Hooks.unsubscribe(id)
+GET         /test-notification/:id controllers.Hooks.testNotification(id)
 
 POST        /subscriber-created    controllers.Hooks.subscriberCreated
 
