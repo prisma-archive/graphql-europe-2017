@@ -13,15 +13,15 @@ class Hooks @Inject() (config: Configuration) extends Controller {
 
   def subscriberCreated = Action.async { req ⇒
     req.body.asJson.map { body ⇒
-      (body \ "createdNode" \ "id") match {
-        case JsString(id) ⇒
+      (body \ "createdNode" \ "id").toOption match {
+        case Some(JsString(id)) ⇒
           try {
             sendSubscriptionConfirmation(id)
 
             Future.successful(Ok("Done"))
           } catch {
             case e: Exception ⇒
-              log.error(s"Can't send subscription notificatrion for ID '$id'.", e)
+              log.error(s"Can't send subscription notification for ID '$id'.", e)
               Future.successful(Ok("Oops. Something went wrong."))
           }
 
