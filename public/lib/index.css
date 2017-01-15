@@ -856,7 +856,7 @@ footer .navbar-light .navbar-nav .nav-link:active {
 
 .secondary-end-space {
   display: block;
-  height: 150px;
+  height: 180px;
 }
 
 .secondary-header {
@@ -884,6 +884,13 @@ footer .navbar-light .navbar-nav .nav-link:active {
   padding-bottom: 30px;
   border-bottom: 1px solid #c9ced6;
   margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.secondary-body h2 {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-weight: normal;
 }
 
 .secondary-body .header, .secondary-body .navbar-light {
