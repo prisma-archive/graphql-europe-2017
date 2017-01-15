@@ -32,7 +32,7 @@ class CacheControlFilter @Inject() (config: Configuration) extends EssentialFilt
       next(req)
   }
 
-  def maxAge(duration: Duration, sharedDuration: Duration) = s"max-age=${duration.toSeconds}, s-maxage=${duration.toSeconds}"
+  def maxAge(duration: Duration, sharedDuration: Duration) = s"max-age=${duration.toSeconds}, s-maxage=${sharedDuration.toSeconds}"
   val noCache = "no-cache"
   val CacheControl = "Cache-Control"
 }
