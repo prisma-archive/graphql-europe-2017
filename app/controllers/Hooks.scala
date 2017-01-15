@@ -33,7 +33,7 @@ class Hooks @Inject() (config: Configuration, subscribers: SubscriberRepo, mailC
           .recover {
             case e: Exception ⇒
               log.error("Can't send an email!", e)
-              InternalServerError("Opps.")
+              InternalServerError("Oops.")
           }
       case None ⇒
         Future.successful(NotFound(s"Subscriber with ID '$id' not found."))
