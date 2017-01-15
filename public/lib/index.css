@@ -555,6 +555,13 @@ h2 {
   background-color: rgb(240, 240, 240);
 }
 
+@media only screen and (max-width: 1024px) {
+  .register-button, .register-button:visited, .register-button:focus {
+    padding-left: 21px;
+    padding-right: 21px;
+  }
+}
+
 @media only screen and (max-width: 770px) {
   .nav-pills .nav-link {
     padding-left: .6em;
@@ -563,15 +570,15 @@ h2 {
 
   .cloud-bbl {
     position: absolute;
-    height: 150px;
-    top: -150px;
+    height: 300px;
+    top: -300px;
   }
 
   .cloud-bbr {
     position: absolute;
-    height: 150px;
-    top: -150px;
-    left: -164px;
+    height: 300px;
+    top: -300px;
+    left: -349px;
   }
 
   .cloud {
@@ -594,12 +601,52 @@ h2 {
     width: 9em;
   }
 
+  .subtitle {
+    font-size: 7vh;
+  }
+
   #speakers .col-md-2 {
     width: 250px;
   }
+}
 
+@media only screen and (max-width: 736px) {
   .main-header-content {
     top: 65%;
+  }
+
+  .subtitle {
+    font-size: 9vh;
+  }
+
+  .description {
+    font-size: 6vh;
+  }
+
+  .location {
+    font-size: 5.5vh;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .main-header-content {
+    top: 65%;
+  }
+
+  .subtitle {
+    font-size: 5vh;
+  }
+
+  .description {
+    font-size: 4vh;
+  }
+
+  .location {
+    font-size: 3.5vh;
+  }
+
+  .form-code-line-number {
+    display: none;
   }
 }
 
