@@ -659,6 +659,34 @@ h2 {
     position: absolute;
   }
 
+  .secondary-body .navbar-toggleable-xs {
+    background-color: #eeeeee;
+    margin-top: 10px;
+    opacity: 0.9;
+    border-radius: 5px;
+    position: absolute;
+  }
+
+  .secondary-body .top-logo {
+    display: none;
+  }
+
+  .secondary-header .nav-item a,
+  .secondary-header .nav-item a:visited,
+  .secondary-header .nav-item a:focus,
+  .secondary-header .navbar-light .navbar-nav .nav-link,
+  .secondary-header .navbar-light .navbar-nav .nav-link:visited,
+  .secondary-header .navbar-light .navbar-nav .nav-link:focus {
+    color: #444444 !important;
+  }
+
+  .secondary-header .nav-item a:hover,
+  .secondary-header .nav-item a:active,
+  .secondary-header .navbar-light .navbar-nav .nav-link:hover,
+  .secondary-header .navbar-light .navbar-nav .nav-link:active {
+    color: #db3f74; !important;
+  }
+
   .navbar-toggleable-xs .navbar-nav {
     float: left !important;
   }
