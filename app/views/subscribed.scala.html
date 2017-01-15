@@ -3,137 +3,67 @@
 
 @(config: Config, subscriber: Subscriber)
 
+@fontFam = @{"font-family: proxima-nova, \"Helvetica Neue\", Verdana, sans-serif; "}
+@bottomColor = @{"color: #757576; font-size: 19px;"}
+
 <html>
   <head>
     @meta(config)
 
     <title>Thanks for subscribing, @subscriber.name!</title>
 
+    @font()
+
     <style type="text/css">
-      * {
-        font-family: sans-serif;
-      }
-
-      body {
-        padding: 0;
-        margin: 0;
-        background-color: #F3F3F3;
-      }
-
-      #main-content {
-        padding-top: 100px;
-        text-align: center;
-        color: #1f2228;
-      }
-
-      #main-box {
-        background-color: white;
-        border: 2px solid #E2E8F0;
-        display: inline-block;
-        width: 650px;
-        padding-top: 50px;
-        padding-bottom: 50px;
-        padding-left: 50px;
-        padding-right: 50px;
-      }
-
-      #logo {
-        width: 150px;
-        height: auto;
-        padding-bottom: 10px;
-      }
-
-      h1 {
-        font-size: 2.5em;
-        font-weight: normal;
-      }
-
-      p {
-        font-size: 1.2em;
-      }
-
-      #share {
-        padding-top: 50px;
-        padding-bottom: 30px;
-      }
-
-      #share img {
-        width: 70px;
-      }
-
-      #first-share {
-        padding-right: 20px;
-      }
-
       a, a:visited {
-        color: #757576;
-        text-decoration: none;
+        color: #757576; text-decoration: none;
       }
 
       a:hover, a:active {
         color: #303031;
       }
-
-      #links, #copy {
-        font-size: 1.3em;
-        color: #757576;
-      }
-
-      #copy {
-        padding-top: 10px;
-      }
-
-      .link-separator {
-        padding-left: 15px;
-        padding-right: 15px;
-      }
-
-      #wrapper {
-        padding-bottom: 50px;
-        background-color: #F3F3F3;
-      }
     </style>
   </head>
-  <body>
-    <div id="wrapper">
-      <div id="main-content">
-        <section id="main-box">
+  <body style="padding: 0; margin: 0; background-color: #F3F3F3;">
+    <div id="wrapper" style="padding-bottom: 50px; background-color: #F3F3F3;">
+      <div id="main-content" style="padding-top: 100px; text-align: center; color: #1f2228;">
+        <div id="main-box" style="background-color: white; border: 2px solid #E2E8F0; display: inline-block; max-width: 650px; padding-top: 50px; padding-bottom: 50px; padding-left: 50px; padding-right: 50px;">
           <a href="@config.canonicalUrl">
-            <img id="logo" src="@config.canonicalUrl/assets/image/graphql-europe-logo.png" alt="GraphQL-Europe Logo">
+            <img id="logo" style="width: 150px; height: auto; padding-bottom: 10px;" src="@config.canonicalUrl/assets/image/graphql-europe-logo.png" alt="GraphQL-Europe Logo">
           </a>
           
-          <h1>Thanks for subscribing, <strong>@subscriber.name</strong>!</h1>
+          <h1 style="@fontFam font-size: 30px; font-weight: normal;">Thanks for subscribing, <strong>@subscriber.name</strong>!</h1>
 
-          <p>You've been added to our newsletter list and now be among the first to hear about updates around the conference.</p>
-        </section>
+          <p style="@fontFam font-size: 20px;">You've been added to our newsletter list and now be among the first to hear about updates around the conference.</p>
+        </div>
 
-        <section id="share">
-          <a id="first-share" href="https://twitter.com/@@graphqleu" target="_blank">
-            <img src="@config.canonicalUrl/assets/image/email-twitter.png">
+        <div id="share" style="padding-top: 50px; padding-bottom: 30px;">
+          <a id="first-share" style="padding-right: 20px;" href="https://twitter.com/@@graphqleu" target="_blank">
+            <img style="width: 50px;" width="50" src="@config.canonicalUrl/assets/image/email-twitter.png">
           </a>
 
           <a href="mailto:@config.supportEmail">
-            <img src="@config.canonicalUrl/assets/image/email.png">
+            <img style="width: 50px;" width="50" src="@config.canonicalUrl/assets/image/email.png">
           </a>
-        </section>
+        </div>
 
-        <section id="links">
-          <a id="first-link" href="mailto:@config.supportEmail">
+        <div id="links">
+          <a id="first-link" href="mailto:@config.supportEmail" style="@fontFam @bottomColor text-decoration: none;">
             Contact
           </a>
-          <span class="link-separator">|</span>
-          <a href="@config.canonicalUrl/unsubscribe/@subscriber.id">
+          <span class="link-separator" style="@fontFam @bottomColor padding-left: 15px; padding-right: 15px;">|</span>
+          <a href="@config.canonicalUrl/unsubscribe/@subscriber.id" style="@fontFam @bottomColor">
             Unsubscribe
           </a>
-          <span class="link-separator">|</span>
-          <a href="@config.canonicalUrl/subscribed/@subscriber.id">
+          <span class="link-separator" style="@fontFam @bottomColor padding-left: 15px; padding-right: 15px;">|</span>
+          <a href="@config.canonicalUrl/subscribed/@subscriber.id" style="@fontFam @bottomColor">
             View In Browser
           </a>
-        </section>
+        </div>
 
-        <section id="copy">
-          2017 &copy; <a href="@config.canonicalUrl">GraphQL-Europe</a>
-        </section>
+        <div id="copy" style="@fontFam @bottomColor padding-top: 10px;">
+          2017 &copy; <a href="@config.canonicalUrl" style="@fontFam @bottomColor">GraphQL-Europe</a>
+        </div>
       </div>
     </div>
   </body>
