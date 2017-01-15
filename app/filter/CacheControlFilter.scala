@@ -15,13 +15,13 @@ class CacheControlFilter @Inject() (config: Configuration) extends EssentialFilt
 
   def header(path: String): (String, String) =
     if (path startsWith "/assets/lib")
-      CacheControl → maxAge(30 minutes)
+      CacheControl → maxAge(1 minute, 30 minutes)
     else if (path startsWith "/assets")
-      CacheControl → maxAge(1 day)
+      CacheControl → maxAge(1 hour, 1 day)
     else if (path == "code-of-conduct" || path == "imprint")
-      CacheControl → maxAge(1 day)
+      CacheControl → maxAge(1 hour, 1 day)
     else if (path == "/")
-      CacheControl → maxAge(30 minutes)
+      CacheControl → maxAge(1 minute, 30 minutes)
     else
       CacheControl → noCache
 
@@ -32,7 +32,7 @@ class CacheControlFilter @Inject() (config: Configuration) extends EssentialFilt
       next(req)
   }
 
-  def maxAge(duration: Duration) = s"max-age=${duration.toSeconds}"
+  def maxAge(duration: Duration, sharedDuration: Duration) = s"max-age=${duration.toSeconds}, s-maxage=${duration.toSeconds}"
   val noCache = "no-cache"
   val CacheControl = "Cache-Control"
 }
