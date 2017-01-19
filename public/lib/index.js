@@ -32,6 +32,11 @@ $(function() {
     });
   }
 
+  function hideSuccess() {
+    $(".window-result").slideUp()
+    $(".execute-button").show()
+  }
+
   function showSuccess(topForm) {
     if (!topForm) {
       $.notify({
@@ -48,8 +53,9 @@ $(function() {
     } else {
       $(".window-result").slideDown()
       $(".execute-button").hide()
-    }
 
+      setTimeout(hideSuccess, 8000)
+    }
 
     $("#bottomRegisterName, #bottomRegisterEmail, #topRegisterName, #topRegisterEmail").val("")
   }
