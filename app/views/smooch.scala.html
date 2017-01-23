@@ -1,0 +1,9 @@
+@(smoochApiKey: Option[String])
+
+@if(smoochApiKey.isDefined) {
+  <script src="https://cdn.smooch.io/smooch.min.js"></script>
+
+  <script>
+      Smooch.init({appToken: '@smoochApiKey.get'});
+  </script>
+}

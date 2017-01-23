@@ -2,6 +2,7 @@ package views
 
 case class Config(
   gaCode: Option[String],
+  smoochApiKey: Option[String],
   graphCoolProjectKey: String,
   canonicalUrl: String,
   name: String,
