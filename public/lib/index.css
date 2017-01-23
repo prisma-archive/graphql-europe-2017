@@ -659,6 +659,10 @@ h2 {
     position: absolute;
   }
 
+  .header, .navbar-light {
+    padding-left: 0px;
+  }
+
   .secondary-body .navbar-toggleable-xs {
     background-color: #eeeeee;
     margin-top: 10px;
