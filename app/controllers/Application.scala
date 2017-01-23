@@ -16,7 +16,7 @@ class Application @Inject() (config: Configuration) extends Controller {
       name = "Lee Byron",
       photo = Some("lee-byron.jpg"),
       talkTitle = Some("Keynote"),
-      company = Some("Facebook"),
+      company = Some("Facebook, GraphQL Co-inventor"),
       twitterUrl = Some("leeb"),
       githubUrl = Some("leebyron")
     ),
