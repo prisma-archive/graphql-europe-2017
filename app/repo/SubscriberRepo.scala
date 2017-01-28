@@ -31,6 +31,24 @@ class SubscriberRepo {
       "id" → JsString(id)
     ).map(res ⇒ (res \ "data" \ "Subscriber").asOpt[Subscriber])
 
+  def byEmail(email: String)(implicit client: GraphCoolClient): Future[Option[Subscriber]] =
+    client.request(
+      """
+        query ($email: String!) {
+          Subscriber(email: $email) {
+            id
+            name
+            email
+            notified
+            unsubscribed
+            mailchimpExported
+            mailchimpId
+          }
+        }
+      """,
+      "email" → JsString(email)
+    ).map(res ⇒ (res \ "data" \ "Subscriber").asOpt[Subscriber])
+
   def notified(id: String)(implicit client: GraphCoolClient): Future[Unit] =
     client.request(
       """

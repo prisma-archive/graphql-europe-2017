@@ -73,6 +73,34 @@ class Hooks @Inject() (config: Configuration, subscribers: SubscriberRepo, mailC
     }
   }
 
+  def unsunscribeMcGet = Action(Ok("Everything is fine!"))
+
+  def unsunscribeMc = Action.async { req ⇒
+    req.body.asFormUrlEncoded.map { body ⇒
+      body.get("data[email]") match {
+        case Some(emails) ⇒
+          val email = emails.head
+
+          subscribers.byEmail(email).flatMap {
+            case Some(s) ⇒
+              subscribers.unsubscribe(s.id).map { _ ⇒
+                log.info(s"Subscriber unsubscribed from mailchimp ${s.id}")
+
+                Ok("Done")
+              }
+
+            case None ⇒
+              log.info("Subscriber not found of email: " + email)
+
+              Future.successful(Ok("Done"))
+          }
+
+        case None ⇒
+          Future.successful(BadRequest("No email found!"))
+      }
+    }.getOrElse(Future.successful(BadRequest("Expecting form data")))
+  }
+
   def test = Action.async { req ⇒
     log.info("queryString: " + req.queryString)
 
