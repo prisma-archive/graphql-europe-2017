@@ -14,7 +14,9 @@ class CacheControlFilter @Inject() (config: Configuration) extends EssentialFilt
   val cacheEnabled = config.getBoolean("cacheEnabled") getOrElse true
 
   def header(path: String): (String, String) =
-    if (path startsWith "/assets/lib")
+    if (path startsWith "/admin")
+      CacheControl → noCache
+    else if (path startsWith "/assets/lib")
       CacheControl → maxAge(1 minute, 30 minutes)
     else if (path startsWith "/assets")
       CacheControl → maxAge(1 hour, 1 day)

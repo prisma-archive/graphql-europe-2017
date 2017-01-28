@@ -12,6 +12,11 @@ GET         /unsubscribe/:id       controllers.Hooks.unsubscribe(id)
 GET         /test-notification/:id controllers.Hooks.testNotification(id)
 
 POST        /subscriber-created    controllers.Hooks.subscriberCreated
+GET         /admin                 controllers.Admin.index
+GET         /admin/login           controllers.Admin.login(origPath: Option[String])
+POST        /admin/login           controllers.Admin.doLogin
+GET         /admin/logout          controllers.Admin.logout
+GET         /admin/notifications   controllers.Admin.notifications
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file          controllers.Assets.versioned(path="/public", file: Asset)

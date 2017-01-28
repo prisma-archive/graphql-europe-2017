@@ -6,7 +6,7 @@ import model.Subscriber
 import play.api.libs.json.{JsString, Json}
 import play.api.{Configuration, Logger}
 import play.api.mvc.{Action, Controller, Result}
-import repo.{MailClient, SubscriberRepo}
+import repo.{GraphCoolClientProvider, MailClient, SubscriberRepo}
 import views.Config
 import net.ceedubs.ficus.Ficus._
 import net.ceedubs.ficus.readers.ArbitraryTypeReader._
@@ -15,9 +15,11 @@ import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.Try
 
-class Hooks @Inject() (config: Configuration, subscribers: SubscriberRepo, mailClient: MailClient) extends Controller {
+class Hooks @Inject() (config: Configuration, subscribers: SubscriberRepo, mailClient: MailClient, clientProvider: GraphCoolClientProvider) extends Controller {
   val conf = config.underlying.as[Config]("graphqlEurope")
   val log = Logger(this.getClass)
+
+  implicit val client = clientProvider.internal
 
   def subscribed(id: String) =
     Action.async(subscribers.byId(id).map {

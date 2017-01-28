@@ -1,0 +1,42 @@
+@import views.Config
+
+@(config: Config, fragment: String, errors: List[String])
+
+@admin.main(config, "Login") {
+  <div class="container">
+    <div class="row" style="padding-top: 50px">
+      <div class="col-lg-12">
+        <h2 style="padding-bottom: 10px">Login</h2>
+
+        @errors.map{ error =>
+          <div class="alert alert-danger" role="alert">
+            @error
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <form action="@routes.Admin.doLogin()" method="POST">
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Email">
+          <input type="hidden" name="origPath" value="@fragment">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+          <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+          <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+      </div>
+    </form>
+  </div>
+}

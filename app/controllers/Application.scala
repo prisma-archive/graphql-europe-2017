@@ -2,12 +2,10 @@ package controllers
 
 import javax.inject.Inject
 
-import akka.actor.ActorSystem
 import play.api.mvc._
 import play.api.Configuration
 import net.ceedubs.ficus.Ficus._
 import net.ceedubs.ficus.readers.ArbitraryTypeReader._
-import repo.{GraphCoolClient, SubscriberRepo}
 import views.{Config, Speaker}
 
 class Application @Inject() (config: Configuration) extends Controller {

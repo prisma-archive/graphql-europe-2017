@@ -12,8 +12,8 @@ import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
-class SubscriberRepo @Inject() (client: GraphCoolClient) {
-  def byId(id: String): Future[Option[Subscriber]] =
+class SubscriberRepo {
+  def byId(id: String)(implicit client: GraphCoolClient): Future[Option[Subscriber]] =
     client.request(
       """
         query ($id: ID!) {
@@ -29,7 +29,7 @@ class SubscriberRepo @Inject() (client: GraphCoolClient) {
       "id" → JsString(id)
     ).map(res ⇒ (res \ "data" \ "Subscriber").asOpt[Subscriber])
 
-  def notified(id: String): Future[Unit] =
+  def notified(id: String)(implicit client: GraphCoolClient): Future[Unit] =
     client.request(
       """
         mutation($id: ID!) {
@@ -41,7 +41,7 @@ class SubscriberRepo @Inject() (client: GraphCoolClient) {
       "id" → JsString(id)
     ).map(res ⇒ ())
 
-  def unsubscribe(id: String): Future[Unit] =
+  def unsubscribe(id: String)(implicit client: GraphCoolClient): Future[Unit] =
     client.request(
       """
         mutation($id: ID!) {
@@ -52,4 +52,17 @@ class SubscriberRepo @Inject() (client: GraphCoolClient) {
       """,
       "id" → JsString(id)
     ).map(res ⇒ ())
+
+  def subscriberCount(implicit client: GraphCoolClient): Future[Long] =
+    client.requestRelay(
+      """
+        {
+          viewer {
+            allSubscribers {
+              count
+            }
+          }
+        }
+      """
+    ).map(res ⇒ (res \ "data" \ "viewer" \ "allSubscribers" \ "count").as[Long])
 }
