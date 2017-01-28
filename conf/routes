@@ -17,6 +17,7 @@ GET         /admin/login           controllers.Admin.login(origPath: Option[Stri
 POST        /admin/login           controllers.Admin.doLogin
 GET         /admin/logout          controllers.Admin.logout
 GET         /admin/notifications   controllers.Admin.notifications
+GET         /admin/subscribers-$suffix<.*>   controllers.Admin.exportSubs(suffix)
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file          controllers.Assets.versioned(path="/public", file: Asset)

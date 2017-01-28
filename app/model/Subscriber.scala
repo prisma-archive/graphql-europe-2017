@@ -8,3 +8,9 @@ case class Subscriber(id: String, email: String, name: String, notified: Boolean
 object Subscriber {
   implicit val json = Json.format[Subscriber]
 }
+
+case class SubscriberFull(id: String, email: String, name: String, notified: Boolean, unsubscribed: Boolean, createdAt: String, updatedAt: String)
+
+object SubscriberFull {
+  implicit val json = Json.format[SubscriberFull]
+}

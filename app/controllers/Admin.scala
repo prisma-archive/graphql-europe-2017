@@ -1,8 +1,11 @@
 package controllers
 
 import java.net.URI
+import java.text.SimpleDateFormat
+import java.util.Date
 import javax.inject.Inject
 
+import akka.util.ByteString
 import play.api.mvc.Controller
 import views.Config
 import net.ceedubs.ficus.Ficus._
@@ -11,6 +14,7 @@ import play.api.mvc._
 import play.api.Configuration
 import play.api.data._
 import play.api.data.Forms._
+import play.api.http.Writeable
 import repo.{GraphCoolClient, GraphCoolClientProvider, SubscriberRepo, UserRepo}
 
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -50,7 +54,20 @@ class Admin @Inject() (config: Configuration, userRepo: UserRepo, subsRepo: Subs
   def logout = Action(Redirect(routes.Admin.login(None)).withNewSession)
 
   def notifications = Action.async { implicit req ⇒
-    subsRepo.subscriberCount.map(count ⇒ Ok(views.html.admin.notifications(conf, count)))
+    val date = new SimpleDateFormat("dd-mm-YYYY-HH-MM-SS").format(new Date)
+    subsRepo.subscriberCount.map(count ⇒ Ok(views.html.admin.notifications(conf, count, date)))
+  }
+
+  def exportSubs(suffix: String) = Action.async { implicit req ⇒
+    if (suffix.endsWith(".csv")) {
+      subsRepo.subscriberList.map { subs ⇒
+        val list = subs.map(s ⇒ s.name + "," + s.email + "," + s.createdAt).mkString("\n")
+
+        Ok("name,email,date\n" + list)(Writeable(ByteString.apply, Some("text/csv")))
+      }
+    } else {
+      Future.successful(BadRequest("Only CSV are supported!"))
+    }
   }
 
   implicit def secureClient(implicit req: Request[_]): GraphCoolClient =

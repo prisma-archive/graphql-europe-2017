@@ -44,3 +44,8 @@ body {
 .float-right {
   float: right;
 }
+
+.simple-link, .simple-link:hover, .simple-link:visited, .simple-link:active {
+  color: #818a91;
+  text-decoration: none;
+}

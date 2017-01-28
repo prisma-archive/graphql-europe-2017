@@ -3,7 +3,7 @@ package repo
 import javax.inject.Inject
 
 import com.google.inject.Singleton
-import model.Subscriber
+import model.{Subscriber, SubscriberFull}
 import play.api.Configuration
 import play.api.libs.json.JsString
 import play.api.libs.ws.WSClient
@@ -65,4 +65,21 @@ class SubscriberRepo {
         }
       """
     ).map(res ⇒ (res \ "data" \ "viewer" \ "allSubscribers" \ "count").as[Long])
+
+  def subscriberList(implicit client: GraphCoolClient): Future[Seq[SubscriberFull]] =
+    client.request(
+      """
+        query {
+          allSubscribers {
+            id
+            name
+            email
+            notified
+            unsubscribed
+            createdAt
+            updatedAt
+          }
+        }
+      """
+    ).map(res ⇒ (res \ "data" \ "allSubscribers").as[Seq[SubscriberFull]])
 }
