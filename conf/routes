@@ -12,6 +12,7 @@ GET         /unsubscribe/:id       controllers.Hooks.unsubscribe(id)
 GET         /test-notification/:id controllers.Hooks.testNotification(id)
 
 POST        /subscriber-created    controllers.Hooks.subscriberCreated
+POST        /subscriber-deleted    controllers.Hooks.subscriberDelete
 POST        /subscriber-created-mc controllers.Hooks.subscriberCreatedMailchimp
 POST        /test-hook             controllers.Hooks.test
 GET         /admin                 controllers.Admin.index

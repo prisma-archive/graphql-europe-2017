@@ -12,7 +12,7 @@ $(function() {
   var graphCoolProject = "https://api.graph.cool/relay/v1/" + graphCoolProjectKey;
   var registerQuery =
     "mutation RegisterSubscriber($name: String!, $email: String!) {" +
-    "  createSubscriber(input: {clientMutationId: \"1\", name: $name, email: $email, mailchimpExported: false}) {" +
+    "  createSubscriber(input: {clientMutationId: \"1\", name: $name, email: $email}) {" +
     "    clientMutationId" +
     "  }" +
     "}";
