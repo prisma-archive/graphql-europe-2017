@@ -45,7 +45,11 @@ class MailchimpRepo @Inject() (config: Configuration, client: WSClient) {
       .url(s"https://${conf.dc}.api.mailchimp.com/3.0/lists/${conf.listId}/members")
       .withAuth("anystring", conf.apiKey, WSAuthScheme.BASIC)
       .delete()
-      .map(_ ⇒ ())
+      .map { resp ⇒
+        log.info("Delete mailchimp " + resp.body)
+
+        ()
+      }
 
   def unsubscribe(email: String): Future[Option[String]] =
     client

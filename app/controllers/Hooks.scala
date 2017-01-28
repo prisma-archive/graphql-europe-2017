@@ -74,12 +74,24 @@ class Hooks @Inject() (config: Configuration, subscribers: SubscriberRepo, mailC
   }
 
   def test = Action.async { req ⇒
+    log.info("queryString: " + req.queryString)
+
     req.body.asJson.map { body ⇒
       log.info("Test endpoint is called! (POST) " + Json.prettyPrint(body))
 
       Future.successful(Ok("Thanks!"))
     }.getOrElse {
-      Future.successful(BadRequest("Expecting Json data"))
+      req.body.asFormUrlEncoded.map { body ⇒
+        log.info("Test endpoint is called! (POST form) " + body)
+
+        Future.successful(Ok("Thanks!"))
+      }.getOrElse(
+        req.body.asText.map { txt ⇒
+          log.info("Test endpoint is called! (POST text) " + txt)
+
+          Future.successful(Ok("Thanks!"))
+        }.getOrElse(Future.successful(BadRequest("Expecting Json data")))
+      )
     }
   }
 
