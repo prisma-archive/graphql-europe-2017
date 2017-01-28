@@ -1,0 +1,15 @@
+@import views.Config
+
+@(config: Config, title: String, message: String)
+
+@admin.secure(config, "Secure Area") {
+  <div class="container" style="padding-top: 50px">
+    <div class="row">
+      <div class="col-lg-12">
+        <h3>@title</h3>
+
+        <p>@message</p>
+      </div>
+    </div>
+  </div>
+}

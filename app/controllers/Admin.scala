@@ -1,6 +1,7 @@
 package controllers
 
 import java.net.URI
+import java.security.MessageDigest
 import java.text.SimpleDateFormat
 import java.util.Date
 import javax.inject.Inject
@@ -11,17 +12,20 @@ import views.Config
 import net.ceedubs.ficus.Ficus._
 import net.ceedubs.ficus.readers.ArbitraryTypeReader._
 import play.api.mvc._
-import play.api.Configuration
+import play.api.{Configuration, Logger}
 import play.api.data._
 import play.api.data.Forms._
 import play.api.http.Writeable
-import repo.{GraphCoolClient, GraphCoolClientProvider, SubscriberRepo, UserRepo}
+import repo._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
+import scala.util.control.NonFatal
 
 
-class Admin @Inject() (config: Configuration, userRepo: UserRepo, subsRepo: SubscriberRepo, clientProvider: GraphCoolClientProvider) extends Controller {
+class Admin @Inject() (config: Configuration, userRepo: UserRepo, subsRepo: SubscriberRepo, clientProvider: GraphCoolClientProvider, mailchimpRepo: MailchimpRepo) extends Controller {
+  val log = Logger(this.getClass)
+
   case class Login(email: String, password: String, origPath: String)
 
   val loginForm = Form(mapping("email" → text, "password" → text, "origPath" → text)(Login.apply)(Login.unapply))
@@ -53,9 +57,42 @@ class Admin @Inject() (config: Configuration, userRepo: UserRepo, subsRepo: Subs
 
   def logout = Action(Redirect(routes.Admin.login(None)).withNewSession)
 
+  def exportToMailchimp = Action.async { implicit req ⇒
+    subsRepo.subscriberNotExportedToMailchimp.flatMap { subs ⇒
+      subs.foldLeft(Future.successful(0)) {
+        case (acc, s) ⇒
+          acc.flatMap { count ⇒
+            mailchimpRepo.subscribe(s.email, s.name, !s.unsubscribed).flatMap {
+              case Some(id) ⇒
+                subsRepo.mcExported(s.id, id).map(_ ⇒ count + 1).recover {
+                  case NonFatal(e) ⇒
+                    log.error(s"Failed to export subscriber with id '${s.id}'.", e)
+                    count
+                }
+              case None ⇒ Future.successful(count)
+            }.recover {
+              case NonFatal(e) ⇒
+                log.error(s"Failed to export subscriber with id '${s.id}'.", e)
+                count
+            }
+          }
+      }.map(count ⇒ Ok(views.html.admin.info(conf, "Done", "exported " + count)))
+    }
+  }
+
   def notifications = Action.async { implicit req ⇒
     val date = new SimpleDateFormat("dd-mm-YYYY-HH-MM-SS").format(new Date)
-    subsRepo.subscriberCount.map(count ⇒ Ok(views.html.admin.notifications(conf, count, date)))
+    val countF = subsRepo.subscriberCount
+    val notNotifiedF = subsRepo.subscriberNotNotifiedCount
+    val notExportedF = subsRepo.subscriberNotExportedToMailchimpCount
+    val unsubscribedF = subsRepo.subscriberUnsubscribedCount
+
+    for {
+      count ← countF
+      notNotified ← notNotifiedF
+      notExported ← notExportedF
+      unsubscribed ← unsubscribedF
+    } yield Ok(views.html.admin.notifications(conf, count, notExported, notNotified, unsubscribed, date))
   }
 
   def exportSubs(suffix: String) = Action.async { implicit req ⇒

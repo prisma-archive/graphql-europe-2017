@@ -10,9 +10,9 @@ import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class GraphCoolClientProvider @Inject() (client: WSClient, config: Configuration) {
-  val projectKey = config.getString("graphqlEurope.graphCoolProjectKey").get
+  val projectToken = config.getString("graphqlEurope.graphCoolToken").get
 
-  lazy val internal = new GraphCoolClient(client, config, Some(projectKey))
+  lazy val internal = new GraphCoolClient(client, config, Some(projectToken))
 
   lazy val unauthenticated = new GraphCoolClient(client, config, None)
 

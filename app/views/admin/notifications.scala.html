@@ -1,6 +1,6 @@
 @import views.Config
 
-@(config: Config, count: Long, date: String)
+@(config: Config, count: Long, notExported: Long, notNotofoed: Long, unsubscribed: Long, date: String)
 
 @admin.secure(config, "Secure Area") {
   <div class="container" style="padding-top: 50px">
@@ -9,6 +9,9 @@
         <h3>Stats</h3>
 
         <p>Number of subscribers: <strong>@count</strong></p>
+        <p>Number of unsubscribed: <strong>@unsubscribed</strong></p>
+        <p>Number of subscribers not notified: <strong>@notNotofoed</strong></p>
+        <p>Number of subscribers not exported to Mailchimp: <strong>@notExported</strong></p>
       </div>
     </div>
   </div>
@@ -19,7 +22,10 @@
         <h3>Actions</h3>
 
         <p>
-          <a href="@routes.Admin.exportSubs(date + ".csv")">Export in CSV format</a>
+          <a href="@routes.Admin.exportSubs(date + ".csv")">Export subscriber data in CSV format</a>
+        </p>
+        <p>
+          <a href="@routes.Admin.exportToMailchimp()">Export subscriber data in MailChimp</a>
         </p>
       </div>
     </div>

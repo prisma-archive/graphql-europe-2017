@@ -49,3 +49,8 @@ body {
   color: #818a91;
   text-decoration: none;
 }
+
+h3 {
+  padding-bottom: 15px;
+  padding-top: 15px;
+}

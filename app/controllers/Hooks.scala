@@ -6,7 +6,7 @@ import model.Subscriber
 import play.api.libs.json.{JsString, Json}
 import play.api.{Configuration, Logger}
 import play.api.mvc.{Action, Controller, Result}
-import repo.{GraphCoolClientProvider, MailClient, SubscriberRepo}
+import repo.{GraphCoolClientProvider, MailClient, MailchimpRepo, SubscriberRepo}
 import views.Config
 import net.ceedubs.ficus.Ficus._
 import net.ceedubs.ficus.readers.ArbitraryTypeReader._
@@ -15,7 +15,7 @@ import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.Try
 
-class Hooks @Inject() (config: Configuration, subscribers: SubscriberRepo, mailClient: MailClient, clientProvider: GraphCoolClientProvider) extends Controller {
+class Hooks @Inject() (config: Configuration, subscribers: SubscriberRepo, mailClient: MailClient, clientProvider: GraphCoolClientProvider, mailchimpRepo: MailchimpRepo) extends Controller {
   val conf = config.underlying.as[Config]("graphqlEurope")
   val log = Logger(this.getClass)
 
@@ -42,7 +42,18 @@ class Hooks @Inject() (config: Configuration, subscribers: SubscriberRepo, mailC
     })
 
   def unsubscribe(id: String) =
-    Action.async(subscribers.unsubscribe(id).map(_ ⇒ Ok(views.html.unsubscribed(conf))))
+    Action.async {
+      subscribers.unsubscribe(id)
+        .flatMap {
+          case Some(email) ⇒
+            mailchimpRepo.unsubscribe(email).map(_ ⇒ ())
+
+          case None ⇒
+            log.error(s"Failed to unsubscribe ID '$id'!")
+            Future.successful(())
+        }
+        .map(_ ⇒ Ok(views.html.unsubscribed(conf)))
+    }
 
   def subscriberCreated = Action.async { req ⇒
     req.body.asJson.map { body ⇒
@@ -59,6 +70,50 @@ class Hooks @Inject() (config: Configuration, subscribers: SubscriberRepo, mailC
       }
     }.getOrElse {
       Future.successful(BadRequest("Expecting Json data"))
+    }
+  }
+
+  def test = Action.async { req ⇒
+    req.body.asJson.map { body ⇒
+      log.info("Log endpoint is called! " + Json.prettyPrint(body))
+
+      Future.successful(Ok("Thanks!"))
+    }.getOrElse {
+      Future.successful(BadRequest("Expecting Json data"))
+    }
+  }
+
+  def subscriberCreatedMailchimp = Action.async { req ⇒
+    req.body.asJson.map { body ⇒
+      (body \ "createdNode" \ "id").toOption match {
+        case Some(JsString(id)) ⇒
+          syncMailchimp(id)
+          .recover {
+            case e: Exception ⇒
+              log.error(s"Can't send subscription info to mailchimp for ID '$id'.", e)
+              Ok("Oops. Something went wrong.")
+          }
+
+        case _ ⇒ Future.successful(BadRequest("Wrong Json data shape"))
+      }
+    }.getOrElse {
+      Future.successful(BadRequest("Expecting Json data"))
+    }
+  }
+
+  private def syncMailchimp(id: String): Future[Result] = {
+    subscribers.byId(id).flatMap {
+      case Some(subscriber) if !subscriber.mailchimpExported ⇒
+        mailchimpRepo.subscribe(subscriber.email, subscriber.name, !subscriber.unsubscribed)
+        .flatMap {
+          case Some(id) ⇒ subscribers.mcExported(subscriber.id, id)
+          case None ⇒ Future.successful(())
+        }
+        .map(_ ⇒ Ok("Done"))
+
+      case _ ⇒
+        Future.successful(Ok("Done"))
+
     }
   }
 
