@@ -103,7 +103,7 @@ class Hooks @Inject() (config: Configuration, subscribers: SubscriberRepo, mailC
 
   def subscriberDelete = Action.async { req ⇒
     req.body.asJson.map { body ⇒
-      (body \ "createdNode" \ "email").toOption match {
+      (body \ "deletedNode" \ "email").toOption match {
         case Some(JsString(email)) ⇒
           mailchimpRepo.delete(email).map(_ ⇒ Ok("Done"))
           .recover {
