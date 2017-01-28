@@ -15,6 +15,7 @@ POST        /subscriber-created    controllers.Hooks.subscriberCreated
 POST        /subscriber-deleted    controllers.Hooks.subscriberDelete
 POST        /subscriber-created-mc controllers.Hooks.subscriberCreatedMailchimp
 POST        /test-hook             controllers.Hooks.test
+GET         /test-hook             controllers.Hooks.testGet
 GET         /admin                 controllers.Admin.index
 GET         /admin/login           controllers.Admin.login(origPath: Option[String])
 POST        /admin/login           controllers.Admin.doLogin

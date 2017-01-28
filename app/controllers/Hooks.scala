@@ -75,11 +75,23 @@ class Hooks @Inject() (config: Configuration, subscribers: SubscriberRepo, mailC
 
   def test = Action.async { req ⇒
     req.body.asJson.map { body ⇒
-      log.info("Log endpoint is called! " + Json.prettyPrint(body))
+      log.info("Test endpoint is called! (POST) " + Json.prettyPrint(body))
 
       Future.successful(Ok("Thanks!"))
     }.getOrElse {
       Future.successful(BadRequest("Expecting Json data"))
+    }
+  }
+
+  def testGet = Action.async { req ⇒
+    req.body.asJson.map { body ⇒
+      log.info("Log endpoint is called! (GET) " + Json.prettyPrint(body))
+
+      Future.successful(Ok("Thanks!"))
+    }.getOrElse {
+      log.info("Log endpoint is called without body! (GET) ")
+
+      Future.successful(Ok("Thanks"))
     }
   }
 
