@@ -1,0 +1,59 @@
+@import views.Config
+@import views.TeamMember
+@import views.TeamSection
+
+@(config: Config, team: Seq[TeamMember])
+
+@secondary(config, "Team") {
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        @organisedBy()
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Team</h1>
+      </div>
+    </div>
+
+    @team.filter(_.teamSection == TeamSection.Core).grouped(3).map { mr =>
+      <div class="row" style="padding-top: 0px">
+        @mr.map { m =>
+          @teamMember(m)
+        }
+      </div>
+    }
+
+    @if(team.exists(_.teamSection == TeamSection.SpecialThanks)) {
+      <div class="row">
+        <div class="col-md-12">
+          <h1>With special thanks to!</h1>
+        </div>
+      </div>
+    }
+
+    @team.filter(_.teamSection == TeamSection.SpecialThanks).grouped(3).map { mr =>
+      <div class="row" style="padding-top: 0px">
+        @mr.map { m =>
+          @teamMember(m)
+        }
+      </div>
+    }
+
+    <div class="beautiful-line" id="sponsors" style="margin-bottom: 50px"></div>
+
+    <div class="row content-row">
+      <div class="col-md-12" style="text-align: center">
+        <h2 style="font-weight: bold">Interested in sponsoring?</h2>
+        <p style="padding-top: 10px">
+          For further details on sponsorship and the conference drop us a line
+        </p>
+        <p>
+          <a style="padding-top: 15px" href="mailto:@config.sponsorEmail">@config.sponsorEmail</a>
+        </p>
+      </div>
+    </div>
+  </div>
+}

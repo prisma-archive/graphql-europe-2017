@@ -4,7 +4,7 @@ import java.time.LocalDate
 
 import sangria.macros.derive._
 import graphql.customScalars._
-import sangria.schema.EnumType
+import sangria.schema._
 
 case class Speaker(
   name: String,
@@ -29,7 +29,8 @@ case class Sponsor(
   url: String,
   logoUrl: String,
   description: Option[String],
-  twitterUrl: Option[String])
+  twitter: Option[String],
+  github: Option[String])
 
 object Sponsor {
   implicit val graphqlType = deriveObjectType[Unit, Sponsor]()
@@ -53,8 +54,33 @@ case class Conference(
   dateStart: Option[LocalDate],
   dateEnd: Option[LocalDate],
   speakers: List[Speaker],
+  team: List[TeamMember],
   url: String)
 
 object Conference {
-  implicit val graphqlType = deriveObjectType[Unit, Conference]()
+  private val SectionArg = Argument("section", OptionInputType(TeamSection.graphqlType))
+
+  implicit val graphqlType = deriveObjectType[Unit, Conference](
+    ReplaceField("team", Field("team", ListType(TeamMember.graphqlType),
+      arguments = SectionArg :: Nil,
+      resolve = c ⇒ c.withArgs(SectionArg)(_.fold(c.value.team)(s ⇒ c.value.team.filter(_.teamSection == s)))))
+  )
+}
+
+object TeamSection extends Enumeration {
+  val Core, SpecialThanks = Value
+
+  implicit val graphqlType: EnumType[TeamSection.Value] = deriveEnumType[TeamSection.Value]()
+}
+
+case class TeamMember(
+  name: String,
+  photoUrl: Option[String],
+  teamSection: TeamSection.Value,
+  description: Option[String],
+  twitter: Option[String],
+  github: Option[String])
+
+object TeamMember {
+  implicit val graphqlType = deriveObjectType[Unit, TeamMember]()
 }

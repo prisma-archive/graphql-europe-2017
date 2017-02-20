@@ -405,6 +405,30 @@ h2 {
   filter: none;
 }
 
+.member-name {
+  font-size: 0.8em;
+  padding-top: 15px;
+  font-weight: 700;
+}
+
+.member-description, .speaker-company {
+  font-size: 0.8em;
+  padding-top: 5px;
+  color: #525252;
+}
+
+.member-company {
+  color: #8a8a8a;
+}
+
+.member-icon {
+  float: right;
+  margin-top: 15px;
+  padding-left: 8px;
+  padding-right: 8px;
+  color: #CACACA !important;
+}
+
 .footer-bg {
   z-index: -20;
   background: url(/assets/image/bg.jpg) no-repeat center center;
@@ -928,4 +952,27 @@ footer .navbar-light .navbar-nav .nav-link:active {
 .secondary-body .header, .secondary-body .navbar-light {
   padding-left: 0px;
   padding-right: 0px;
+}
+
+.organised-by {
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+
+.organised-by h3 {
+  color: #999999;
+  font-size: 1em;
+  font-weight: normal;
+  padding-bottom: 40px;
+}
+
+.organised-by-sep {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.organised-by-logo {
+  height: 80px;
+  width: auto;
 }

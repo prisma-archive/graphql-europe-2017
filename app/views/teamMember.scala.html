@@ -1,0 +1,25 @@
+@import views.TeamMember
+
+@(member: TeamMember)
+
+<div class="col-md-4 speaker">
+  @member.photoUrl.map { photo =>
+    <img class="member-photo" src="@photo">
+  }.getOrElse {
+    <div class="photo-placeholder"></div>
+  }
+
+  @member.github.map { gh =>
+    <a target="_blank" class="member-icon" href="https://github.com/@gh"><i class="fa fa-github" aria-hidden="true"></i></a>
+  }.getOrElse("")
+
+  @member.twitter.map { t =>
+    <a target="_blank" class="member-icon" href="https://twitter.com/@t"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  }.getOrElse("")
+
+  <div class="member-name">@member.name.toUpperCase</div>
+
+  @member.description.map { d =>
+    <div class="member-description">@d</div>
+  }.getOrElse("")
+</div>

@@ -20,4 +20,5 @@ class Application @Inject() (config: Configuration, repo: ContentRepo) extends C
 
   def codeOfConduct = Action(Ok(views.html.codeOfConduct(conf)))
   def imprint = Action(Ok(views.html.imprint(conf)))
+  def team = Action(Ok(views.html.team(conf, repo.team)))
 }

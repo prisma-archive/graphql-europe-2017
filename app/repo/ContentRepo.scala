@@ -3,7 +3,7 @@ package repo
 import javax.inject.{Inject, Singleton}
 
 import play.api.Configuration
-import views.{Conference, Speaker}
+import views.{Conference, Speaker, TeamMember, TeamSection}
 
 @Singleton
 class ContentRepo @Inject() (config: Configuration) {
@@ -38,11 +38,71 @@ class ContentRepo @Inject() (config: Configuration) {
     )
   )
 
+  val team = List(
+    TeamMember(
+      name = "Oleg Ilyenko",
+      photoUrl = Some(s"$baseUrl/team/oleg.png"),
+      teamSection = TeamSection.Core,
+      description = None,
+      twitter = Some("easyangel"),
+      github = Some("OlegIlyenko")),
+    TeamMember(
+      name = "Johannes Schickling",
+      photoUrl = Some(s"$baseUrl/team/johannes.png"),
+      teamSection = TeamSection.Core,
+      description = Some(
+        "Johannes is a Berlin/SF-based entrepreneur and founder of Graphcool, " +
+        "a flexible backend platform combining GraphQL + AWS Lambda. He previously " +
+        "built and sold the VR company \"Optonaut\". Johannes studied computer science at KIT, " +
+        "Germany and loves cutting-edge mobile/web tech-nologies."),
+      twitter = Some("_schickling"),
+      github = Some("schickling")),
+    TeamMember(
+      name = "Emma Tracey",
+      photoUrl = Some(s"$baseUrl/team/emma.png"),
+      teamSection = TeamSection.Core,
+      description = Some(
+        "Emma is Co-Founder at Honeypot. Born in Dublin, Emma moved to " +
+        "Berlin after spending time in Colombia and South Africa. She is a " +
+        "former journalist and likes to write about team culture and diversity."),
+      twitter = None,
+      github = None),
+    TeamMember(
+      name = "Artyom Chelbayev",
+      photoUrl = Some(s"$baseUrl/team/artyom.png"),
+      teamSection = TeamSection.Core,
+      description = Some(
+        "Artyom is bringing years of business experience from advertising, consumer, " +
+        "and developer technology startups to Graphcool, a flexible backend platform " +
+        "combining GraphQL + AWS Lambda. On any given day you will find him learning " +
+        "about new technologies, searching for good music, or trying his best to pretend " +
+        "he can be on the same footing with the programmers."),
+      twitter = None,
+      github = Some("artyomc")),
+    TeamMember(
+      name = "Johanna Dahlroos",
+      photoUrl = Some(s"$baseUrl/team/johanna.png"),
+      teamSection = TeamSection.Core,
+      description = Some(
+        "Johanna is Honeypot’s UI/UX Designer. A Finnish dog-lover with passion for " +
+        "fine art, architecture and old black and white photos. She worked as a painter before moving to Berlin"),
+      twitter = Some("batjohe"),
+      github = Some("Batjohe"))
+//    TeamMember(
+//      name = "Dajana Günther",
+//      photoUrl = Some(s"$baseUrl/team/dajana.png"),
+//      teamSection = TeamSection.SpecialThanks,
+//      description = Some("Dajana is GraphQL-Europes advisor."),
+//      twitter = Some("dajanaguenther"),
+//      github = Some("dajana"))
+  )
+
   val conference = Conference(
     name = "GraphQL-Europe",
     venue = None,
     dateStart = None,
     dateEnd = None,
     speakers = speakers,
+    team = team,
     url = "https://graphql-europe.org")
 }

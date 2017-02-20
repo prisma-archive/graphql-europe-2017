@@ -6,6 +6,7 @@
 GET         /                      controllers.Application.index
 GET         /code-of-conduct       controllers.Application.codeOfConduct
 GET         /imprint               controllers.Application.imprint
+GET         /team                  controllers.Application.team
 
 GET         /graphql               controllers.GraphQL.graphiql
 POST        /graphql               controllers.GraphQL.graphql
