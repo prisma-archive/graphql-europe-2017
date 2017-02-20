@@ -14,11 +14,17 @@ class Application @Inject() (config: Configuration, repo: ContentRepo) extends C
 
   val conf = config.underlying.as[Config]("graphqlEurope")
 
-  def index = Action { req ⇒
-    Ok(views.html.index(conf, repo.speakers, req.queryString.contains("dark"), req.queryString.contains("topLogo")))
+  def index = Action { implicit req ⇒
+    Ok(views.html.index(actualConf, repo.speakers, req.queryString.contains("dark"), req.queryString.contains("topLogo")))
   }
 
-  def codeOfConduct = Action(Ok(views.html.codeOfConduct(conf)))
-  def imprint = Action(Ok(views.html.imprint(conf)))
-  def team = Action(Ok(views.html.team(conf, repo.team)))
+  def codeOfConduct = Action(implicit req ⇒ Ok(views.html.codeOfConduct(actualConf)))
+  def imprint = Action(implicit req ⇒ Ok(views.html.imprint(actualConf)))
+  def team = Action(implicit req ⇒ Ok(views.html.team(actualConf, repo.team)))
+
+  def actualConf(implicit req: Request[_]) =
+    if (req.queryString.exists(_._1 == "preview"))
+      conf.copy(preview = true)
+    else
+      conf
 }

@@ -12,7 +12,9 @@
         <li class="nav-item"><a class="nav-link" href="/#sponsors">Sponsors</a></li>
         <li class="nav-item"><a class="nav-link" href="/code-of-conduct">Code of Conduct</a></li>
         <li class="nav-item"><a class="nav-link" href="/imprint">Imprint</a></li>
-        <li class="nav-item"><a class="nav-link" href="/team">Team</a></li>
+        @if(config.preview) {
+          <li class="nav-item"><a class="nav-link" href="/team">Team</a></li>
+        }
         <li class="nav-item" style="padding-left: 10px"><a class="nav-link contact-link" target="_blank" href="https://twitter.com/graphqleu"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
         <li class="nav-item" style="padding-left: 15px"><a class="nav-link contact-link" href="mailto:@config.supportEmail"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
       </ul>

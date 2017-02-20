@@ -26,7 +26,9 @@
             <li class="nav-item fade-in f2"><a class="nav-link" href="#attend">Attend</a></li>
             <li class="nav-item fade-in f3"><a class="nav-link" href="#speakers">Speakers</a></li>
             <li class="nav-item fade-in f4"><a class="nav-link" href="#sponsors">Sponsors</a></li>
-            <li class="nav-item fade-in f4"><a class="nav-link" href="/team">Team</a></li>
+            @if(config.preview) {
+              <li class="nav-item fade-in f4"><a class="nav-link" href="/team">Team</a></li>
+            }
           </ul>
         </div>
       </nav>
@@ -133,10 +135,15 @@
           <a style="padding-top: 15px" href="mailto:@config.sponsorEmail">@config.sponsorEmail</a>
         </p>
       </div>
-      @*<div class="col-md-4">*@
-        @*<img class="logo-grey" src="@routes.Assets.versioned("image/logo-grey.svg")" />*@
-      @*</div>*@
     </div>
+
+    @if(config.preview) {
+      <div class="row">
+        <div class="col-md-12" style="padding-top: 50px">
+        @organisedBy()
+        </div>
+      </div>
+    }
 
   </div>
 
