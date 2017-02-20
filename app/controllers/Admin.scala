@@ -1,7 +1,5 @@
 package controllers
 
-import java.net.URI
-import java.security.MessageDigest
 import java.text.SimpleDateFormat
 import java.util.Date
 import javax.inject.Inject
