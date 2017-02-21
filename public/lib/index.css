@@ -961,8 +961,10 @@ footer .navbar-light .navbar-nav .nav-link:active {
 .organised-by h3 {
   color: #999999;
   font-size: 1em;
-  font-weight: normal;
+  font-weight: 300;
   padding-bottom: 40px;
+  letter-spacing: 4px;
+
 }
 
 .organised-by-sep {
@@ -971,6 +973,6 @@ footer .navbar-light .navbar-nav .nav-link:active {
 }
 
 .organised-by-logo {
-  height: 80px;
+  height: 60px;
   width: auto;
 }

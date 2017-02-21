@@ -94,7 +94,10 @@ class ContentRepo @Inject() (config: Configuration) {
       name = "Dajana Günther",
       photoUrl = Some(s"$baseUrl/team/dajana.png"),
       teamSection = TeamSection.SpecialThanks,
-      description = Some("Dajana is GraphQL-Europe's advisor."),
+      description = Some(
+        "Dajana is GraphQL-Europe's advisor. She is conference manager of GOTO Berlin. " +
+        "Dajana has a background in system electronics, pedagogy and psychology and worked on " +
+        "different international teams to create inclusive and diverse IT events."),
       twitter = Some("dajanaguenther"),
       github = Some("dajana"))
   )
