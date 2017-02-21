@@ -83,7 +83,7 @@ class ContentRepo @Inject() (config: Configuration) {
       github = Some("artyomc")),
     TeamMember(
       name = "Johanna Dahlroos",
-      photoUrl = Some(s"$baseUrl/team/johanna.png"),
+      photoUrl = Some(s"$baseUrl/team/johanna-new.png"),
       teamSection = TeamSection.Core,
       description = Some(
         "Johanna is Honeypot’s UI/UX Designer. A Finnish dog-lover with passion for " +
