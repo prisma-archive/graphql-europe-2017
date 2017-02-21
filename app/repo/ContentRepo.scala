@@ -65,9 +65,8 @@ class ContentRepo @Inject() (config: Configuration) {
       photoUrl = Some(s"$baseUrl/team/emma.png"),
       teamSection = TeamSection.Core,
       description = Some(
-        "Emma is Co-Founder at Honeypot. Born in Dublin, Emma moved to " +
-        "Berlin after spending time in Colombia and South Africa. She is a " +
-        "former journalist and likes to write about team culture and diversity."),
+        "Emma is co-founder of Honeypot, a developer-focused job platform. She loves bringing " +
+        "the community together and previously was part of the organizing team of RustFest."),
       twitter = None,
       github = None),
     TeamMember(
