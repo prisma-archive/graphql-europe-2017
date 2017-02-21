@@ -43,7 +43,10 @@ class ContentRepo @Inject() (config: Configuration) {
       name = "Oleg Ilyenko",
       photoUrl = Some(s"$baseUrl/team/oleg.png"),
       teamSection = TeamSection.Core,
-      description = None,
+      description = Some(
+        "Oleg is a passionate software engineer and speaker who loves innovative ideas and technology, " +
+        "challenging problems and working on things that help other people. " +
+        "Oleg is an author of Sangria - a scala GraphQL implementation."),
       twitter = Some("easyangel"),
       github = Some("OlegIlyenko")),
     TeamMember(
@@ -85,16 +88,16 @@ class ContentRepo @Inject() (config: Configuration) {
       teamSection = TeamSection.Core,
       description = Some(
         "Johanna is Honeypot’s UI/UX Designer. A Finnish dog-lover with passion for " +
-        "fine art, architecture and old black and white photos. She worked as a painter before moving to Berlin"),
+        "fine art, architecture and old black and white photos. She worked as a painter before moving to Berlin."),
       twitter = Some("batjohe"),
-      github = Some("Batjohe"))
-//    TeamMember(
-//      name = "Dajana Günther",
-//      photoUrl = Some(s"$baseUrl/team/dajana.png"),
-//      teamSection = TeamSection.SpecialThanks,
-//      description = Some("Dajana is GraphQL-Europes advisor."),
-//      twitter = Some("dajanaguenther"),
-//      github = Some("dajana"))
+      github = Some("Batjohe")),
+    TeamMember(
+      name = "Dajana Günther",
+      photoUrl = Some(s"$baseUrl/team/dajana.png"),
+      teamSection = TeamSection.SpecialThanks,
+      description = Some("Dajana is GraphQL-Europe's advisor."),
+      twitter = Some("dajanaguenther"),
+      github = Some("dajana"))
   )
 
   val conference = Conference(

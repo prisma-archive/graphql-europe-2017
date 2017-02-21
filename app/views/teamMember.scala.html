@@ -20,6 +20,6 @@
   <div class="member-name">@member.name.toUpperCase</div>
 
   @member.description.map { d =>
-    <div class="member-description">@d</div>
+    <div class="member-description">@Html(d)</div>
   }.getOrElse("")
 </div>
