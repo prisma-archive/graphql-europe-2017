@@ -34,7 +34,8 @@ class ContentRepo @Inject() (config: Configuration) {
       talkTitle = Some("Register today"),
       company = None,
       twitter = None,
-      github = None
+      github = None,
+      stub = true
     )
   )
 

@@ -12,10 +12,11 @@ case class Speaker(
   talkTitle: Option[String],
   company: Option[String],
   twitter: Option[String],
-  github: Option[String])
+  github: Option[String],
+  stub: Boolean = false)
 
 object Speaker {
-  implicit val graphqlType = deriveObjectType[Unit, Speaker]()
+  implicit val graphqlType = deriveObjectType[Unit, Speaker](ExcludeFields("stub"))
 }
 
 object SponsorType extends Enumeration {
@@ -61,6 +62,8 @@ object Conference {
   private val SectionArg = Argument("section", OptionInputType(TeamSection.graphqlType))
 
   implicit val graphqlType = deriveObjectType[Unit, Conference](
+    ReplaceField("speakers", Field("speakers", ListType(Speaker.graphqlType),
+      resolve = _.value.speakers.filterNot(_.stub))),
     ReplaceField("team", Field("team", ListType(TeamMember.graphqlType),
       arguments = SectionArg :: Nil,
       resolve = c ⇒ c.withArgs(SectionArg)(_.fold(c.value.team)(s ⇒ c.value.team.filter(_.teamSection == s)))))
