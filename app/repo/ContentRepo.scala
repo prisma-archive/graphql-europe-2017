@@ -17,7 +17,13 @@ class ContentRepo @Inject() (config: Configuration) {
       sponsorType = SponsorType.Organiser,
       url = "https://www.honeypot.io",
       logoUrl = s"$baseUrl/sponsor/honeypot.svg",
-      description = None,
+      description = Some(
+        "Honeypot is a developer-focused job platform, on a mission to get every developer a great job. " +
+        "We believe developers should have all the information they need to choose a job they love: whether " +
+        "that’s based on a cutting-edge tech stack, an inspiring team or just good old-fashioned salary. In our " +
+        "world, that means no more spam and empty promises from headhunters, no more sending the same application to " +
+        "multiple companies - just one profile and the choice to receive  honest offers related to your job " +
+        "preferences direct from companies."),
       twitter = Some("honeypotio"),
       github = Some("honeypotio")),
     Sponsor(
