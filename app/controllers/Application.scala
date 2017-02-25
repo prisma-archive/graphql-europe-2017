@@ -7,7 +7,7 @@ import play.api.Configuration
 import net.ceedubs.ficus.Ficus._
 import net.ceedubs.ficus.readers.ArbitraryTypeReader._
 import repo.ContentRepo
-import views.{Config, Speaker}
+import views.Config
 
 class Application @Inject() (config: Configuration, repo: ContentRepo) extends Controller {
   val baseUrl = config.getString("graphqlEurope.canonicalUrl").get + "/image"
@@ -15,7 +15,7 @@ class Application @Inject() (config: Configuration, repo: ContentRepo) extends C
   val conf = config.underlying.as[Config]("graphqlEurope")
 
   def index = Action { implicit req ⇒
-    Ok(views.html.index(actualConf, repo.speakers, req.queryString.contains("dark"), req.queryString.contains("topLogo")))
+    Ok(views.html.index(actualConf, repo.speakers, repo.sponsors, req.queryString.contains("dark"), req.queryString.contains("topLogo")))
   }
 
   def codeOfConduct = Action(implicit req ⇒ Ok(views.html.codeOfConduct(actualConf)))

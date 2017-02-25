@@ -1,7 +1,6 @@
-@import views.Config
-@import views.Speaker
+@import views._
 
-@(config: Config, speakers: List[Speaker], dark: Boolean, topLogo: Boolean)
+@(config: Config, speakers: List[Speaker], sponsors: List[Sponsor], dark: Boolean, topLogo: Boolean)
 
 @prefix = @{if (dark) "-dark" else ""}
 
@@ -24,7 +23,7 @@
           <ul class="nav navbar-nav nav-pills float-xs-right">
             <li class="nav-item fade-in f1"><a class="nav-link" href="#attend">Attend</a></li>
             <li class="nav-item fade-in f2"><a class="nav-link" href="#speakers">Speakers</a></li>
-            <li class="nav-item fade-in f3"><a class="nav-link" href="#sponsors">Sponsors</a></li>
+            <li class="nav-item fade-in f3"><a class="nav-link" href="/sponsors">Sponsors</a></li>
             <li class="nav-item fade-in f4"><a class="nav-link" href="/team">Team</a></li>
           </ul>
         </div>
@@ -110,7 +109,7 @@
       </div>
       <div class="col-md-1"></div>
       <div class="col-md-2">
-        <a class="btn btn-lg btn-success register-button" target="_blank" href="https://www.papercall.io/graphql-europe" role="button">Give a talk</a>
+        <a class="btn btn-lg btn-success register-button" target="_blank" href="https://www.papercall.io/graphql-europe" role="button">Give a Talk</a>
       </div>
     </div>
 
@@ -122,21 +121,48 @@
 
     <div class="beautiful-line" id="sponsors"></div>
 
-    <div class="row content-row">
-      <div class="col-md-12" style="text-align: center">
-        <h2>Interested in sponsoring?</h2>
-        <p style="padding-top: 30px">
-          For further details on sponsorship and the conference drop us a line
-        </p>
-        <p>
-          <a style="padding-top: 15px" href="mailto:@config.sponsorEmail">@config.sponsorEmail</a>
-        </p>
+    <div class="row" style="padding-bottom: 30px">
+      <div class="col-md-12">
+        <h2>Sponsors</h2>
       </div>
     </div>
 
+    <div class="row index-sponsor-row" style="padding-top: 0px">
+      <div class="col-md-4"></div>
+      @sponsors.filter(_.sponsorType == SponsorType.Gold).headOption.map { s =>
+        <div class="col-md-4 ">
+          <a href="@s.url" target="_blank"><img src="@s.logoUrl" alt="@s.name"></a>
+        </div>
+      }
+      <div class="col-md-4"></div>
+    </div>
+
+    @* Use different strategy as soon as we have nore sponsors *@
+    @* @sponsors.filter(_.sponsorType == SponsorType.Gold).grouped(3).map { sr =>*@
+      @*<div class="row index-sponsor-row" style="padding-top: 0px">*@
+        @* @sr.map { s =>*@
+          @*<div class="col-md-4">*@
+            @*<a href="@s.url" target="_blank"><img src="@s.logoUrl" alt="@s.name"></a>*@
+          @*</div>*@
+        @*}*@
+      @*</div>*@
+    @*}*@
+
     <div class="row">
-      <div class="col-md-12" style="padding-top: 50px">
+      <div class="col-md-12" style="padding-top: 30px">
       @organisedBy()
+      </div>
+    </div>
+
+    <div class="row" style="padding-top: 65px; padding-bottom: 50px">
+      <div class="col-md-12" style="text-align: center">
+        <a class="btn btn-lg btn-success register-button" style="border-radius: 5px" href="/sponsors" role="button">View Sponsors</a>
+      </div>
+    </div>
+
+    <div class="row content-row">
+      <div class="col-md-12">
+        <p><strong>Interested in sponsoring?</strong> Drop us an email at <a href="mailto:@config.sponsorEmail">@config.sponsorEmail</a>.</p>
       </div>
     </div>
   </div>

@@ -976,3 +976,8 @@ footer .navbar-light .navbar-nav .nav-link:active {
   height: 60px;
   width: auto;
 }
+
+.index-sponsor-row {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}

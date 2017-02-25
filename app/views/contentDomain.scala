@@ -27,6 +27,7 @@ object SponsorType extends Enumeration {
 
 case class Sponsor(
   name: String,
+  sponsorType: SponsorType.Value,
   url: String,
   logoUrl: String,
   description: Option[String],
@@ -55,18 +56,27 @@ case class Conference(
   dateStart: Option[LocalDate],
   dateEnd: Option[LocalDate],
   speakers: List[Speaker],
+  sponsors: List[Sponsor],
   team: List[TeamMember],
   url: String)
 
 object Conference {
   private val SectionArg = Argument("section", OptionInputType(TeamSection.graphqlType))
+  private val SponsorTypeArg = Argument("type", OptionInputType(SponsorType.graphqlType))
 
   implicit val graphqlType = deriveObjectType[Unit, Conference](
     ReplaceField("speakers", Field("speakers", ListType(Speaker.graphqlType),
       resolve = _.value.speakers.filterNot(_.stub))),
     ReplaceField("team", Field("team", ListType(TeamMember.graphqlType),
       arguments = SectionArg :: Nil,
-      resolve = c ⇒ c.withArgs(SectionArg)(_.fold(c.value.team)(s ⇒ c.value.team.filter(_.teamSection == s)))))
+      resolve = c ⇒ c.withArgs(SectionArg)(_.fold(c.value.team)(s ⇒ c.value.team.filter(_.teamSection == s))))),
+    ReplaceField("sponsors", Field("sponsors", ListType(Sponsor.graphqlType),
+      arguments = SponsorTypeArg :: Nil,
+      resolve = c ⇒ {
+        val sponsors = c.value.sponsors.sortBy(_.name)
+
+        c.withArgs(SponsorTypeArg)(_.fold(sponsors)(s ⇒ sponsors.filter(_.sponsorType == s)))
+      }))
   )
 }
 

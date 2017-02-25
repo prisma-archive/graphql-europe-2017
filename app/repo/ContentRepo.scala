@@ -3,11 +3,59 @@ package repo
 import javax.inject.{Inject, Singleton}
 
 import play.api.Configuration
-import views.{Conference, Speaker, TeamMember, TeamSection}
+import views._
 
 @Singleton
 class ContentRepo @Inject() (config: Configuration) {
   val baseUrl = config.getString("graphqlEurope.canonicalUrl").get + "/assets/image"
+
+  def cleanupText(s: String) = s.stripMargin.replaceAll("\r\n", "\n")
+
+  val sponsors = List(
+    Sponsor(
+      name = "Honeypot",
+      sponsorType = SponsorType.Organiser,
+      url = "https://www.honeypot.io",
+      logoUrl = s"$baseUrl/sponsor/honeypot.svg",
+      description = None,
+      twitter = Some("honeypotio"),
+      github = Some("honeypotio")),
+    Sponsor(
+      name = "Graphcool",
+      sponsorType = SponsorType.Organiser,
+      url = "https://www.graph.cool",
+      logoUrl = s"$baseUrl/sponsor/graphcool.svg",
+      description = Some(
+        "Graphcool is a powerful backend-as-a-service platform for GraphQL used by companies " +
+        "like Twitter to quickly iterate on new products. In just 5 minutes you can setup a complete " +
+        "backend that works with frontend frameworks such as Angular, Apollo, Relay, React & React Native. " +
+        "Includes built-in integrations for popular services."),
+      twitter = Some("graphcool"),
+      github = Some("graphcool")),
+    Sponsor(
+      name = "commercetools",
+      sponsorType = SponsorType.Gold,
+      url = "https://commercetools.com",
+      logoUrl = s"$baseUrl/sponsor/commercetools.svg",
+      twitter = Some("commercetools"),
+      github = Some("commercetools"),
+      description = Some(cleanupText(
+        """commercetools is a next generation software technology company that offers a true cloud commerce platform,
+          |providing the building blocks for the new digital commerce age.  Our leading-edge API approach helps retailers
+          |create brand value by empowering commerce teams to design unique and engaging digital commerce experiences
+          |everywhere – today and in the future.  Our agile, componentized architecture improves profitability by significantly
+          |reducing development time and resources required to migrate to modern commerce technology and meet new customer demands.
+          |
+          |The innovative platform design enables commerce possibilities for the future by offering the option to either use
+          |the platform's entire set of features or deploy individual services, á la carte over time.  This state-of-the-art
+          |architecture is the perfect starting point for customized microservices, enabling retailers to significantly reduce
+          |time-to-market for innovative commerce functionalities.
+          |
+          |With offices in Germany and the United States, B2C and B2B companies from across the globe including
+          |well-known brands in fashion, E-Food, and DIY retail trust commercetools to power their digital commerce business.
+          |
+          |Visit [www.commercetools.com](https://commercetools.com) for more information.""")))
+  )
 
   val speakers = List(
     Speaker(
@@ -109,6 +157,7 @@ class ContentRepo @Inject() (config: Configuration) {
     dateStart = None,
     dateEnd = None,
     speakers = speakers,
+    sponsors = sponsors,
     team = team,
     url = "https://graphql-europe.org")
 }

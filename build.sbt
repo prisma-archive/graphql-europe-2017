@@ -10,6 +10,7 @@ libraryDependencies ++= Seq(
   filters,
   "org.sangria-graphql" %% "sangria" % "1.0.0",
   "org.sangria-graphql" %% "sangria-play-json" % "1.0.0",
+  "com.vladsch.flexmark" % "flexmark-all" % "0.15.3",
   "com.iheart" %% "ficus" % "1.4.0",
   "org.apache.commons" % "commons-email" % "1.4"
 )
