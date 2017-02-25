@@ -1,0 +1,21 @@
+@import views._
+
+@(sponsor: Sponsor)
+
+<div class="row" style="padding-top: 20px;padding-bottom: 20px;">
+  <div class="col-md-4 ">
+    <a href="@sponsor.url" target="_blank"><img src="@sponsor.logoUrl" alt="@sponsor.name"></a>
+  </div>
+
+  <div class="col-md-8" style="padding-left: 30px">
+    <h3 style="padding-bottom: 10pxl">
+      <strong>@sponsor.name</strong>
+    </h3>
+
+    <p><a href="@sponsor.url" target="_blank">@sponsor.url</a></p>
+
+    @sponsor.description.map { descr =>
+      @MarkdownUtil.render(descr)
+    }
+  </div>
+</div>

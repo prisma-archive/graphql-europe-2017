@@ -1,0 +1,35 @@
+@import views._
+
+@(config: Config, sponsors: Seq[Sponsor])
+
+@secondary(config, "Team") {
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Sponsors</h1>
+        <p>GraphQL-Europe is an excellent opportunity to reach some of the best software developers in the industry.</p>
+
+        <p style="font-weight: bold">Interested in sponsoring GraphQL-Europe?</p>
+
+        <p>Contact our sponsor team at <a href="mailto:@config.sponsorEmail">@config.sponsorEmail</a> for more information regarding sponsor packages.</p>
+      </div>
+    </div>
+
+    @SponsorSection.sections.map { section =>
+      @defining(sponsors.filter(_.sponsorType == section.sponsorType)) { sectionSponsors =>
+        @if(sectionSponsors.nonEmpty) {
+          <div class="row">
+            <div class="col-md-12">
+              <h2 class="sponsor-section-header" style="color: @section.color; border-color: @section.color;">@section.name</h2>
+            </div>
+          </div>
+
+          @sectionSponsors.map { s =>
+            @sponsor(s)
+          }
+        }
+      }
+    }
+  </div>
+}

@@ -58,9 +58,7 @@ class ContentRepo @Inject() (config: Configuration) {
           |time-to-market for innovative commerce functionalities.
           |
           |With offices in Germany and the United States, B2C and B2B companies from across the globe including
-          |well-known brands in fashion, E-Food, and DIY retail trust commercetools to power their digital commerce business.
-          |
-          |Visit [www.commercetools.com](https://commercetools.com) for more information.""")))
+          |well-known brands in fashion, E-Food, and DIY retail trust commercetools to power their digital commerce business.""")))
   )
 
   val speakers = List(
@@ -157,13 +155,19 @@ class ContentRepo @Inject() (config: Configuration) {
       github = Some("dajana"))
   )
 
-  val conference = Conference(
-    name = "GraphQL-Europe",
-    venue = None,
-    dateStart = None,
-    dateEnd = None,
-    speakers = speakers,
-    sponsors = sponsors,
-    team = team,
-    url = "https://graphql-europe.org")
+  val conferences = List(
+    Conference(
+      name = "GraphQL-Europe",
+      edition = Edition.Berlin2017,
+      year = 2017,
+      venue = None,
+      dateStart = None,
+      dateEnd = None,
+      speakers = speakers,
+      sponsors = sponsors,
+      team = team,
+      url = "https://graphql-europe.org")
+  )
+
+  val conferencesByEdition = conferences.groupBy(_.edition).mapValues(_.head)
 }

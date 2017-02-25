@@ -52,6 +52,8 @@ object Edition extends Enumeration {
 
 case class Conference(
   name: String,
+  edition: Edition.Value,
+  year: Int,
   venue: Option[Venue],
   dateStart: Option[LocalDate],
   dateEnd: Option[LocalDate],

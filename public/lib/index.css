@@ -981,3 +981,10 @@ footer .navbar-light .navbar-nav .nav-link:active {
   padding-top: 30px;
   padding-bottom: 30px;
 }
+
+.sponsor-section-header {
+  font-weight: bold !important;
+  border-bottom: 1px solid;
+  padding-bottom: 10px !important;
+  margin-bottom: 40px !important;
+}
