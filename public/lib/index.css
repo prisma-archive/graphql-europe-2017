@@ -118,6 +118,16 @@ body {
   top: 50vh;
 }
 
+.secondary-end-space {
+  display: block;
+  height: 180px;
+}
+
+.organised-by-sep {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 .top-gradient {
   background-color: rgba(255, 255, 255, 0.4);
   /* IE9, iOS 3.2+ */
@@ -790,6 +800,21 @@ h2 {
   .main-header-content {
     top: 50%;
   }
+
+  .secondary-end-space {
+    height: 250px;
+  }
+
+  .organised-by-sep {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .sponsor-logo {
+    padding-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }
 
 /* phone 5 */
@@ -804,6 +829,21 @@ h2 {
 
   .logo-grey {
     width: 11em;
+  }
+
+  .secondary-end-space {
+    height: 300px;
+  }
+
+  .organised-by-sep {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .sponsor-logo {
+    padding-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 }
 
@@ -910,10 +950,6 @@ footer .navbar-light .navbar-nav .nav-link:active {
   padding-bottom: 20px;
 }
 
-.secondary-end-space {
-  display: block;
-  height: 180px;
-}
 
 .secondary-header {
   background-color: #f56199;
@@ -965,11 +1001,6 @@ footer .navbar-light .navbar-nav .nav-link:active {
   padding-bottom: 40px;
   letter-spacing: 4px;
 
-}
-
-.organised-by-sep {
-  padding-left: 30px;
-  padding-right: 30px;
 }
 
 .organised-by-logo {
