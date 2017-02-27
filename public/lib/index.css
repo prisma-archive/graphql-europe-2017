@@ -810,7 +810,7 @@ h2 {
     padding-bottom: 30px;
   }
 
-  .sponsor-logo {
+  .s-logo {
     padding-bottom: 20px;
     margin-left: 10px;
     margin-right: 10px;
@@ -840,7 +840,7 @@ h2 {
     padding-bottom: 30px;
   }
 
-  .sponsor-logo {
+  .s-logo {
     padding-bottom: 20px;
     margin-left: 10px;
     margin-right: 10px;
@@ -1008,12 +1008,12 @@ footer .navbar-light .navbar-nav .nav-link:active {
   width: auto;
 }
 
-.index-sponsor-row {
+.index-s-row {
   padding-top: 30px;
   padding-bottom: 30px;
 }
 
-.sponsor-section-header {
+.s-section-header {
   font-weight: bold !important;
   border-bottom: 1px solid;
   padding-bottom: 10px !important;
