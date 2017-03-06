@@ -49,16 +49,11 @@ class ContentRepo @Inject() (config: Configuration) {
         """commercetools is a next generation software technology company that offers a true cloud commerce platform,
           |providing the building blocks for the new digital commerce age.  Our leading-edge API approach helps retailers
           |create brand value by empowering commerce teams to design unique and engaging digital commerce experiences
-          |everywhere – today and in the future.  Our agile, componentized architecture improves profitability by significantly
-          |reducing development time and resources required to migrate to modern commerce technology and meet new customer demands.
+          |everywhere – today and in the future.  Our agile, componentized architecture improves profitability by
+          |significantly reducing development time and resources required to migrate to modern commerce technology
+          |and meet new customer demands.
           |
-          |The innovative platform design enables commerce possibilities for the future by offering the option to either use
-          |the platform's entire set of features or deploy individual services, á la carte over time.  This state-of-the-art
-          |architecture is the perfect starting point for customized microservices, enabling retailers to significantly reduce
-          |time-to-market for innovative commerce functionalities.
-          |
-          |With offices in Germany and the United States, B2C and B2B companies from across the globe including
-          |well-known brands in fashion, E-Food, and DIY retail trust commercetools to power their digital commerce business.""")))
+          |Visit [www.commercetools.com](https://commercetools.com) for more information.""")))
   )
 
   val speakers = List(
