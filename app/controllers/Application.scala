@@ -15,7 +15,7 @@ class Application @Inject() (config: Configuration, repo: ContentRepo) extends C
   val conf = config.underlying.as[Config]("graphqlEurope")
 
   def index = Action { implicit req ⇒
-    Ok(views.html.index(actualConf, repo.speakers, repo.sponsors, req.queryString.contains("dark"), req.queryString.contains("topLogo")))
+    Ok(views.html.index(actualConf, repo.speakers, repo.sponsors, repo.tickets, req.queryString.contains("dark"), req.queryString.contains("topLogo")))
   }
 
   def codeOfConduct = Action(implicit req ⇒ Ok(views.html.codeOfConduct(actualConf)))

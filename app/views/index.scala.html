@@ -1,6 +1,6 @@
 @import views._
 
-@(config: Config, speakers: List[Speaker], sponsors: List[Sponsor], dark: Boolean, topLogo: Boolean)
+@(config: Config, speakers: List[Speaker], sponsors: List[Sponsor], tickets: List[Ticket], dark: Boolean, topLogo: Boolean)
 
 @prefix = @{if (dark) "-dark" else ""}
 
@@ -21,7 +21,7 @@
           }
 
           <ul class="nav navbar-nav nav-pills float-xs-right">
-            <li class="nav-item fade-in f1"><a class="nav-link" href="#attend">Attend</a></li>
+            <li class="nav-item fade-in f1"><a class="nav-link" href="#tickets">Tickets</a></li>
             <li class="nav-item fade-in f2"><a class="nav-link" href="#speakers">Speakers</a></li>
             <li class="nav-item fade-in f3"><a class="nav-link" href="/sponsors">Sponsors</a></li>
             <li class="nav-item fade-in f4"><a class="nav-link" href="/team">Team</a></li>
@@ -117,6 +117,39 @@
       @speakers.map { s =>
         @speaker(s)
       }
+    </div>
+
+
+    <img class="cloud-m cloud-m-br" src="@routes.Assets.versioned(s"image/cloud-m-br$prefix.svg")" />
+    <img class="cloud-m cloud-m-bl" src="@routes.Assets.versioned(s"image/cloud-m-bl$prefix.svg")" />
+
+    <div class="beautiful-line" id="tickets"></div>
+
+    <div class="row">
+      <div class="col-md-12" style="text-align: center">
+        <h2>Get your ticket!</h2>
+        <p>You don't want to miss out, join us for GraphQL-Europe!</p>
+      </div>
+    </div>
+
+    <div class="row" style="padding-top: 30px">
+      @tickets.map { ticket =>
+        <div class="col-xl-4">
+          <div class="ticket-box @{if (!ticket.available) "ticket-box-not-available" else ""}">
+            <div class="ticket price">@ticket.price</div>
+            <div class="ticket price-title">@ticket.name</div>
+            <div class="ticket price-availability">@ticket.availableUntilText</div>
+            <a class="btn btn-lg btn-success register-button @{if (!ticket.available) "disabled" else ""}" href="@config.ticketsUrl" role="button" target="_blank">Select</a>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="row" style="padding-top: 20px">
+        <div class="col-md-12 ticket-note">
+          <p>Tickets grant access to the conference, including food and drinks.</p>
+          <p>Ths <a class="nav-link" href="/code-of-conduct">Code of Conduct</a> applies. Sales are awarded on a first-come-first-serve basis.</p>
+        </div>
     </div>
 
     <div class="beautiful-line" id="sponsors"></div>

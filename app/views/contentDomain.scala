@@ -50,6 +50,19 @@ object Edition extends Enumeration {
   implicit val graphqlType: EnumType[Edition.Value] = deriveEnumType[Edition.Value]()
 }
 
+case class Ticket(
+  name: String,
+  price: String,
+  availableUntil: LocalDate,
+  availableUntilText: String,
+  url: String,
+  available: Boolean)
+
+object Ticket {
+  implicit val graphqlType = deriveObjectType[Unit, Ticket](
+    ExcludeFields("availableUntilText"))
+}
+
 case class Conference(
   name: String,
   edition: Edition.Value,
@@ -60,6 +73,7 @@ case class Conference(
   speakers: List[Speaker],
   sponsors: List[Sponsor],
   team: List[TeamMember],
+  tickets: List[Ticket],
   url: String)
 
 object Conference {

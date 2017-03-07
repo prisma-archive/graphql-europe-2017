@@ -12,5 +12,6 @@ case class Config(
   sponsorEmail: String,
   supportEmail: String,
   cdn: Boolean,
-  preview: Boolean
+  preview: Boolean,
+  ticketsUrl: String
 )

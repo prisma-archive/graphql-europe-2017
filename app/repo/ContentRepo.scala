@@ -1,6 +1,9 @@
 package repo
 
+import java.time.{LocalDate, Month}
 import javax.inject.{Inject, Singleton}
+import net.ceedubs.ficus.Ficus._
+import net.ceedubs.ficus.readers.ArbitraryTypeReader._
 
 import play.api.Configuration
 import views._
@@ -8,6 +11,8 @@ import views._
 @Singleton
 class ContentRepo @Inject() (config: Configuration) {
   val baseUrl = config.getString("graphqlEurope.canonicalUrl").get + "/assets/image"
+
+  val conf = config.underlying.as[Config]("graphqlEurope")
 
   def cleanupText(s: String) = s.stripMargin.replaceAll("\r\n", "\n")
 
@@ -150,6 +155,30 @@ class ContentRepo @Inject() (config: Configuration) {
       github = Some("dajana"))
   )
 
+  val tickets = List(
+    Ticket(
+      name = "Early Bird",
+      price = "149 €",
+      availableUntil = LocalDate.of(2017, Month.APRIL, 1),
+      availableUntilText = "Available until end of March",
+      url = conf.ticketsUrl,
+      available = true),
+    Ticket(
+      name = "Regular",
+      price = "189 €",
+      availableUntil = LocalDate.of(2017, Month.MAY, 7),
+      availableUntilText = "Available until beginning of May",
+      url = conf.ticketsUrl,
+      available = false),
+    Ticket(
+      name = "Late Bird",
+      price = "199 €",
+      availableUntil = LocalDate.of(2017, Month.MAY, 21),
+      availableUntilText = "Last chance to get a ticket",
+      url = conf.ticketsUrl,
+      available = false)
+  )
+
   val conferences = List(
     Conference(
       name = "GraphQL-Europe",
@@ -161,6 +190,7 @@ class ContentRepo @Inject() (config: Configuration) {
       speakers = speakers,
       sponsors = sponsors,
       team = team,
+      tickets = tickets,
       url = "https://graphql-europe.org")
   )
 
