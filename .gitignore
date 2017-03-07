@@ -9,5 +9,6 @@ target
 /.settings
 /RUNNING_PID
 /node_modules
+/tmp
 
 *.iml
