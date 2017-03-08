@@ -158,21 +158,21 @@ class ContentRepo @Inject() (config: Configuration) {
   val tickets = List(
     Ticket(
       name = "Early Bird",
-      price = "149 €",
+      price = "179 €",
       availableUntil = LocalDate.of(2017, Month.APRIL, 1),
-      availableUntilText = "Available until end of March",
+      availableUntilText = "Limited number available",
       url = conf.ticketsUrl,
       available = true),
     Ticket(
       name = "Regular",
-      price = "189 €",
+      price = "229 €",
       availableUntil = LocalDate.of(2017, Month.MAY, 7),
       availableUntilText = "Available until beginning of May",
       url = conf.ticketsUrl,
       available = true),
     Ticket(
       name = "Late Bird",
-      price = "199 €",
+      price = "239 €",
       availableUntil = LocalDate.of(2017, Month.MAY, 21),
       availableUntilText = "Last chance to get a ticket",
       url = conf.ticketsUrl,
