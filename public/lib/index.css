@@ -30,7 +30,7 @@ body {
 }
 
 .main-header {
-  height: 65vh;
+  height: 75vh;
   width: 100%;
   min-height: 450px;
   text-align: center;
@@ -42,7 +42,7 @@ body {
   -o-transform-style: preserve-3d;
   -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  top: 40%;
+  top: 45%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
@@ -1089,7 +1089,7 @@ footer .navbar-light .navbar-nav .nav-link:active {
   -moz-box-shadow: none;
   box-shadow: none;
   /*opacity: 0.7;*/
-  border: 1px solid #b5b5b5;
+  border: 1px solid #eae9e9;
   color: #b5b5b5;
 }
 
