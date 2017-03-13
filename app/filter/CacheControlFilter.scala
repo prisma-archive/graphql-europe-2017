@@ -16,6 +16,8 @@ class CacheControlFilter @Inject() (config: Configuration) extends EssentialFilt
   def header(path: String): (String, String) =
     if (path.startsWith("/admin") || path.startsWith("/graphql"))
       CacheControl → noCache
+    else if (path.endsWith(".css"))
+      CacheControl → maxAge(1 minute, 4 minutes)
     else if (path startsWith "/assets/lib")
       CacheControl → maxAge(1 minute, 30 minutes)
     else if (path startsWith "/assets")

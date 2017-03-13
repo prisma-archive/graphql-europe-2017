@@ -22,9 +22,15 @@ class GraphQL @Inject() (system: ActorSystem, config: Configuration, repo: Conte
   import system.dispatcher
 
   val defaultQuery =
-    """{
+    """query ConferenceDetails {
       |  conference(edition: Berlin2017) {
       |    name
+      |    dateStart
+      |
+      |    tickets {
+      |      name
+      |      price
+      |    }
       |
       |    speakers {
       |      name
@@ -32,6 +38,18 @@ class GraphQL @Inject() (system: ActorSystem, config: Configuration, repo: Conte
       |      company
       |      twitter
       |      github
+      |    }
+      |
+      |    sponsors {
+      |      name
+      |      url
+      |      description
+      |    }
+      |
+      |    team {
+      |      name
+      |      description
+      |      twitter
       |    }
       |  }
       |}""".stripMargin

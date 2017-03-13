@@ -371,6 +371,21 @@ a:hover, a:active {
   border-bottom: 1px solid #e2e8f0;
 }
 
+.beautiful-line-top {
+  height: 100px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  width: 100%;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.beautiful-line-bottom {
+  height: 0;
+  margin-bottom: 100px;
+  padding-bottom: 0;
+  width: 100%;
+}
+
 .content-row {
   font-size: 1.3em;
 }
