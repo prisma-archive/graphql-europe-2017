@@ -18,6 +18,22 @@ class ContentRepo @Inject() (config: Configuration) {
 
   val sponsors = List(
     Sponsor(
+      name = "commercetools",
+      sponsorType = SponsorType.Gold,
+      url = "https://commercetools.com",
+      logoUrl = s"$baseUrl/sponsor/commercetools.svg",
+      twitter = Some("commercetools"),
+      github = Some("commercetools"),
+      description = Some(cleanupText(
+        """commercetools is a next generation software technology company that offers a true cloud commerce platform,
+          |providing the building blocks for the new digital commerce age.  Our leading-edge API approach helps retailers
+          |create brand value by empowering commerce teams to design unique and engaging digital commerce experiences
+          |everywhere – today and in the future.  Our agile, componentized architecture improves profitability by
+          |significantly reducing development time and resources required to migrate to modern commerce technology
+          |and meet new customer demands.
+          |
+          |Visit [www.commercetools.com](https://commercetools.com) for more information."""))),
+    Sponsor(
       name = "Honeypot",
       sponsorType = SponsorType.Organiser,
       url = "https://www.honeypot.io",
@@ -42,23 +58,7 @@ class ContentRepo @Inject() (config: Configuration) {
         "backend that works with frontend frameworks such as Angular, Apollo, Relay, React & React Native. " +
         "Includes built-in integrations for popular services."),
       twitter = Some("graphcool"),
-      github = Some("graphcool")),
-    Sponsor(
-      name = "commercetools",
-      sponsorType = SponsorType.Gold,
-      url = "https://commercetools.com",
-      logoUrl = s"$baseUrl/sponsor/commercetools.svg",
-      twitter = Some("commercetools"),
-      github = Some("commercetools"),
-      description = Some(cleanupText(
-        """commercetools is a next generation software technology company that offers a true cloud commerce platform,
-          |providing the building blocks for the new digital commerce age.  Our leading-edge API approach helps retailers
-          |create brand value by empowering commerce teams to design unique and engaging digital commerce experiences
-          |everywhere – today and in the future.  Our agile, componentized architecture improves profitability by
-          |significantly reducing development time and resources required to migrate to modern commerce technology
-          |and meet new customer demands.
-          |
-          |Visit [www.commercetools.com](https://commercetools.com) for more information.""")))
+      github = Some("graphcool"))
   )
 
   val speakers = List(
@@ -94,7 +94,7 @@ class ContentRepo @Inject() (config: Configuration) {
   val team = List(
     TeamMember(
       name = "Oleg Ilyenko",
-      photoUrl = Some(s"$baseUrl/team/oleg.png"),
+      photoUrl = Some(s"$baseUrl/team/oleg.jpg"),
       teamSection = TeamSection.Core,
       description = Some(
         "Oleg is a passionate software engineer and speaker who loves innovative ideas and technology, " +
@@ -104,7 +104,7 @@ class ContentRepo @Inject() (config: Configuration) {
       github = Some("OlegIlyenko")),
     TeamMember(
       name = "Johannes Schickling",
-      photoUrl = Some(s"$baseUrl/team/johannes.png"),
+      photoUrl = Some(s"$baseUrl/team/johannes.jpg"),
       teamSection = TeamSection.Core,
       description = Some(
         "Johannes is a Berlin/SF-based entrepreneur and founder of Graphcool, " +
@@ -115,7 +115,7 @@ class ContentRepo @Inject() (config: Configuration) {
       github = Some("schickling")),
     TeamMember(
       name = "Emma Tracey",
-      photoUrl = Some(s"$baseUrl/team/emma.png"),
+      photoUrl = Some(s"$baseUrl/team/emma.jpg"),
       teamSection = TeamSection.Core,
       description = Some(
         "Emma is co-founder of Honeypot, a developer-focused job platform. She loves bringing " +
@@ -124,7 +124,7 @@ class ContentRepo @Inject() (config: Configuration) {
       github = None),
     TeamMember(
       name = "Artyom Chelbayev",
-      photoUrl = Some(s"$baseUrl/team/artyom.png"),
+      photoUrl = Some(s"$baseUrl/team/artyom.jpg"),
       teamSection = TeamSection.Core,
       description = Some(
         "Artyom is bringing years of business experience from advertising, consumer, " +
@@ -136,7 +136,7 @@ class ContentRepo @Inject() (config: Configuration) {
       github = Some("artyomc")),
     TeamMember(
       name = "Johanna Dahlroos",
-      photoUrl = Some(s"$baseUrl/team/johanna-new.png"),
+      photoUrl = Some(s"$baseUrl/team/johanna-new.jpg"),
       teamSection = TeamSection.Core,
       description = Some(
         "Johanna is Honeypot’s UI/UX Designer. A Finnish dog-lover with passion for " +
@@ -145,7 +145,7 @@ class ContentRepo @Inject() (config: Configuration) {
       github = Some("Batjohe")),
     TeamMember(
       name = "Dajana Günther",
-      photoUrl = Some(s"$baseUrl/team/dajana.png"),
+      photoUrl = Some(s"$baseUrl/team/dajana.jpg"),
       teamSection = TeamSection.SpecialThanks,
       description = Some(
         "Dajana is GraphQL-Europe's advisor. She is conference manager of GOTO Berlin. " +
