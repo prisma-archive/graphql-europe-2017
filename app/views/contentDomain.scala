@@ -38,12 +38,6 @@ object Sponsor {
   implicit val graphqlType = deriveObjectType[Unit, Sponsor]()
 }
 
-case class Venue(name: String, address: String, url: String)
-
-object Venue {
-  implicit val graphqlType = deriveObjectType[Unit, Venue]()
-}
-
 object Edition extends Enumeration {
   val Berlin2017 = Value
 
@@ -63,9 +57,52 @@ object Ticket {
     ExcludeFields("availableUntilText"))
 }
 
+case class Address(
+  country: String,
+  city: String,
+  zipCode: String,
+  streetName: String,
+  houseNumber: String,
+  latitude: Double,
+  longitude: Double)
+
+object Address {
+  implicit val graphqlType = deriveObjectType[Unit, Address]()
+}
+
+object DirectionType extends Enumeration {
+  val Airport, TrainStation, Car = Value
+
+  implicit val graphqlType: EnumType[DirectionType.Value] = deriveEnumType[DirectionType.Value]()
+}
+
+case class Direction(`type`: DirectionType.Value, from: String, description: String)
+
+object Direction {
+  implicit val graphqlType = deriveObjectType[Unit, Direction]()
+}
+
+case class Venue(
+  name: String,
+  url: String,
+  phone: String,
+  directions: List[Direction],
+  address: Address)
+
+object Venue {
+  val DirectionTypeArg = Argument("type", OptionInputType(DirectionType.graphqlType))
+
+  implicit val graphqlType = deriveObjectType[Unit, Venue](
+    ReplaceField("directions", Field("directions", ListType(Direction.graphqlType),
+      arguments = DirectionTypeArg :: Nil,
+      resolve = c ⇒ c.arg(DirectionTypeArg).fold(c.value.directions)(d ⇒ c.value.directions.filter(_.`type` == d))))
+  )
+}
+
 case class Conference(
   name: String,
   edition: Edition.Value,
+  tagLine: String,
   year: Int,
   venue: Option[Venue],
   dateStart: Option[LocalDate],

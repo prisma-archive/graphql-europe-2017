@@ -13,5 +13,6 @@ case class Config(
   supportEmail: String,
   cdn: Boolean,
   preview: Boolean,
-  ticketsUrl: String
+  ticketsUrl: String,
+  googleMapsApiKey: String
 )

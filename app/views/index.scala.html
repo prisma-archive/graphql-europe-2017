@@ -1,6 +1,6 @@
 @import views._
 
-@(config: Config, speakers: List[Speaker], sponsors: List[Sponsor], tickets: List[Ticket], dark: Boolean, topLogo: Boolean)
+@(config: Config, speakers: List[Speaker], sponsors: List[Sponsor], tickets: List[Ticket], venue: Venue, dark: Boolean, topLogo: Boolean)
 
 @prefix = @{if (dark) "-dark" else ""}
 
@@ -106,13 +106,13 @@
         <h2>Speakers</h2>
       </div>
       <div class="col-md-1"></div>
-      <div class="col-md-6">
+      <div class="col-md-5">
         <p class="smaller-font">
           Our call for papers is currently in progress and is open until March 31.
         </p>
       </div>
       <div class="col-md-1"></div>
-      <div class="col-md-2">
+      <div class="col-md-3" style="text-align: right">
         <a class="btn btn-lg btn-success register-button" target="_blank" href="https://www.papercall.io/graphql-europe" role="button">Give a Talk</a>
       </div>
     </div>
@@ -158,7 +158,28 @@
         </div>
     </div>
 
-    <div class="beautiful-line" id="sponsors"></div>
+    <div class="beautiful-line-top"></div>
+    <div class="beautiful-line-bottom" id="location"></div>
+
+    <div class="row" style="padding-bottom: 30px">
+      <div class="col-md-6 location-address">
+        <h2>Location</h2>
+        <p class="location-address-name">@venue.name</p>
+        <p>@venue.address.streetName @venue.address.houseNumber, @venue.address.zipCode @venue.address.city</p>
+      </div>
+      <div class="col-md-6" style="text-align: right">
+        <a class="btn btn-lg btn-success register-button" href="/location" role="button">Get directions</a>
+      </div>
+    </div>
+
+    <div class="row" style="padding-bottom: 30px">
+      <div class="col-md-12" style="background-color: #d5c2d2; text-align: center; font-weight: bold; font-size: 4em; padding-top: 150px; padding-bottom: 150px">
+        TODO: Images should be here!
+      </div>
+    </div>
+
+    <div class="beautiful-line-top"></div>
+    <div class="beautiful-line-bottom" id="sponsors"></div>
 
     <div class="row" style="padding-bottom: 30px">
       <div class="col-md-12">
@@ -206,36 +227,11 @@
     </div>
   </div>
 
-  <div class="footer-bg" style="margin-top: 100px">
+  <div class="primary-footer">
     <div class="container">
       <footer class="footer">
-        <div style="text-align: center">
-          <div class="subtitle-footer" style="padding-top: 140px;">I want to attend</div>
-          <div class="description-footer" style="padding-bottom: 35px">Join our waitlist and you'll be the first to get updates.</div>
-
-          <form class="form-inline footer-form" style="padding-bottom: 140px">
-            <div class="form-group">
-              <input type="text" class="form-control" id="bottomRegisterName" placeholder="Your name">
-            </div>
-            <div class="form-group">
-              <input type="email" class="form-control" id="bottomRegisterEmail" placeholder="Add your email">
-            </div>
-            <button id="registerButton" type="submit" class="btn btn-primary footer-button">Register</button>
-          </form>
-        </div>
-
-        @footerNav(config)
+      @footerNav(config)
       </footer>
-    </div>
-
-    <div class="bottom-gradient-wrapper">
-      <div class="bottom-gradient"></div>
-    </div>
-    <div class="cloud-bbl-wrapper">
-      <img class="cloud-bbl" src="@routes.Assets.versioned("image/cloud-bbl.svg")" />
-    </div>
-    <div class="cloud-bbr-wrapper">
-      <img class="cloud-bbr" src="@routes.Assets.versioned("image/cloud-bbr.svg")" />
     </div>
   </div>
 }

@@ -1,0 +1,61 @@
+@import views._
+
+@(config: Config, venue: Venue)
+
+@secondary(config, s"Location - ${venue.name}", showMap = Some(venue)) {
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Location</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <p style="font-weight: bold; font-size: 1.6em">@venue.name</p>
+        <p style="font-size: 1.3em; padding-bottom: 20px">@venue.address.streetName @venue.address.houseNumber, @venue.address.zipCode @venue.address.city</p>
+        <a class="btn btn-lg btn-success register-button" href="/#tickets" role="button">Get your ticket</a>
+      </div>
+
+      <div class="col-md-6">
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Directions</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>From the airport</h2>
+        @venue.directions.filter(_.`type` == DirectionType.Airport).map { d =>
+          @{MarkdownUtil.render(d.description)}
+        }
+      </div>
+
+      <div class="col-md-12">
+        <h2>From the train station</h2>
+        @venue.directions.filter(_.`type` == DirectionType.TrainStation).map { d =>
+          @{MarkdownUtil.render(d.description)}
+        }
+      </div>
+
+      <div class="col-md-12">
+        <h2>By car</h2>
+        @venue.directions.filter(_.`type` == DirectionType.Car).map { d =>
+          <p style="font-weight: bold">@d.from</p>
+          @{MarkdownUtil.render(d.description)}
+        }
+      </div>
+    </div>
+  </div>
+}

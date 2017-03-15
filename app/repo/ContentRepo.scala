@@ -179,12 +179,53 @@ class ContentRepo @Inject() (config: Configuration) {
       available = false)
   )
 
+  val venue = Venue(
+    name = "nHow Berlin",
+    url = "https://www.nhow-berlin.com/en/",
+    phone = "+49 30 290 299 290",
+    directions = List(
+      Direction(DirectionType.Airport, "Tegel Airport", "From **Tegel Airport** take the Bus TXL towards Alexanderplatz. Change at Berlin Main Train Station and take the S5 towards Strausberg or the S75 towards Wartenberg. Exit at the Warschauer Straße station."),
+      Direction(DirectionType.Airport, "Schönefeld Airport", "From **Schönefeld Airport** enter Flughafen Berlin-Schönefeld train station and take S9 towards Pankow. Exit at the Ostkreuz train station and transfer to S5 towards Westkreuz. Exit at Warschauer Straße. Trains leave every 20 minutes and cost 2,80€ per person."),
+      Direction(DirectionType.TrainStation, "Main Train Station", "From Berlin **Main Train Station** you can catch a train (S5 towards Strausberg, S7 towards Ahrensfelde or S75 towards Wartenberg) to Warschauer Straße. Trains leave every 10 min and cost 2,10€ per person. "),
+      Direction(DirectionType.TrainStation, "Ostbahnhof Train Station", "From **Ostbahnhof Train Station** you can catch a train (S3 towards Friedrichshagen, S7 towards Ahrensfelde or S75 towards Wartenberg) to Warschauer Straße. Trains leave every 10 min and cost 2,10€ per person. "),
+      Direction(DirectionType.Car, "From North",
+        "Coming from A10 Berliner Ring:  " +
+        "Take Exit 35 Pankow onto A114/B109 towards Prenzlauer Berg.  " +
+        "Turn left at B96a/Danziger Straße.  " +
+        "Follow Danziger Straße and turn left into Stralauer Allee."),
+      Direction(DirectionType.Car, "From South",
+        "Coming from A100:  " +
+        "Take Exit 23 Britzer Damm onto B179.  " +
+        "Turn right at Hermannplatz to continue on B179.  " +
+        "At the roundabout, take the first exit onto Skalitzer Straße.  " +
+        "Continue on Skalitzer Straße, cross the bridge then turn right into Stralauer Allee."),
+      Direction(DirectionType.Car, "From West",
+        "Coming fom A100:  " +
+        "Take Exit 20 Tempelhofer Damm onto B96.  " +
+        "Turn right at B179 Tempelhofer Ufer onto B179.  " +
+        "At the roundabout take the second exit into Skalitzer Straße.  " +
+        "Cross the bridge, then turn right into Stralauer Allee."),
+      Direction(DirectionType.Car, "From East",
+        "Coming from B10 Berliner Ring:  " +
+        "Take Exit B1/B5 towards Hellersdorf/Zentrum and follow that road for 20 km.  " +
+        "Turn left into B96a/ Warschauer Straße.  " +
+        "Follow Warschauer Straße before turning left onto Stralauer Allee.")),
+    address = Address(
+      country = "Germany",
+      city = "Berlin",
+      zipCode = "10245",
+      streetName = "Stralauer Allee",
+      houseNumber = "3",
+      latitude = 52.501159D,
+      longitude = 13.451280D))
+
   val conferences = List(
     Conference(
       name = "GraphQL-Europe",
       edition = Edition.Berlin2017,
+      tagLine = "Join Europe’s first GraphQL conference",
       year = 2017,
-      venue = None,
+      venue = Some(venue),
       dateStart = Some(LocalDate.of(2017, Month.MAY, 21)),
       dateEnd = Some(LocalDate.of(2017, Month.MAY, 21)),
       speakers = speakers,

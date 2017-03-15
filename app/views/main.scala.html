@@ -1,6 +1,6 @@
-@import views.Config
+@import views._
 
-@(config: Config, title: String, bodyClass: Option[String] = None)(content: Html)
+@(config: Config, title: String, bodyClass: Option[String] = None, showMap: Option[Venue] = None)(content: Html)
 
 <!DOCTYPE html>
 
@@ -14,6 +14,8 @@
 
     @libsTop(config.cdn)
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("lib/index.css")">
+
+    @showMap.map(map(config, _))
   </head>
   <body class="@bodyClass.getOrElse("")">
     @content
@@ -25,6 +27,7 @@
     </script>
 
     <script src="@routes.Assets.versioned("lib/index.js")"></script>
+
     @ga(config.gaCode)
     @smooch(config.smoochApiKey)
   </body>
