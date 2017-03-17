@@ -2,59 +2,86 @@
 
 @(config: Config, venue: Venue)
 
+@tegel = @{venue.directions.filter(_.`type` == DirectionType.Airport)(0)}
+@schoenefeld = @{venue.directions.filter(_.`type` == DirectionType.Airport)(1)}
+@mainStation = @{venue.directions.filter(_.`type` == DirectionType.TrainStation)(0)}
+
 @secondary(config, s"Location - ${venue.name}", showMap = Some(venue)) {
   <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h1>Location</h1>
+    <div class="row" style="padding-top: 50px">
+      <div class="col-md-6">
+        <p style="font-weight: bold; font-size: 1.6em">Location</p>
+        <p style="font-size: 1.6em; line-height: 0.5em;">@venue.name</p>
+        <p style="font-size: 1.1em; padding-bottom: 20px">@venue.address.streetName @venue.address.houseNumber, @venue.address.zipCode @venue.address.city</p>
+      </div>
+      <div class="col-md-6" style="text-align: right">
+        <a class="btn btn-lg btn-success register-button" href="/#tickets" role="button">Get your ticket</a>
       </div>
     </div>
   </div>
 
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
-        <p style="font-weight: bold; font-size: 1.6em">@venue.name</p>
-        <p style="font-size: 1.3em; padding-bottom: 20px">@venue.address.streetName @venue.address.houseNumber, @venue.address.zipCode @venue.address.city</p>
-        <a class="btn btn-lg btn-success register-button" href="/#tickets" role="button">Get your ticket</a>
-      </div>
-
-      <div class="col-md-6">
+      <div class="col-md-12">
         <div id="map"></div>
       </div>
     </div>
   </div>
 
   <div class="container">
-    <div class="row">
+    <div class="row" style="padding-top: 60px">
       <div class="col-md-12">
-        <h1>Directions</h1>
+        <p style="font-weight: bold; font-size: 1.1em">Directions to the venue</p>
+        <p>
+          There are plenty of options to take you to the venue. The local transportation is well structured from the airports
+          and if you feel like arriving with a car, there is a free parking space outside of the building.
+        </p>
       </div>
     </div>
   </div>
 
   <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h2>From the airport</h2>
-        @venue.directions.filter(_.`type` == DirectionType.Airport).map { d =>
-          @{MarkdownUtil.render(d.description)}
-        }
+    <div class="row" style="padding-top: 50px">
+      <div class="col-md-6">
+        <div class="transport-icon">
+          <img src="@routes.Assets.versioned("image/airport.svg")">
+        </div>
+        <div class="transport-descr">
+          <p class="transport-title">From @tegel.from</p>
+          <div class="transport-dir">@{MarkdownUtil.render(tegel.description)}</div>
+        </div>
       </div>
 
-      <div class="col-md-12">
-        <h2>From the train station</h2>
-        @venue.directions.filter(_.`type` == DirectionType.TrainStation).map { d =>
-          @{MarkdownUtil.render(d.description)}
-        }
+      <div class="col-md-6">
+        <div class="transport-icon">
+          <img src="@routes.Assets.versioned("image/train.svg")">
+        </div>
+        <div class="transport-descr">
+          <p class="transport-title">From @mainStation.from</p>
+          <div class="transport-dir">@{MarkdownUtil.render(mainStation.description)}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding-top: 50px">
+      <div class="col-md-6">
+        <div class="transport-icon">
+          <img src="@routes.Assets.versioned("image/airport.svg")">
+        </div>
+        <div class="transport-descr">
+          <p class="transport-title">From @schoenefeld.from</p>
+          <div class="transport-dir">@{MarkdownUtil.render(schoenefeld.description)}</div>
+        </div>
       </div>
 
-      <div class="col-md-12">
-        <h2>By car</h2>
-        @venue.directions.filter(_.`type` == DirectionType.Car).map { d =>
-          <p style="font-weight: bold">@d.from</p>
-          @{MarkdownUtil.render(d.description)}
-        }
+      <div class="col-md-6">
+        <div class="transport-icon">
+          <img src="@routes.Assets.versioned("image/car.svg")">
+        </div>
+        <div class="transport-descr">
+          <p class="transport-title">With the car</p>
+          <div class="transport-dir">It's easy to access the venue from any direction. We suggest to use a navigation app to get the fastest way from your staring point.</div>
+        </div>
       </div>
     </div>
   </div>
