@@ -624,6 +624,31 @@ h2 {
   background-color: #FEE4EE;
 }
 
+.venue-image {
+  width: 100%;
+}
+
+.venue-side {
+  width: 28%;
+}
+
+.venue-center {
+  width: 44%;
+}
+
+.venue-center-middle {
+  padding-top: 41px;
+  padding-bottom: 40px;
+}
+
+.venue-side-first {
+  padding-bottom: 33px;
+}
+
+.venue-image-bottom {
+  width: 100%;
+}
+
 @media only screen and (max-width: 1024px) {
   .register-button, .register-button:visited, .register-button:focus {
     padding-left: 21px;
@@ -783,6 +808,15 @@ h2 {
   .cloud-m {
     display: none;
   }
+
+  .venue-side, .venue-center {
+    width: 100%;
+  }
+
+  .venue-center {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
 }
 
 /* ipad portrait */
@@ -814,6 +848,15 @@ h2 {
 
   .cloud-m {
     display: none;
+  }
+
+  .venue-side, .venue-center {
+    width: 100%;
+  }
+
+  .venue-center {
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
 }
 
@@ -878,6 +921,15 @@ h2 {
   .cloud-m {
     display: none;
   }
+
+  .venue-side, .venue-center {
+    width: 100%;
+  }
+
+  .venue-center {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
 }
 
 /* phone 5 */
@@ -911,6 +963,15 @@ h2 {
 
   .cloud-m {
     display: none;
+  }
+
+  .venue-side, .venue-center {
+    width: 100%;
+  }
+
+  .venue-center {
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
 }
 
