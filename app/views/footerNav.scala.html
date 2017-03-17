@@ -1,22 +1,50 @@
-@import views.Config
-@(config: Config)
+@import views._
 
-<div style="vertical-align: middle">
-  <div style="float: left; padding-top: 22px;" class="footer-copy">
-    <a href="/"><img class="bottom-logo" src="@routes.Assets.versioned("image/top-logo.svg")" /></a>
+@(config: Config, className: String)
+
+<div class="@className">
+  <div class="footer-ticket">
+    <div class="container">
+      <div class="row ">
+        <div class="col-md-12" style="text-align: center">
+          <h2>Get your ticket!</h2>
+          <p style="padding-top: 10px; padding-bottom: 20px">You don't want to miss out, join us for GraphQL-Europe!</p>
+          <a class="btn btn-lg btn-success register-button" href="/#tickets" role="button">Get your ticket</a>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="header" style="float: right">
-    <nav>
-      <ul class="nav nav-pills float-xs-right">
-        <li class="nav-item"><a class="nav-link" href="/#tickets">Tickets</a></li>
-        <li class="nav-item"><a class="nav-link" href="/sponsors">Sponsors</a></li>
-        <li class="nav-item"><a class="nav-link" href="/code-of-conduct">Code of Conduct</a></li>
-        <li class="nav-item"><a class="nav-link" href="/imprint">Imprint</a></li>
-        <li class="nav-item"><a class="nav-link" href="/team">Team</a></li>
-        <li class="nav-item"><a class="nav-link" href="/graphql">API</a></li>
-        <li class="nav-item" style="padding-left: 10px"><a class="nav-link contact-link" target="_blank" href="https://twitter.com/graphqleu"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-        <li class="nav-item" style="padding-left: 15px"><a class="nav-link contact-link" href="mailto:@config.supportEmail"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
-      </ul>
-    </nav>
+
+  <div class="footer-nav">
+    <div class="container">
+      <footer class="footer row">
+        <div style="float: left; padding-top: 22px;" class="footer-copy">
+          <a href="/"><img class="bottom-logo" src="@routes.Assets.versioned("image/top-logo.svg")" /></a>
+        </div>
+        <div class="header" style="float: right; padding-right: 0">
+          <nav>
+            <ul class="nav nav-pills float-xs-right">
+              <li class="nav-item"><a class="nav-link" href="/#tickets">Tickets</a></li>
+              <li class="nav-item"><a class="nav-link" href="/sponsors">Sponsors</a></li>
+              <li class="nav-item"><a class="nav-link" href="/team">Team</a></li>
+              <li class="nav-item"><a class="nav-link" href="/location">Getting here</a></li>
+              <li class="nav-item" style="padding-left: 10px"><a class="nav-link contact-link" target="_blank" href="https://twitter.com/graphqleu"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+              <li class="nav-item" style="padding-left: 15px"><a class="nav-link contact-link" href="mailto:@config.supportEmail"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="beautiful-bottom-line" style="">323438</div>
+        <div style="color: white; float: left" class="mini-footer-left">&copy; GraphQL-Europe 2017</div>
+        <div style="color: white; float: right" class="mini-footer">
+          <nav>
+            <ul class="nav nav-pills float-xs-right">
+              <li class="nav-item"><a class="nav-link" href="/graphql">API</a></li>
+              <li class="nav-item"><a class="nav-link" href="/code-of-conduct">Code of Conduct</a></li>
+              <li class="nav-item"><a class="nav-link" href="/imprint" style="padding-right: 0">Imprint</a></li>
+            </ul>
+          </nav>
+        </div>
+      </footer>
+    </div>
   </div>
 </div>

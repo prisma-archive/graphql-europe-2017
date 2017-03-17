@@ -138,7 +138,7 @@ body {
 
 .secondary-end-space {
   display: block;
-  height: 180px;
+  height: 490px;
 }
 
 .organised-by-sep {
@@ -861,7 +861,7 @@ h2 {
   }
 
   .secondary-end-space {
-    height: 250px;
+    height: 630px;
   }
 
   .organised-by-sep {
@@ -895,7 +895,7 @@ h2 {
   }
 
   .secondary-end-space {
-    height: 300px;
+    height: 630px;
   }
 
   .organised-by-sep {
@@ -1008,23 +1008,22 @@ footer .navbar-light .navbar-nav .nav-link:active {
 }
 
 .secondary-footer {
-  background-color: #1f2228;
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
-  padding-top: 20px;
-  padding-bottom: 20px;
 }
 
 .primary-footer {
-  background-color: #1f2228;
   width: 100%;
   margin-top: 100px;
+}
+
+.footer-nav {
+  background-color: #1f2228;
   padding-top: 20px;
   padding-bottom: 20px;
 }
-
 
 .secondary-header {
   background-color: #f56199;
@@ -1173,4 +1172,56 @@ footer .navbar-light .navbar-nav .nav-link:active {
   -webkit-box-shadow: 0px 0px 82px -3px rgba(31,34,40,0.30);
   -moz-box-shadow: 0px 0px 82px -3px rgba(31,34,40,0.30);
   box-shadow: 0px 0px 82px -3px rgba(31,34,40,0.30);
+}
+
+.beautiful-bottom-line {
+  border-bottom: 1px solid #323438;
+  width: 100%;
+  float: left;
+  clear: both;
+  height: 0;
+  margin-bottom: 5px;
+}
+
+.mini-footer, .mini-footer-left {
+  color: #999999 !important;
+  font-size: 0.8em;
+}
+
+.mini-footer-left {
+  padding: .5em 1em;
+  padding-left: 0;
+}
+
+.mini-footer a, .mini-footer a:visited, .mini-footer a:focus {
+  color: #999999 !important;
+  transition: color 0.1s ease-out;
+}
+
+.mini-footer a:hover, .mini-footer a:active {
+  color: #ad3664 !important;
+}
+
+.footer-ticket {
+  background-color: #DB3F74;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  color: white;
+}
+
+.footer-ticket .register-button, .footer-ticket .register-button:visited, .footer-ticket .register-button:focus {
+  background-color: white;
+  color: #DB3F74;
+}
+
+.footer-ticket .register-button:hover, .footer-ticket .register-button:active {
+  background-color: #eddce4 !important;
+  color: #DB3F74 !important;
+}
+
+.secondary-body .footer-ticket h2 {
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+  padding-bottom: 8px;
 }
