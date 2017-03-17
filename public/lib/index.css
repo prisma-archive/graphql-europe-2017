@@ -1318,3 +1318,7 @@ footer .navbar-light .navbar-nav .nav-link:active {
 .transport-dir p {
   font-size: 0.9em !important;
 }
+
+.light-text {
+  color: #918e9a;
+}
