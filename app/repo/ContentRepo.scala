@@ -181,7 +181,7 @@ class ContentRepo @Inject() (config: Configuration) {
 
   val venue = Venue(
     name = "nHow Berlin",
-    url = "https://www.nhow-berlin.com/en/",
+    url = "https://www.nhow-berlin.com/en",
     phone = "+49 30 290 299 290",
     directions = List(
       Direction(DirectionType.Airport, "Tegel Airport", "From **Tegel Airport** take the Bus TXL towards Alexanderplatz. Change at Berlin Main Train Station and take the S5 towards Strausberg or the S75 towards Wartenberg. Exit at the Warschauer Straße station."),
