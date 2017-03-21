@@ -144,7 +144,9 @@
             <div class="ticket price">@ticket.price</div>
             <div class="ticket price-title">@ticket.name</div>
             <div class="ticket price-availability">@ticket.availableUntilText</div>
-            <a class="btn btn-lg btn-success register-button @{if (!ticket.available) "disabled" else ""}" href="@config.ticketsUrl" role="button" target="_blank">Get Ticket</a>
+            <a class="btn btn-lg btn-success register-button @{if (!ticket.available) "disabled" else ""}" href="@config.ticketsUrl" role="button" target="_blank">
+              @{if (ticket.soldOut) "SOLD OUT" else "Get Ticket"}
+            </a>
           </div>
         </div>
       }
