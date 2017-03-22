@@ -142,7 +142,7 @@
         <div class="col-xl-4">
           <div class="ticket-box @{if (!ticket.available) "ticket-box-not-available" else ""}">
             @if(ticket.soldOut) {
-              <img class="sold-out" src="@routes.Assets.versioned("image/sold-out-grey.svg")">
+              <img class="sold-out" src="@routes.Assets.versioned("image/sold-out.svg")">
             }
             <div class="ticket price">@ticket.price</div>
             <div class="ticket price-title">@ticket.name</div>
@@ -209,13 +209,18 @@
     </div>
 
     <div class="row index-s-row" style="padding-top: 0px">
-      <div class="col-md-4"></div>
+      <div class="col-md-3"></div>
       @sponsors.filter(_.sponsorType == SponsorType.Gold).headOption.map { s =>
-        <div class="col-md-4 ">
-          <a href="@s.url" target="_blank"><img src="@s.logoUrl" alt="@s.name"></a>
+        <div class="col-md-3 s-home-cont">
+          <a href="@s.url" target="_blank"><img class="s-home-logo" src="@s.logoUrl" alt="@s.name" title="@s.name"></a>
         </div>
       }
-      <div class="col-md-4"></div>
+      @sponsors.filter(_.sponsorType == SponsorType.Partner).headOption.map { s =>
+        <div class="col-md-3 s-home-cont">
+          <a href="@s.url" target="_blank"><img class="s-home-logo" src="@s.logoUrl" alt="@s.name" title="@s.name"></a>
+        </div>
+      }
+      <div class="col-md-3"></div>
     </div>
 
     @* Use different strategy as soon as we have nore sponsors *@

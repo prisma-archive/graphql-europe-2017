@@ -1331,3 +1331,11 @@ footer .navbar-light .navbar-nav .nav-link:active {
 .light-text {
   color: #918e9a;
 }
+
+.s-home-cont {
+  text-align: center;
+}
+
+.s-home-logo {
+  max-height: 130px;
+}

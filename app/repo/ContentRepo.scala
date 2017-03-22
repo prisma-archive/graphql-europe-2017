@@ -34,6 +34,14 @@ class ContentRepo @Inject() (config: Configuration) {
           |
           |Visit [www.commercetools.com](https://commercetools.com) for more information."""))),
     Sponsor(
+      name = "Facebook",
+      sponsorType = SponsorType.Partner,
+      url = "https://www.facebook.com",
+      logoUrl = s"$baseUrl/sponsor/facebook.svg",
+      twitter = Some("facebook"),
+      github = Some("facebook"),
+      description = None),
+    Sponsor(
       name = "Honeypot",
       sponsorType = SponsorType.Organiser,
       url = "https://www.honeypot.io",
