@@ -50,6 +50,7 @@ case class Ticket(
   availableUntil: LocalDate,
   availableUntilText: String,
   url: String,
+  soldOut: Boolean,
   available: Boolean)
 
 object Ticket {
