@@ -141,6 +141,9 @@
       @tickets.map { ticket =>
         <div class="col-xl-4">
           <div class="ticket-box @{if (!ticket.available) "ticket-box-not-available" else ""}">
+            @if(ticket.soldOut) {
+              <img class="sold-out" src="@routes.Assets.versioned("image/sold-out-grey.svg")">
+            }
             <div class="ticket price">@ticket.price</div>
             <div class="ticket price-title">@ticket.name</div>
             <div class="ticket price-availability">@ticket.availableUntilText</div>
