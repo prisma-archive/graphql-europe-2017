@@ -1339,3 +1339,7 @@ footer .navbar-light .navbar-nav .nav-link:active {
 .s-home-logo {
   max-height: 130px;
 }
+
+.s-secondary-logo {
+  max-height: 170px;
+}
