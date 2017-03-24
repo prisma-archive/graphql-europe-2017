@@ -2,7 +2,7 @@
 
 @(config: Config, sponsors: Seq[Sponsor])
 
-@secondary(config, "Team") {
+@secondary(config, "Sponsors") {
 
   <div class="container">
     <div class="row">
@@ -27,14 +27,13 @@
 
 
           @if(section.justLogos) {
-            <div class="row">
-              <div class="col-md-4"></div>
+            <div class="row" style="padding-bottom: 50px">
               @sectionSponsors.headOption.map { s =>
-                <div class="col-md-4 s-home-cont">
+                <div class="col-md-4 s-secondary-cont">
                   <a href="@s.url" target="_blank"><img class="s-secondary-logo" src="@s.logoUrl" alt="@s.name" title="@s.name"></a>
                 </div>
               }
-              <div class="col-md-4"></div>
+              <div class="col-md-8"></div>
             </div>
           } else {
             @sectionSponsors.map { s =>

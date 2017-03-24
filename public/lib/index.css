@@ -1342,4 +1342,9 @@ footer .navbar-light .navbar-nav .nav-link:active {
 
 .s-secondary-logo {
   max-height: 170px;
+  max-width: 170px;
+}
+
+.s-secondary-cont {
+  text-align: left;
 }
