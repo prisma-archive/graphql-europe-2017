@@ -1,27 +1,30 @@
 package repo
 
-import java.time.{LocalDate, Month}
+import java.time.{Duration, LocalDate, LocalTime, Month}
 import javax.inject.{Inject, Singleton}
+
 import net.ceedubs.ficus.Ficus._
 import net.ceedubs.ficus.readers.ArbitraryTypeReader._
-
 import play.api.Configuration
 import views._
 
 @Singleton
 class ContentRepo @Inject() (config: Configuration) {
-  val baseUrl = config.getString("graphqlEurope.canonicalUrl").get + "/assets/image"
+  val baseUrl = config.getString("graphqlEurope.canonicalUrl").get
 
   val conf = config.underlying.as[Config]("graphqlEurope")
 
   def cleanupText(s: String) = s.stripMargin.replaceAll("\r\n", "\n")
+
+  def url(path: String) = baseUrl + path
+  def assetUrl(path: String) = url("/assets/image" + path)
 
   val sponsors = List(
     Sponsor(
       name = "commercetools",
       sponsorType = SponsorType.Gold,
       url = "https://commercetools.com",
-      logoUrl = s"$baseUrl/sponsor/commercetools.svg",
+      logoUrl = assetUrl("/sponsor/commercetools.svg"),
       twitter = Some("commercetools"),
       github = Some("commercetools"),
       description = Some(cleanupText(
@@ -37,7 +40,7 @@ class ContentRepo @Inject() (config: Configuration) {
       name = "Facebook",
       sponsorType = SponsorType.Partner,
       url = "https://www.facebook.com",
-      logoUrl = s"$baseUrl/sponsor/facebook.svg",
+      logoUrl = assetUrl("/sponsor/facebook.svg"),
       twitter = Some("facebook"),
       github = Some("facebook"),
       description = None),
@@ -45,7 +48,7 @@ class ContentRepo @Inject() (config: Configuration) {
       name = "Honeypot",
       sponsorType = SponsorType.Organiser,
       url = "https://www.honeypot.io",
-      logoUrl = s"$baseUrl/sponsor/honeypot.svg",
+      logoUrl = assetUrl("/sponsor/honeypot.svg"),
       description = Some(
         "Honeypot is a developer-focused job platform, on a mission to get every developer a great job. " +
         "We believe developers should have all the information they need to choose a job they love: whether " +
@@ -59,7 +62,7 @@ class ContentRepo @Inject() (config: Configuration) {
       name = "Graphcool",
       sponsorType = SponsorType.Organiser,
       url = "https://www.graph.cool",
-      logoUrl = s"$baseUrl/sponsor/graphcool.svg",
+      logoUrl = assetUrl("/sponsor/graphcool.svg"),
       description = Some(
         "Graphcool is a powerful backend-as-a-service platform for GraphQL used by companies " +
         "like Twitter to quickly iterate on new products. In just 5 minutes you can setup a complete " +
@@ -69,28 +72,40 @@ class ContentRepo @Inject() (config: Configuration) {
       github = Some("graphcool"))
   )
 
-  val speakers = List(
-    Speaker(
+  object speaker {
+    val LeeByron = Speaker(
       name = "Lee Byron",
-      photoUrl = Some(s"$baseUrl/speakers/lee-byron.jpg"),
+      photoUrl = Some(assetUrl("/speakers/lee-byron.jpg")),
       talkTitle = Some("Keynote"),
       company = Some("Facebook, GraphQL Co-creator"),
       twitter = Some("leeb"),
-      github = Some("leebyron")
-    ),
+      github = Some("leebyron"))
 
-    Speaker(
+    val SashkoStubailo = Speaker(
       name = "Sashko Stubailo",
-      photoUrl = Some(s"$baseUrl/speakers/sashko-stubailo.jpg"),
+      photoUrl = Some(assetUrl("/speakers/sashko-stubailo.jpg")),
       talkTitle = None,
       company = Some("Apollo"),
       twitter = Some("stubailo"),
-      github = Some("stubailo")
-    ),
+      github = Some("stubailo"))
+
+    val test = Speaker(
+      name = "Test",
+      photoUrl = None,
+      talkTitle = None,
+      company = None,
+      twitter = None,
+      github = None)
+  }
+
+  val speakers = List(
+    speaker.LeeByron,
+    speaker.SashkoStubailo,
+    speaker.test,
 
     Speaker(
       name = "This could be you!",
-      photoUrl = Some(s"$baseUrl/speakers/you.png"),
+      photoUrl = Some(assetUrl("/speakers/you.png")),
       talkTitle = Some("Register today"),
       company = None,
       twitter = None,
@@ -99,10 +114,47 @@ class ContentRepo @Inject() (config: Configuration) {
     )
   )
 
+  val schedule = List[ScheduleEntry](
+    Registration(LocalTime.of(8, 0), LocalTime.of(9, 30), Duration.ofHours(1).plusMinutes(30)),
+    Talk(
+      title = "Opening",
+      description = "Opening of the GraphQL-Europe conference",
+      speakers = Nil,
+      format = TalkFormat.Special,
+      startTime = LocalTime.of(9, 30),
+      endTime = LocalTime.of(9, 40),
+      duration = Duration.ofMinutes(10)),
+    Talk(
+      title = "Talk 1",
+      description = "The first talk",
+      speakers = List(speaker.test),
+      format = TalkFormat.Standard,
+      startTime = LocalTime.of(9, 40),
+      endTime = LocalTime.of(10, 10),
+      duration = Duration.ofMinutes(30)),
+    Talk(
+      title = "Talk 2",
+      description = "The second talk",
+      speakers = List(speaker.test),
+      format = TalkFormat.Standard,
+      startTime = LocalTime.of(10, 10),
+      endTime = LocalTime.of(10, 40),
+      duration = Duration.ofMinutes(30)),
+    Break(LocalTime.of(10, 40), LocalTime.of(11, 0), Duration.ofMinutes(20)),
+    Talk(
+      title = "Lightning Talk 1",
+      description = "The first lightning talk",
+      speakers = List(speaker.test),
+      format = TalkFormat.Lightning,
+      startTime = LocalTime.of(11, 0),
+      endTime = LocalTime.of(11, 8),
+      duration = Duration.ofMinutes(8))
+  )
+
   val team = List(
     TeamMember(
       name = "Oleg Ilyenko",
-      photoUrl = Some(s"$baseUrl/team/oleg.jpg"),
+      photoUrl = Some(assetUrl("/team/oleg.jpg")),
       teamSection = TeamSection.Core,
       description = Some(
         "Oleg is a passionate software engineer and speaker who loves innovative ideas and technology, " +
@@ -112,7 +164,7 @@ class ContentRepo @Inject() (config: Configuration) {
       github = Some("OlegIlyenko")),
     TeamMember(
       name = "Johannes Schickling",
-      photoUrl = Some(s"$baseUrl/team/johannes.jpg"),
+      photoUrl = Some(assetUrl("/team/johannes.jpg")),
       teamSection = TeamSection.Core,
       description = Some(
         "Johannes is a Berlin/SF-based entrepreneur and founder of Graphcool, " +
@@ -123,7 +175,7 @@ class ContentRepo @Inject() (config: Configuration) {
       github = Some("schickling")),
     TeamMember(
       name = "Emma Tracey",
-      photoUrl = Some(s"$baseUrl/team/emma.jpg"),
+      photoUrl = Some(assetUrl("/team/emma.jpg")),
       teamSection = TeamSection.Core,
       description = Some(
         "Emma is co-founder of Honeypot, a developer-focused job platform. She loves bringing " +
@@ -132,7 +184,7 @@ class ContentRepo @Inject() (config: Configuration) {
       github = None),
     TeamMember(
       name = "Artyom Chelbayev",
-      photoUrl = Some(s"$baseUrl/team/artyom.jpg"),
+      photoUrl = Some(assetUrl("/team/artyom.jpg")),
       teamSection = TeamSection.Core,
       description = Some(
         "Artyom is bringing years of business experience from advertising, consumer, " +
@@ -144,7 +196,7 @@ class ContentRepo @Inject() (config: Configuration) {
       github = Some("artyomc")),
     TeamMember(
       name = "Johanna Dahlroos",
-      photoUrl = Some(s"$baseUrl/team/johanna-new.jpg"),
+      photoUrl = Some(assetUrl("/team/johanna-new.jpg")),
       teamSection = TeamSection.Core,
       description = Some(
         "Johanna is Honeypot’s UI/UX Designer. A Finnish dog-lover with passion for " +
@@ -153,7 +205,7 @@ class ContentRepo @Inject() (config: Configuration) {
       github = Some("Batjohe")),
     TeamMember(
       name = "Dajana Günther",
-      photoUrl = Some(s"$baseUrl/team/dajana.jpg"),
+      photoUrl = Some(assetUrl("/team/dajana.jpg")),
       teamSection = TeamSection.SpecialThanks,
       description = Some(
         "Dajana is GraphQL-Europe's advisor. She is conference manager of GOTO Berlin. " +
@@ -241,10 +293,15 @@ class ContentRepo @Inject() (config: Configuration) {
       dateEnd = Some(LocalDate.of(2017, Month.MAY, 21)),
       speakers = speakers,
       sponsors = sponsors,
+      schedule = schedule,
       team = team,
       tickets = tickets,
       url = "https://graphql-europe.org")
   )
 
   val conferencesByEdition = conferences.groupBy(_.edition).mapValues(_.head)
+
+  def talksBySpeaker(speaker: Speaker) = schedule.collect {
+    case t: Talk if t.speakers.contains(speaker) ⇒ t
+  }
 }

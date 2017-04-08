@@ -1,10 +1,15 @@
 package views
 
-import java.time.LocalDate
+import java.time._
 
 import sangria.macros.derive._
 import graphql.customScalars._
+import repo.ContentRepo
 import sangria.schema._
+
+trait WithSlug {
+  def slug: String
+}
 
 case class Speaker(
   name: String,
@@ -13,10 +18,90 @@ case class Speaker(
   company: Option[String],
   twitter: Option[String],
   github: Option[String],
-  stub: Boolean = false)
+  stub: Boolean = false
+) extends WithSlug {
+  lazy val slug = name.replaceAll("\\s+", "-").toLowerCase
+}
 
 object Speaker {
-  implicit val graphqlType = deriveObjectType[Unit, Speaker](ExcludeFields("stub"))
+  private val TalkFormatArg = Argument("format", OptionInputType(TalkFormat.graphqlType))
+
+  implicit lazy val graphqlType = deriveObjectType[ContentRepo, Speaker](
+    ExcludeFields("stub"),
+    AddFields(
+      Field("url", StringType, resolve = c ⇒ c.ctx.url(s"/talks/${c.value.slug}")),
+      Field("talks", ListType(Talk.graphqlType),
+      arguments = TalkFormatArg :: Nil,
+      resolve = c ⇒ {
+        val talks = c.ctx.talksBySpeaker(c.value)
+
+        c.withArgs(TalkFormatArg)(_.fold(talks)(f ⇒ talks.filter(_.format == f)))
+      })))
+}
+
+object TalkFormat extends Enumeration {
+  val Special, PanelDiscussion, Standard, Lightning = Value
+
+  implicit val graphqlType: EnumType[TalkFormat.Value] = deriveEnumType[TalkFormat.Value]()
+}
+
+object ScheduleEntryType extends Enumeration {
+  val Registration, Talk, Break, Lunch = Value
+
+  implicit val graphqlType: EnumType[ScheduleEntryType.Value] = deriveEnumType[ScheduleEntryType.Value]()
+}
+
+abstract class ScheduleEntry(
+  val entryType: ScheduleEntryType.Value
+) {
+  def startTime: LocalTime
+  def endTime: LocalTime
+  def duration: Duration
+}
+
+object ScheduleEntry {
+  implicit val graphqlType = InterfaceType("ScheduleEntry", fields[ContentRepo, ScheduleEntry](
+    Field("startTime", TimeType, resolve = _.value.startTime),
+    Field("endTime", TimeType, resolve = _.value.endTime),
+    Field("duration", DurationType, resolve = _.value.duration),
+    Field("entryType", ScheduleEntryType.graphqlType, resolve = _.value.entryType)))
+}
+
+case class Break(startTime: LocalTime, endTime: LocalTime, duration: Duration) extends ScheduleEntry(ScheduleEntryType.Break)
+
+object Break {
+  implicit val graphqlType = deriveObjectType[ContentRepo, Break](Interfaces(ScheduleEntry.graphqlType))
+}
+
+case class Registration(startTime: LocalTime, endTime: LocalTime, duration: Duration) extends ScheduleEntry(ScheduleEntryType.Registration)
+
+object Registration {
+  implicit val graphqlType = deriveObjectType[ContentRepo, Registration](Interfaces(ScheduleEntry.graphqlType))
+}
+
+case class Lunch(startTime: LocalTime, endTime: LocalTime, duration: Duration) extends ScheduleEntry(ScheduleEntryType.Lunch)
+
+object Lunch {
+  implicit val graphqlType = deriveObjectType[ContentRepo, Lunch](Interfaces(ScheduleEntry.graphqlType))
+}
+
+case class Talk(
+  title: String,
+  description: String,
+  format: TalkFormat.Value,
+  startTime: LocalTime,
+  endTime: LocalTime,
+  duration: Duration,
+  speakers: List[Speaker]
+) extends ScheduleEntry(ScheduleEntryType.Talk) with WithSlug {
+  lazy val slug = title.replaceAll("\\s+", "-").replaceAll("[^a-zA-Z0-9\\-]", "").toLowerCase
+}
+
+object Talk {
+  implicit lazy val graphqlType: ObjectType[ContentRepo, Talk] =
+    deriveObjectType[ContentRepo, Talk](
+      Interfaces(ScheduleEntry.graphqlType),
+      AddFields(Field("url", StringType, resolve = c ⇒ c.ctx.url(s"/talks/${c.value.slug}"))))
 }
 
 object SponsorType extends Enumeration {
@@ -35,7 +120,7 @@ case class Sponsor(
   github: Option[String])
 
 object Sponsor {
-  implicit val graphqlType = deriveObjectType[Unit, Sponsor]()
+  implicit val graphqlType = deriveObjectType[ContentRepo, Sponsor]()
 }
 
 object Edition extends Enumeration {
@@ -54,7 +139,7 @@ case class Ticket(
   available: Boolean)
 
 object Ticket {
-  implicit val graphqlType = deriveObjectType[Unit, Ticket](
+  implicit val graphqlType = deriveObjectType[ContentRepo, Ticket](
     ExcludeFields("availableUntilText"))
 }
 
@@ -68,7 +153,7 @@ case class Address(
   longitude: Double)
 
 object Address {
-  implicit val graphqlType = deriveObjectType[Unit, Address]()
+  implicit val graphqlType = deriveObjectType[ContentRepo, Address]()
 }
 
 object DirectionType extends Enumeration {
@@ -80,7 +165,7 @@ object DirectionType extends Enumeration {
 case class Direction(`type`: DirectionType.Value, from: String, description: String)
 
 object Direction {
-  implicit val graphqlType = deriveObjectType[Unit, Direction]()
+  implicit val graphqlType = deriveObjectType[ContentRepo, Direction]()
 }
 
 case class Venue(
@@ -93,7 +178,7 @@ case class Venue(
 object Venue {
   val DirectionTypeArg = Argument("type", OptionInputType(DirectionType.graphqlType))
 
-  implicit val graphqlType = deriveObjectType[Unit, Venue](
+  implicit val graphqlType = deriveObjectType[ContentRepo, Venue](
     ReplaceField("directions", Field("directions", ListType(Direction.graphqlType),
       arguments = DirectionTypeArg :: Nil,
       resolve = c ⇒ c.arg(DirectionTypeArg).fold(c.value.directions)(d ⇒ c.value.directions.filter(_.`type` == d))))
@@ -110,26 +195,39 @@ case class Conference(
   dateEnd: Option[LocalDate],
   speakers: List[Speaker],
   sponsors: List[Sponsor],
+  schedule: List[ScheduleEntry],
   team: List[TeamMember],
   tickets: List[Ticket],
   url: String)
 
 object Conference {
   private val SectionArg = Argument("section", OptionInputType(TeamSection.graphqlType))
+  private val EntryTypeArg = Argument("type", OptionInputType(ScheduleEntryType.graphqlType))
+  private val TalkFormatArg = Argument("format", OptionInputType(TalkFormat.graphqlType))
   private val SponsorTypeArg = Argument("type", OptionInputType(SponsorType.graphqlType))
 
-  implicit val graphqlType = deriveObjectType[Unit, Conference](
+  implicit val graphqlType = deriveObjectType[ContentRepo, Conference](
     ReplaceField("speakers", Field("speakers", ListType(Speaker.graphqlType),
       resolve = _.value.speakers.filterNot(_.stub))),
     ReplaceField("team", Field("team", ListType(TeamMember.graphqlType),
       arguments = SectionArg :: Nil,
       resolve = c ⇒ c.withArgs(SectionArg)(_.fold(c.value.team)(s ⇒ c.value.team.filter(_.teamSection == s))))),
+    ReplaceField("schedule", Field("schedule", ListType(ScheduleEntry.graphqlType),
+      arguments = EntryTypeArg :: Nil,
+      resolve = c ⇒ c.withArgs(EntryTypeArg)(_.fold(c.value.schedule)(et ⇒ c.value.schedule.filter(_.entryType == et))))),
     ReplaceField("sponsors", Field("sponsors", ListType(Sponsor.graphqlType),
       arguments = SponsorTypeArg :: Nil,
       resolve = c ⇒ {
         val sponsors = c.value.sponsors.sortBy(_.name)
 
         c.withArgs(SponsorTypeArg)(_.fold(sponsors)(s ⇒ sponsors.filter(_.sponsorType == s)))
+      })),
+    AddFields(Field("talks", ListType(Talk.graphqlType),
+      arguments = TalkFormatArg :: Nil,
+      resolve = c ⇒ {
+        val talks = c.value.schedule.collect{case t: Talk ⇒ t}
+
+        c.withArgs(TalkFormatArg)(_.fold(talks)(f ⇒ talks.filter(_.format == f)))
       }))
   )
 }
@@ -149,5 +247,5 @@ case class TeamMember(
   github: Option[String])
 
 object TeamMember {
-  implicit val graphqlType = deriveObjectType[Unit, TeamMember]()
+  implicit val graphqlType = deriveObjectType[ContentRepo, TeamMember]()
 }

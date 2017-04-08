@@ -4,7 +4,7 @@ import repo.ContentRepo
 import sangria.schema._
 import customScalars._
 import sangria.marshalling.ScalaInput
-import views.{Conference, Edition}
+import views._
 
 object schema {
   val EditionArg = Argument("edition", OptionInputType(Edition.graphqlType), ScalaInput.scalaInput(Edition.Berlin2017))
@@ -17,5 +17,8 @@ object schema {
       resolve = c ⇒ c.ctx.conferencesByEdition.get(c.arg(EditionArg)))
   ))
 
-  val ConferenceSchema = Schema(QueryType)
+  val ConferenceSchema = Schema(QueryType, additionalTypes = List(
+    Break.graphqlType,
+    Registration.graphqlType,
+    Lunch.graphqlType))
 }
