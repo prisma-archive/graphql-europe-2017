@@ -82,16 +82,16 @@ class ContentRepo @Inject() (config: Configuration) {
     Speaker(
       name = "Sashko Stubailo",
       photoUrl = Some(s"$baseUrl/speakers/sashko-stubailo.jpg"),
-      talkTitle = None,
+      talkTitle = Some("Adding GraphQL to your existing architecture"),
       company = Some("Apollo"),
       twitter = Some("stubailo"),
       github = Some("stubailo")
     ),
 
     Speaker(
-      name = "This could be you!",
+      name = "TBA",
       photoUrl = Some(s"$baseUrl/speakers/you.png"),
-      talkTitle = Some("Register today"),
+      talkTitle = Some("more speakers will be announced shortly"),
       company = None,
       twitter = None,
       github = None,
