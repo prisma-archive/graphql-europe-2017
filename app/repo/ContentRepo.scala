@@ -34,6 +34,14 @@ class ContentRepo @Inject() (config: Configuration) {
           |
           |Visit [www.commercetools.com](https://commercetools.com) for more information."""))),
     Sponsor(
+      name = "GitHub",
+      sponsorType = SponsorType.Opportunity,
+      url = "https://github.com",
+      logoUrl = s"$baseUrl/sponsor/github.svg",
+      twitter = Some("github"),
+      github = Some("github"),
+      description = None),
+    Sponsor(
       name = "Facebook",
       sponsorType = SponsorType.Partner,
       url = "https://www.facebook.com",
