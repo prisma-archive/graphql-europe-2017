@@ -37,6 +37,14 @@ class ContentRepo @Inject() (config: Configuration) {
           |
           |Visit [www.commercetools.com](https://commercetools.com) for more information."""))),
     Sponsor(
+      name = "GitHub",
+      sponsorType = SponsorType.Opportunity,
+      url = "https://github.com",
+      logoUrl = assetUrl("/sponsor/github.svg"),
+      twitter = Some("github"),
+      github = Some("github"),
+      description = None),
+    Sponsor(
       name = "Facebook",
       sponsorType = SponsorType.Partner,
       url = "https://www.facebook.com",
@@ -84,7 +92,7 @@ class ContentRepo @Inject() (config: Configuration) {
     val SashkoStubailo = Speaker(
       name = "Sashko Stubailo",
       photoUrl = Some(assetUrl("/speakers/sashko-stubailo.jpg")),
-      talkTitle = None,
+      talkTitle = Some("Adding GraphQL to your existing architecture"),
       company = Some("Apollo"),
       twitter = Some("stubailo"),
       github = Some("stubailo"))
@@ -104,9 +112,9 @@ class ContentRepo @Inject() (config: Configuration) {
     speaker.test,
 
     Speaker(
-      name = "This could be you!",
+      name = "TBA",
       photoUrl = Some(assetUrl("/speakers/you.png")),
-      talkTitle = Some("Register today"),
+      talkTitle = Some("more speakers will be announced shortly"),
       company = None,
       twitter = None,
       github = None,

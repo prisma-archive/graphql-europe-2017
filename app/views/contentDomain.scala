@@ -105,7 +105,7 @@ object Talk {
 }
 
 object SponsorType extends Enumeration {
-  val Organiser, Partner, Platinum, Gold, Silver, Bronze = Value
+  val Organiser, Partner, Opportunity, Platinum, Gold, Silver, Bronze = Value
 
   implicit val graphqlType: EnumType[SponsorType.Value] = deriveEnumType[SponsorType.Value]()
 }
