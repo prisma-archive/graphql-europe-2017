@@ -1,8 +1,8 @@
 @import views._
 
-@(config: Config, title: String, showMap: Option[Venue] = None)(content: Html)
+@(config: Config, title: String, showMap: Option[Venue] = None, metaInfo: Option[MetaInfo] = None)(content: Html)
 
-@main(config, title, Some("secondary-body"), showMap = showMap) {
+@main(config, title, Some("secondary-body"), showMap = showMap, metaInfo = metaInfo) {
   <div class="secondary-header">
     <div class="container">
       <div class="header clearfix">

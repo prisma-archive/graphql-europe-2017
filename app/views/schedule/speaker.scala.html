@@ -3,7 +3,7 @@
 
 @(config: Config, speaker: Speaker, repo: ContentRepo)
 
-@secondary(config, speaker.name) {
+@secondary(config, speaker.name, metaInfo = Some(speaker.metaInfo)) {
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -13,6 +13,6 @@
   </div>
 
   <div class="container">
-    @schedule.speakerSection(speaker, repo, showName = false)
+    @speakerSection(speaker, repo, showName = false)
   </div>
 }

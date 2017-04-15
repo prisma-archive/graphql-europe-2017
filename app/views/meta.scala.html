@@ -1,5 +1,6 @@
-@import views.Config
-@(config: Config)
+@import views._
+
+@(config: Config, metaInfo: Option[MetaInfo])
 
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,17 +11,17 @@
 <meta name="description" content="@config.name - @config.location - @config.description">
 
 <meta property="og:type" content="article">
-<meta property="og:url" content="@config.canonicalUrl">
+<meta property="og:url" content="@config.canonicalUrl@config.path">
 <meta property="og:title" content="@config.name - @config.location - @config.shortDescription">
-<meta property="og:description" content="@config.name - @config.location - @config.description">
-<meta property="og:image:url" content="@config.canonicalUrl@routes.Assets.versioned("image/share-graphql-europe.png")">
+<meta property="og:description" content="@metaInfo.fold(config.name + " - " + config.location + " - " + config.description)(_.description)">
+<meta property="og:image:url" content="@metaInfo.flatMap(_.bannerUrl).getOrElse(config.canonicalUrl + routes.Assets.versioned("image/share-graphql-europe.png"))">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@@graphqleu">
-<meta name="twitter:creator" content="@@graphqleu">
+<meta name="twitter:creator" content="@@@metaInfo.flatMap(_.twitter).getOrElse("graphqleu")">
 <meta name="twitter:title" content="@config.name - @config.shortDescription">
-<meta name="twitter:description" content="@config.name - @config.description">
-<meta name="twitter:image" content="@config.canonicalUrl@routes.Assets.versioned("image/share-graphql-europe.png")">
+<meta name="twitter:description" content="@metaInfo.fold(config.name + " - " + config.location + " - " + config.description)(_.description)">
+<meta name="twitter:image" content="@metaInfo.flatMap(_.bannerUrl).getOrElse(config.canonicalUrl + routes.Assets.versioned("image/share-graphql-europe.png"))">
 
 <link rel="canonical" href="@config.canonicalUrl" />
 

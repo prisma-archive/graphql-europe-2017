@@ -24,9 +24,12 @@ class Application @Inject() (config: Configuration, repo: ContentRepo) extends C
   def sponsors = Action(implicit req ⇒ Ok(views.html.sponsors(actualConf, repo.sponsors)))
   def location = Action(implicit req ⇒ Ok(views.html.location(actualConf, repo.venue)))
 
-  def actualConf(implicit req: Request[_]): Config =
+  def actualConf(implicit req: Request[_]): Config = {
+    val withPath = conf.copy(path = req.path)
+
     if (req.queryString.exists(_._1 == "preview"))
-      conf.copy(preview = true)
+      withPath.copy(preview = true)
     else
-      conf
+      withPath
+  }
 }

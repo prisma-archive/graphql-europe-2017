@@ -1,12 +1,12 @@
 @import views._
 
-@(config: Config, title: String, bodyClass: Option[String] = None, showMap: Option[Venue] = None)(content: Html)
+@(config: Config, title: String, bodyClass: Option[String] = None, showMap: Option[Venue] = None, metaInfo: Option[MetaInfo] = None)(content: Html)
 
 <!DOCTYPE html>
 
 <html lang="en">
   <head>
-    @meta(config)
+    @meta(config, metaInfo)
 
     <title>@config.name - @title</title>
 

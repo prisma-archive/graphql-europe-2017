@@ -3,7 +3,7 @@
 
 @(config: Config, repo: ContentRepo)
 
-@secondary(config, "Speakers") {
+@secondary(config, "Speakers", metaInfo = Some(MetaInfo("GraphQL-Europe Conference Speakers"))) {
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -14,7 +14,7 @@
 
   <div class="container">
     @repo.speakers.sortBy(_.slug).filterNot(_.stub).map { speaker =>
-      @schedule.speakerSection(speaker, repo)
+      @speakerSection(speaker, repo)
     }
   </div>
 }

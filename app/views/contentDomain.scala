@@ -21,6 +21,8 @@ case class Speaker(
   stub: Boolean = false
 ) extends WithSlug {
   lazy val slug = name.replaceAll("\\s+", "-").toLowerCase
+
+  lazy val metaInfo = MetaInfo("Speaker: " + name, twitter = twitter)
 }
 
 object Speaker {
@@ -88,6 +90,7 @@ object Lunch {
 case class Talk(
   title: String,
   description: String,
+  cardUrl: String,
   format: TalkFormat.Value,
   startTime: LocalTime,
   endTime: LocalTime,
@@ -95,6 +98,12 @@ case class Talk(
   speakers: List[Speaker]
 ) extends ScheduleEntry(ScheduleEntryType.Talk) with WithSlug {
   lazy val slug = title.replaceAll("\\s+", "-").replaceAll("[^a-zA-Z0-9\\-]", "").toLowerCase
+
+  lazy val metaInfo = {
+    val speaker = speakers.headOption
+
+    MetaInfo("Talk: " + title + speaker.fold("")(s ⇒ " (by " + s.name + ")"), Some(cardUrl), speaker.flatMap(_.twitter))
+  }
 }
 
 object Talk {
@@ -249,3 +258,5 @@ case class TeamMember(
 object TeamMember {
   implicit val graphqlType = deriveObjectType[ContentRepo, TeamMember]()
 }
+
+case class MetaInfo(description: String, bannerUrl: Option[String] = None, twitter: Option[String] = None)

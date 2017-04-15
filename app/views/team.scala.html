@@ -1,10 +1,8 @@
-@import views.Config
-@import views.TeamMember
-@import views.TeamSection
+@import views._
 
 @(config: Config, team: Seq[TeamMember])
 
-@secondary(config, "Team") {
+@secondary(config, "Team", metaInfo = Some(MetaInfo("GraphQL-Europe Conference Team"))) {
   <div class="container">
     <div class="row">
       <div class="col-md-12" style="padding-top: 100px; padding-bottom: 50px;">

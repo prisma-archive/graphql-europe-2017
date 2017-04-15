@@ -30,9 +30,12 @@ class Schedule @Inject()(config: Configuration, repo: ContentRepo) extends Contr
     repo.talkBySlug(slug).fold(NotFound(views.html.notFound(actualConf)))(t ⇒ Ok(views.html.schedule.talk(actualConf, t, repo)))
   }
 
-  def actualConf(implicit req: Request[_]): Config =
+  def actualConf(implicit req: Request[_]): Config = {
+    val withPath = conf.copy(path = req.path)
+
     if (req.queryString.exists(_._1 == "preview"))
-      conf.copy(preview = true)
+      withPath.copy(preview = true)
     else
-      conf
+      withPath
+  }
 }

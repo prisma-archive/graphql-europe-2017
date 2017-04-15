@@ -7,10 +7,10 @@ import play.twirl.api.Html
 
 object MarkdownUtil {
   def render(text: String) = {
-    val options = PegdownOptionsAdapter.flexmarkOptions(Extensions.ALL)
+    val options = PegdownOptionsAdapter.flexmarkOptions(Extensions.ALL & (~Extensions.ANCHORLINKS))
     val parser = Parser.builder(options).build()
     val renderer = HtmlRenderer.builder(options).softBreak("\n").build()
-
+                 
     Html(renderer.render(parser.parse(text)))
   }
 }
