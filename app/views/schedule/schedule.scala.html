@@ -1,0 +1,40 @@
+@import views._
+@import repo.ContentRepo
+
+@(config: Config, repo: ContentRepo)
+
+@secondary(config, "Schedule") {
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Schedule</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    @repo.talks.sortBy(_.slug).map { talk =>
+      <div class="row" style="padding-top: 40px;padding-bottom: 40px;">
+        <div class="col-md-12" style="padding-left: 30px">
+          <h3 style="padding-bottom: 10px">
+            <a href="/schedule/talks/@talk.slug" style="padding-right: 10px"><strong>@talk.title</strong></a>
+          </h3>
+
+          @MarkdownUtil.render(talk.description)
+
+          @if(talk.speakers.nonEmpty) {
+            <p>
+              <strong>By</strong>
+            </p>
+
+            @talk.speakers.sortBy(_.slug).map { speaker =>
+              <p>
+                <a href="/schedule/speakers/@speaker.slug">@speaker.name</a>
+              </p>
+            }
+          }
+        </div>
+      </div>
+    }
+  </div>
+}

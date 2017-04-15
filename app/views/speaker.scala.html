@@ -1,6 +1,7 @@
 @import views.Speaker
+@import repo.ContentRepo
 
-@(speaker: Speaker)
+@(speaker: Speaker, repo: ContentRepo)
 
 <div class="col-md-4 speaker">
   @speaker.photoUrl.map { photo =>
@@ -18,7 +19,8 @@
   }.getOrElse("")
 
   <div class="speaker-name">@speaker.name.toUpperCase</div>
-  <div class="speaker-description">@speaker.talkTitle.getOrElse("TBA")</div>
+  <div class="speaker-description">@{repo.talksBySpeaker(speaker).headOption.map(_.title).getOrElse("TBA")}</div>
+
   @speaker.company.map { c =>
     <div class="speaker-company">@c</div>
   }.getOrElse("")

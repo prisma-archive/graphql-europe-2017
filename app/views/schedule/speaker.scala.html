@@ -1,0 +1,18 @@
+@import views._
+@import repo.ContentRepo
+
+@(config: Config, speaker: Speaker, repo: ContentRepo)
+
+@secondary(config, speaker.name) {
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>@speaker.name</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    @schedule.speakerSection(speaker, repo, showName = false)
+  </div>
+}

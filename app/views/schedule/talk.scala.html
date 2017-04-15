@@ -1,0 +1,34 @@
+@import views._
+@import repo.ContentRepo
+
+@(config: Config, talk: Talk, repo: ContentRepo)
+
+@secondary(config, talk.title) {
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>@talk.title</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row" style="padding-top: 20px;padding-bottom: 20px;">
+      <div class="col-md-12">
+        @MarkdownUtil.render(talk.description)
+      </div>
+    </div>
+
+    @if(talk.speakers.nonEmpty) {
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Speaker@{if (talk.speakers.size > 1) "s" else ""}</h2>
+        </div>
+      </div>
+
+      @talk.speakers.sortBy(_.slug).map { speaker =>
+        @schedule.speakerSection(speaker, repo, noTaks = true)
+      }
+    }
+  </div>
+}

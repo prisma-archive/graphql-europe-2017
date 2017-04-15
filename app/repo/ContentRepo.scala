@@ -84,42 +84,33 @@ class ContentRepo @Inject() (config: Configuration) {
     val LeeByron = Speaker(
       name = "Lee Byron",
       photoUrl = Some(assetUrl("/speakers/lee-byron.jpg")),
-      talkTitle = Some("Keynote"),
       company = Some("Facebook, GraphQL Co-creator"),
       twitter = Some("leeb"),
-      github = Some("leebyron"))
+      github = Some("leebyron"),
+      description = None)
 
     val SashkoStubailo = Speaker(
       name = "Sashko Stubailo",
       photoUrl = Some(assetUrl("/speakers/sashko-stubailo.jpg")),
-      talkTitle = Some("Adding GraphQL to your existing architecture"),
       company = Some("Apollo"),
       twitter = Some("stubailo"),
-      github = Some("stubailo"))
+      github = Some("stubailo"),
+      description = None)
 
     val test = Speaker(
-      name = "Test",
-      photoUrl = None,
-      talkTitle = None,
+      name = "TBA",
+      photoUrl = Some(assetUrl("/speakers/you.png")),
       company = None,
       twitter = None,
-      github = None)
+      github = None,
+      description = None,
+      stub = true)
   }
 
   val speakers = List(
     speaker.LeeByron,
     speaker.SashkoStubailo,
-    speaker.test,
-
-    Speaker(
-      name = "TBA",
-      photoUrl = Some(assetUrl("/speakers/you.png")),
-      talkTitle = Some("more speakers will be announced shortly"),
-      company = None,
-      twitter = None,
-      github = None,
-      stub = true
-    )
+    speaker.test
   )
 
   val schedule = List[ScheduleEntry](
@@ -154,6 +145,31 @@ class ContentRepo @Inject() (config: Configuration) {
       description = "The first lightning talk",
       speakers = List(speaker.test),
       format = TalkFormat.Lightning,
+      startTime = LocalTime.of(11, 0),
+      endTime = LocalTime.of(11, 8),
+      duration = Duration.ofMinutes(8)),
+
+    // todo: proper timing!
+    Talk(
+      title = "Closing Keynote",
+      description = "TBA",
+      speakers = List(speaker.LeeByron),
+      format = TalkFormat.Standard,
+      startTime = LocalTime.of(11, 0),
+      endTime = LocalTime.of(11, 8),
+      duration = Duration.ofMinutes(8)),
+    Talk(
+      title = "Adding GraphQL to your existing architecture",
+      description =
+          "If you’re a product developer in today’s world, you have to wear a lot of hats. " +
+          "You signed up to create great experiences, but you're also spending a ton of time " +
+          "writing complex data loading, state management, and API gateway code. You’ve heard " +
+          "that GraphQL can help by enabling a flexible and self-documenting API on top of your " +
+          "data, but it can seem like a big investment just to try it out. I’m going to talk " +
+          "about how you can add GraphQL to your existing architecture without having to change " +
+          "your existing technology investments.",
+      speakers = List(speaker.SashkoStubailo),
+      format = TalkFormat.Standard,
       startTime = LocalTime.of(11, 0),
       endTime = LocalTime.of(11, 8),
       duration = Duration.ofMinutes(8))
@@ -309,7 +325,9 @@ class ContentRepo @Inject() (config: Configuration) {
 
   val conferencesByEdition = conferences.groupBy(_.edition).mapValues(_.head)
 
-  def talksBySpeaker(speaker: Speaker) = schedule.collect {
-    case t: Talk if t.speakers.contains(speaker) ⇒ t
-  }
+  lazy val talks = schedule.collect{case t: Talk ⇒ t}
+
+  def talksBySpeaker(speaker: Speaker) = talks.filter(_.speakers.contains(speaker))
+  def talkBySlug(slug: String) = talks.find(_.slug == slug)
+  def speakerBySlug(slug: String) = speakers.find(_.slug == slug)
 }

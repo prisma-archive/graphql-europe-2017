@@ -1,6 +1,7 @@
 @import views._
+@import repo.ContentRepo
 
-@(config: Config, speakers: List[Speaker], sponsors: List[Sponsor], tickets: List[Ticket], venue: Venue, dark: Boolean, topLogo: Boolean)
+@(config: Config, speakers: List[Speaker], sponsors: List[Sponsor], tickets: List[Ticket], venue: Venue, repo: ContentRepo, dark: Boolean, topLogo: Boolean)
 
 @prefix = @{if (dark) "-dark" else ""}
 
@@ -114,8 +115,8 @@
     </div>
 
     <div class="row" style="padding-top: 40px">
-      @speakers.map { s =>
-        @speaker(s)
+      @speakers.sortBy(_.slug).filterNot(_.stub).map { s =>
+        @speaker(s, repo)
       }
     </div>
 

@@ -10,6 +10,12 @@ GET         /team                  controllers.Application.team
 GET         /sponsors              controllers.Application.sponsors
 GET         /location              controllers.Application.location
 
+GET         /schedule                controllers.Schedule.index
+GET         /schedule/talks          controllers.Schedule.talks
+GET         /schedule/talks/:slug    controllers.Schedule.talk(slug)
+GET         /schedule/speakers       controllers.Schedule.speakers
+GET         /schedule/speakers/:slug controllers.Schedule.speaker(slug)
+
 GET         /graphql               controllers.GraphQL.graphiql
 POST        /graphql               controllers.GraphQL.graphql
 
@@ -22,8 +28,10 @@ POST        /subscriber-deleted    controllers.Hooks.subscriberDelete
 POST        /subscriber-created-mc controllers.Hooks.subscriberCreatedMailchimp
 POST        /unsunscribe-mc        controllers.Hooks.unsunscribeMc
 GET         /unsunscribe-mc        controllers.Hooks.unsunscribeMcGet
+
 POST        /test-hook             controllers.Hooks.test
 GET         /test-hook             controllers.Hooks.testGet
+
 GET         /admin                 controllers.Admin.index
 GET         /admin/login           controllers.Admin.login(origPath: Option[String])
 POST        /admin/login           controllers.Admin.doLogin

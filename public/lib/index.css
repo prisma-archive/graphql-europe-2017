@@ -1348,3 +1348,25 @@ footer .navbar-light .navbar-nav .nav-link:active {
 .s-secondary-cont {
   text-align: left;
 }
+
+
+.speakers-speaker-photo {
+  width: 100%;
+  -webkit-box-shadow: 0px 0px 82px -3px rgba(31,34,40,0.30);
+  -moz-box-shadow: 0px 0px 82px -3px rgba(31,34,40,0.30);
+  box-shadow: 0px 0px 82px -3px rgba(31,34,40,0.30);
+  border-radius: 10px;
+}
+
+.speakers-speaker-icon {
+  margin-top: 15px;
+  padding-left: 8px;
+  padding-right: 8px;
+  color: #CACACA !important;
+  -webkit-transition: all .6s ease;
+  -webkit-backface-visibility: hidden;
+  -webkit-transition: 0.2s all ease-in;
+  -o-transition: 0.2s all ease-in;
+  -moz-transition: 0.2s all ease-in;
+  transition: 0.2s all ease-in;
+}

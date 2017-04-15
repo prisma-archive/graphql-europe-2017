@@ -14,10 +14,10 @@ trait WithSlug {
 case class Speaker(
   name: String,
   photoUrl: Option[String],
-  talkTitle: Option[String],
   company: Option[String],
   twitter: Option[String],
   github: Option[String],
+  description: Option[String],
   stub: Boolean = false
 ) extends WithSlug {
   lazy val slug = name.replaceAll("\\s+", "-").toLowerCase

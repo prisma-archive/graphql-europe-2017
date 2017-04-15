@@ -1,0 +1,20 @@
+@import views._
+@import repo.ContentRepo
+
+@(config: Config, repo: ContentRepo)
+
+@secondary(config, "Speakers") {
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Speakers</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    @repo.speakers.sortBy(_.slug).filterNot(_.stub).map { speaker =>
+      @schedule.speakerSection(speaker, repo)
+    }
+  </div>
+}
