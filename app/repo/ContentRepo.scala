@@ -330,15 +330,6 @@ class ContentRepo @Inject() (config: Configuration) {
       startTime = LocalTime.of(15, 50),
       endTime = LocalTime.of(15, 58),
       duration = Duration.ofMinutes(8)),
-    Talk(
-      title = "Schema first development",
-      description = "The talk would be announced soon.", // TODO: description
-      cardUrl = assetUrl("/talks/johannes-schickling.png"),
-      speakers = List(speaker.JohannesSchickling),
-      format = TalkFormat.Lightning,
-      startTime = LocalTime.of(15, 50),
-      endTime = LocalTime.of(15, 58),
-      duration = Duration.ofMinutes(8)),
     Talk( // TODO: talk
       title = "TBA",
       description = "The talk would be announced soon.",

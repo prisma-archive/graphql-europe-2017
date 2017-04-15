@@ -819,6 +819,10 @@ h2 {
     padding-top: 30px;
     padding-bottom: 30px;
   }
+
+  .speakers-speaker-photo-cont {
+    padding-bottom: 20px;
+  }
 }
 
 /* ipad portrait */
@@ -859,6 +863,10 @@ h2 {
   .venue-center {
     padding-top: 30px;
     padding-bottom: 30px;
+  }
+
+  .speakers-speaker-photo-cont {
+    padding-bottom: 20px;
   }
 }
 
@@ -932,6 +940,9 @@ h2 {
     padding-top: 30px;
     padding-bottom: 30px;
   }
+  .speakers-speaker-photo-cont {
+    padding-bottom: 20px;
+  }
 }
 
 /* phone 5 */
@@ -974,6 +985,9 @@ h2 {
   .venue-center {
     padding-top: 30px;
     padding-bottom: 30px;
+  }
+  .speakers-speaker-photo-cont {
+    padding-bottom: 20px;
   }
 }
 

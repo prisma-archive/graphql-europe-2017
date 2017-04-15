@@ -3,35 +3,32 @@
 
 @(speaker: Speaker, repo: ContentRepo, showName: Boolean = true, noTaks: Boolean = false)
 
-<div class="row" style="@{if (noTaks) "" else "padding-top: 40px;"}padding-bottom: 40px;">
-  <div class="col-md-4 ">
+<div class="row" style="padding-bottom: 100px;">
+  <div class="col-md-4 speakers-speaker-photo-cont">
     <a href="/speakers/@speaker.slug"><img class="speakers-speaker-photo" src="@speaker.photoUrl.getOrElse(routes.Assets.versioned(s"image/speakers/you.png"))" alt="@speaker.name"></a>
 
-    @if(!showName) {
-      @speaker.github.map { gh =>
-        <a target="_blank" class="speaker-icon" href="https://github.com/@gh"><i class="fa fa-github" aria-hidden="true"></i></a>
-      }.getOrElse("")
+    @speaker.github.map { gh =>
+      <a target="_blank" class="speaker-icon" style="font-size: 1.3em" href="https://github.com/@gh"><i class="fa fa-github" aria-hidden="true"></i></a>
+    }.getOrElse("")
 
-      @speaker.twitter.map { t =>
-        <a target="_blank" class="speaker-icon" href="https://twitter.com/@t"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-      }.getOrElse("")
-    }
+    @speaker.twitter.map { t =>
+      <a target="_blank" class="speaker-icon" style="font-size: 1.3em" href="https://twitter.com/@t"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+    }.getOrElse("")
   </div>
 
   <div class="col-md-8" style='padding-left: 30px'>
     @if(showName)  {
       <h3 style="padding-bottom: 10px">
         <a href="/speakers/@speaker.slug" style="padding-right: 10px"><strong>@speaker.name</strong></a>
-
-        @speaker.github.map { gh =>
-          <a target="_blank" class="speakers-speaker-icon" href="https://github.com/@gh"><i class="fa fa-github" aria-hidden="true"></i></a>
-        }.getOrElse("")
-
-        @speaker.twitter.map { t =>
-          <a target="_blank" class="speakers-speaker-icon" href="https://twitter.com/@t"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-        }.getOrElse("")
       </h3>
     }
+
+    @speaker.company.map { c =>
+      <p>
+        <strong>@c</strong>
+      </p>
+    }
+
 
     @speaker.description.map { descr =>
       @MarkdownUtil.render(descr)
