@@ -17,11 +17,7 @@ class Schedule @Inject()(config: Configuration, repo: ContentRepo) extends Contr
   def index = Action { implicit req ⇒
     Ok(views.html.schedule.schedule(actualConf, repo))
   }
-
-  def talks = Action { implicit req ⇒
-    Redirect(routes.Schedule.index())
-  }
-
+  
   def speakers = Action { implicit req ⇒
     Ok(views.html.schedule.speakers(actualConf, repo))
   }

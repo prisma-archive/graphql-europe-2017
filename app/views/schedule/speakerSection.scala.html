@@ -5,7 +5,7 @@
 
 <div class="row" style="@{if (noTaks) "" else "padding-top: 40px;"}padding-bottom: 40px;">
   <div class="col-md-4 ">
-    <a href="/schedule/speakers/@speaker.slug"><img class="speakers-speaker-photo" src="@speaker.photoUrl.getOrElse(routes.Assets.versioned(s"image/speakers/you.png"))" alt="@speaker.name"></a>
+    <a href="/speakers/@speaker.slug"><img class="speakers-speaker-photo" src="@speaker.photoUrl.getOrElse(routes.Assets.versioned(s"image/speakers/you.png"))" alt="@speaker.name"></a>
 
     @if(!showName) {
       @speaker.github.map { gh =>
@@ -21,7 +21,7 @@
   <div class="col-md-8" style='padding-left: 30px'>
     @if(showName)  {
       <h3 style="padding-bottom: 10px">
-        <a href="/schedule/speakers/@speaker.slug" style="padding-right: 10px"><strong>@speaker.name</strong></a>
+        <a href="/speakers/@speaker.slug" style="padding-right: 10px"><strong>@speaker.name</strong></a>
 
         @speaker.github.map { gh =>
           <a target="_blank" class="speakers-speaker-icon" href="https://github.com/@gh"><i class="fa fa-github" aria-hidden="true"></i></a>
@@ -44,7 +44,7 @@
 
       @repo.talksBySpeaker(speaker).map { talk =>
         <p>
-          <a href="/schedule/talks/@talk.slug">@talk.title</a>
+          <a href="/schedule/@talk.slug">@talk.title</a>
         </p>
       }
     }

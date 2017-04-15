@@ -4,11 +4,7 @@
 @(speaker: Speaker, repo: ContentRepo)
 
 <div class="col-md-4 speaker">
-  @speaker.photoUrl.map { photo =>
-    <img class="speaker-photo" src="@photo">
-  }.getOrElse {
-    <div class="photo-placeholder"></div>
-  }
+  <a href="/speakers/@speaker.slug"><img class="speaker-photo" src="@speaker.photoUrl.getOrElse(routes.Assets.versioned(s"image/speakers/you.png"))" alt="@speaker.name"></a>
 
   @speaker.github.map { gh =>
     <a target="_blank" class="speaker-icon" href="https://github.com/@gh"><i class="fa fa-github" aria-hidden="true"></i></a>
@@ -18,7 +14,7 @@
     <a target="_blank" class="speaker-icon" href="https://twitter.com/@t"><i class="fa fa-twitter" aria-hidden="true"></i></a>
   }.getOrElse("")
 
-  <div class="speaker-name">@speaker.name.toUpperCase</div>
+  <div class="speaker-name"><a href="/speakers/@speaker.slug">@speaker.name.toUpperCase</a></div>
   <div class="speaker-description">@{repo.talksBySpeaker(speaker).headOption.map(_.title).getOrElse("TBA")}</div>
 
   @speaker.company.map { c =>

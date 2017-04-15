@@ -17,7 +17,7 @@
       <div class="row" style="padding-top: 40px;padding-bottom: 40px;">
         <div class="col-md-12" style="padding-left: 30px">
           <h3 style="padding-bottom: 10px">
-            <a href="/schedule/talks/@talk.slug" style="padding-right: 10px"><strong>@talk.title</strong></a>
+            <a href="/schedule/@talk.slug" style="padding-right: 10px"><strong>@talk.title</strong></a>
           </h3>
 
           @MarkdownUtil.render(talk.description)
@@ -29,7 +29,7 @@
 
             @talk.speakers.sortBy(_.slug).map { speaker =>
               <p>
-                <a href="/schedule/speakers/@speaker.slug">@speaker.name</a>
+                <a href="/speakers/@speaker.slug">@speaker.name</a>
               </p>
             }
           }

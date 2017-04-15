@@ -10,11 +10,10 @@ GET         /team                  controllers.Application.team
 GET         /sponsors              controllers.Application.sponsors
 GET         /location              controllers.Application.location
 
-GET         /schedule                controllers.Schedule.index
-GET         /schedule/talks          controllers.Schedule.talks
-GET         /schedule/talks/:slug    controllers.Schedule.talk(slug)
-GET         /schedule/speakers       controllers.Schedule.speakers
-GET         /schedule/speakers/:slug controllers.Schedule.speaker(slug)
+GET         /schedule              controllers.Schedule.index
+GET         /schedule/:slug        controllers.Schedule.talk(slug)
+GET         /speakers              controllers.Schedule.speakers
+GET         /speakers/:slug        controllers.Schedule.speaker(slug)
 
 GET         /graphql               controllers.GraphQL.graphiql
 POST        /graphql               controllers.GraphQL.graphql

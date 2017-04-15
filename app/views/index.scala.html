@@ -23,9 +23,10 @@
 
           <ul class="nav navbar-nav nav-pills float-xs-right">
             <li class="nav-item fade-in f1"><a class="nav-link" href="#tickets">Tickets</a></li>
-            <li class="nav-item fade-in f2"><a class="nav-link" href="#speakers">Speakers</a></li>
-            <li class="nav-item fade-in f3"><a class="nav-link" href="/sponsors">Sponsors</a></li>
-            <li class="nav-item fade-in f4"><a class="nav-link" href="/team">Team</a></li>
+            <li class="nav-item fade-in f2"><a class="nav-link" href="/schedule">Schedule</a></li>
+            <li class="nav-item fade-in f3"><a class="nav-link" href="/speakers">Speakers</a></li>
+            <li class="nav-item fade-in f4"><a class="nav-link" href="/sponsors">Sponsors</a></li>
+            <li class="nav-item fade-in f5"><a class="nav-link" href="/team">Team</a></li>
           </ul>
         </div>
       </nav>
@@ -102,24 +103,23 @@
     <div class="beautiful-line-top"></div>
     <div class="beautiful-line-bottom" id="speakers"></div>
 
-    <div class="row">
-      <div class="col-md-2">
+    <div class="row" style="padding-bottom: 40px">
+      <div class="col-md-6">
         <h2>Speakers</h2>
       </div>
-      <div class="col-md-1"></div>
-      <div class="col-md-9">
-        <p class="smaller-font">
-          Our call for papers is now closed. The schedule will be published very soon.
-        </p>
+      <div class="col-md-6" style="text-align: right">
+        <a class="btn btn-lg btn-success register-button" href="/schedule" role="button">View Schedule</a>
       </div>
     </div>
 
-    <div class="row" style="padding-top: 40px">
-      @speakers.sortBy(_.slug).filterNot(_.stub).map { s =>
-        @speaker(s, repo)
-      }
-    </div>
 
+    @speakers.sortBy(_.slug).filterNot(_.stub).grouped(3).map { group =>
+      <div class="row">
+        @group.map { s =>
+          @speaker(s, repo)
+        }
+      </div>
+    }
 
     <img class="cloud-m cloud-m-br" src="@routes.Assets.versioned(s"image/cloud-m-br$prefix.svg")" />
     <img class="cloud-m cloud-m-bl" src="@routes.Assets.versioned(s"image/cloud-m-bl$prefix.svg")" />

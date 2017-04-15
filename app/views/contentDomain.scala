@@ -29,7 +29,7 @@ object Speaker {
   implicit lazy val graphqlType = deriveObjectType[ContentRepo, Speaker](
     ExcludeFields("stub"),
     AddFields(
-      Field("url", StringType, resolve = c ⇒ c.ctx.url(s"/talks/${c.value.slug}")),
+      Field("url", StringType, resolve = c ⇒ c.ctx.url(s"/speakers/${c.value.slug}")),
       Field("talks", ListType(Talk.graphqlType),
       arguments = TalkFormatArg :: Nil,
       resolve = c ⇒ {
@@ -101,7 +101,7 @@ object Talk {
   implicit lazy val graphqlType: ObjectType[ContentRepo, Talk] =
     deriveObjectType[ContentRepo, Talk](
       Interfaces(ScheduleEntry.graphqlType),
-      AddFields(Field("url", StringType, resolve = c ⇒ c.ctx.url(s"/talks/${c.value.slug}"))))
+      AddFields(Field("url", StringType, resolve = c ⇒ c.ctx.url(s"/schedule/${c.value.slug}"))))
 }
 
 object SponsorType extends Enumeration {
