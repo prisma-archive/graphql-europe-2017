@@ -1,0 +1,21 @@
+@import views._
+
+@(talk: Talk)
+
+<h3 style="padding-bottom: 10px">
+  <a href="/schedule/@talk.slug" style="padding-right: 10px"><strong>@talk.title</strong></a>
+</h3>
+
+<section class="talk-description">
+  @MarkdownUtil.render(talk.shortDescription.getOrElse(talk.description))
+</section>
+
+@if(talk.speakers.nonEmpty) {
+  <p>
+    <h4 style="padding-top: 20px; padding-bottom: 20px">Speaker@{if (talk.speakers.size > 1) "s" else ""}</h4>
+  </p>
+
+  @talk.speakers.sortBy(_.slug).map { speaker =>
+    @scheduleSpeaker(speaker)
+  }
+}

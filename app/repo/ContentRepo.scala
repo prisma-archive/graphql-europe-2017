@@ -240,6 +240,11 @@ class ContentRepo @Inject() (config: Configuration) {
           |# The twist
           |
           |Many people like to say that GraphQL is a replacement for REST. So a revolution of sorts, not evolution. But what if I told you that GraphQL actually meets all the architectural constraints of REST laid out in Roy Fielding’s PhD dissertation?"""),
+      shortDescription = Some(cleanupText(
+        "In this talk I will present a thorough comparison between SOAP, WSDL, oData, REST(ful), " +
+        "Falcor and GraphQL. I will show a small code sample for each of the technologies, " +
+        "present how/where they are being used, and compare them to GraphQL on a number of " +
+        "metrics: Ease-of-use, Type-safety, Documentation, Standardization, Caching, Efficiency, Adoption, ...")),
       cardUrl = assetUrl("/talks/jonas-helfer.png"),
       speakers = List(speaker.JonasHelfer),
       format = TalkFormat.Standard,
@@ -382,7 +387,7 @@ class ContentRepo @Inject() (config: Configuration) {
     Break(LocalTime.of(16, 30), LocalTime.of(16, 50), Duration.ofMinutes(20)),
     Talk(
       title = "Panel Discussion",
-      description = "Opening of the GraphQL-Europe conference", // TODO: Panel Discussion description
+      description = "More info will come soon", // TODO: Panel Discussion description
       cardUrl = assetUrl("/share-graphql-europe.png"),
       speakers = Nil, // TODO: Panel Discussion speakers
       format = TalkFormat.PanelDiscussion,

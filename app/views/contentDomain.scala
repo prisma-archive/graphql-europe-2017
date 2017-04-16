@@ -95,7 +95,8 @@ case class Talk(
   startTime: LocalTime,
   endTime: LocalTime,
   duration: Duration,
-  speakers: List[Speaker]
+  speakers: List[Speaker],
+  shortDescription: Option[String] = None
 ) extends ScheduleEntry(ScheduleEntryType.Talk) with WithSlug {
   lazy val slug = title.replaceAll("\\s+", "-").replaceAll("[^a-zA-Z0-9\\-]", "").toLowerCase
 
@@ -109,6 +110,7 @@ case class Talk(
 object Talk {
   implicit lazy val graphqlType: ObjectType[ContentRepo, Talk] =
     deriveObjectType[ContentRepo, Talk](
+      ExcludeFields("shortDescription"),
       Interfaces(ScheduleEntry.graphqlType),
       AddFields(Field("url", StringType, resolve = c ⇒ c.ctx.url(s"/schedule/${c.value.slug}"))))
 }

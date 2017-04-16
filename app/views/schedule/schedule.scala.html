@@ -13,26 +13,36 @@
   </div>
 
   <div class="container">
-    @repo.talks.sortBy(_.slug).map { talk =>
-      <div class="row" style="padding-top: 40px;padding-bottom: 40px;">
-        <div class="col-md-12" style="padding-left: 30px">
-          <h3 style="padding-bottom: 10px">
-            <a href="/schedule/@talk.slug" style="padding-right: 10px"><strong>@talk.title</strong></a>
-          </h3>
-
-          @MarkdownUtil.render(talk.description)
-
-          @if(talk.speakers.nonEmpty) {
+    @repo.schedule.zipWithIndex.map { case (talk, idx) =>
+      <div class="row schedule-row @{if (idx == 0) "schedule-first" else if (idx == repo.schedule.size - 1) "schedule-last" else ""}">
+        <div class="col-md-12 foo">
+          <div class="schedule-time-col">
             <p>
-              <strong>By</strong>
+              <strong class="schedule-time">@FormatUtil.format(talk.startTime)</strong>
             </p>
 
-            @talk.speakers.sortBy(_.slug).map { speaker =>
-              <p>
-                <a href="/speakers/@speaker.slug">@speaker.name</a>
-              </p>
+            <p>
+              <i class="fa fa-clock-o" aria-hidden="true"></i> @FormatUtil.format(talk.duration)
+            </p>
+          </div>
+          <div class="schedule-line-col">
+            @talk match {
+              case t: Talk if t.format == TalkFormat.Special => {<img src="@routes.Assets.versioned(s"image/schedule-dot1.svg")" class="schedule-dot">}
+              case t: Talk => {<img src="@routes.Assets.versioned(s"image/schedule-dot.svg")" class="schedule-dot">}
+              case x => {<img src="@routes.Assets.versioned(s"image/schedule-dot1.svg")" class="schedule-dot">}
             }
-          }
+
+            <div class="schedule-line"></div>
+          </div>
+          <div class="schedule-content-col">
+            @talk match {
+              case t: Talk if t.format == TalkFormat.Special => {@scheduleSpecial(t.title)}
+              case t: Talk => {@scheduleTalk(t)}
+              case _: Lunch => {@scheduleSpecial("Lunch")}
+              case _: Break => {@scheduleSpecial("Break")}
+              case _: Registration => {@scheduleSpecial("Registration")}
+            }
+          </div>
         </div>
       </div>
     }

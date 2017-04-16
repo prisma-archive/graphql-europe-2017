@@ -1393,3 +1393,86 @@ footer .navbar-light .navbar-nav .nav-link:active {
   padding-bottom: 0px;
   font-size: 1.2em;
 }
+
+.foo {
+  display: flex;
+  flex-direction: row;
+}
+
+.schedule-time-col {
+  width: 100px;
+  min-width: 100px;
+  text-align: right;
+  padding-top: 8px;
+  padding-right: 20px;
+}
+
+.schedule-line-col {
+  width: 50px;
+  min-width: 50px;
+  position: relative;
+}
+
+.schedule-content-col {
+  padding-top: 11px;
+  padding-left: 20px;
+  padding-bottom: 40px;
+}
+
+.schedule-line {
+  background-color: #eeeeee;
+  height: 100%;
+  width: 10px;
+  margin: 0;
+  padding: 0;
+  margin-left: 20px;
+}
+
+.schedule-row {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.schedule-dot {
+  position: absolute;
+  width: 50px;
+  left: 0;
+  top: 0;
+}
+
+.schedule-first .schedule-line {
+  margin-top: 20px;
+}
+
+.schedule-last .schedule-line {
+  height: 20px;
+}
+
+.schedule-time {
+  font-size: 1.4em;
+}
+
+.schedule-speaker-row {
+  display: flex;
+  width: 100%;
+}
+
+.schedule-speaker-photo-cont {
+  width: 200px;
+  min-width: 200px;
+}
+
+.schedule-speaker-photo-cont .speakers-speaker-photo {
+  -webkit-box-shadow: 0px 0px 50px -3px rgba(31,34,40,0.30);
+  -moz-box-shadow: 0px 0px 50px -3px rgba(31,34,40,0.30);
+  box-shadow: 0px 0px 50px -3px rgba(31,34,40,0.30);
+  border-radius: 7px;
+}
+
+.schedule-speaker-descr-cont {
+  font-size: 0.9em;
+}
+
+.schedule-speaker-descr-cont h3 {
+  font-size: 1.6em;
+}
