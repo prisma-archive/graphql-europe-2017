@@ -328,7 +328,12 @@ class ContentRepo @Inject() (config: Configuration) {
       duration = Duration.ofMinutes(30)),
     Talk(
       title = "Schema first development",
-      description = "The talk would be announced soon.", // TODO: description
+      description =
+        "GraphQL is not just a great way to query data from your server but also " +
+        "an incredibly expressive format to describe the data model of your domain " +
+        "and application. In this lightning talk, you will see how you can use " +
+        "GraphQL IDL as the foundation of your application and leverage the schema " +
+        "definition as a contract between teams.",
       cardUrl = assetUrl("/talks/johannes-schickling.png"),
       speakers = List(speaker.JohannesSchickling),
       format = TalkFormat.Lightning,
