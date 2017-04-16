@@ -1476,3 +1476,32 @@ footer .navbar-light .navbar-nav .nav-link:active {
 .schedule-speaker-descr-cont h3 {
   font-size: 1.6em;
 }
+
+.schedule-narrow-time {
+  display: none;
+}
+
+@media only screen and (max-width: 800px) {
+  .schedule-speaker-row {
+    flex-direction: column;
+  }
+
+  .schedule-speaker-descr-cont {
+    padding-left: 0 !important;
+    padding-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .schedule-time-col {
+    display: none;
+  }
+
+  .schedule-narrow-time {
+    display: block;
+  }
+
+  .schedule-time {
+    font-size: 1em;
+  }
+}

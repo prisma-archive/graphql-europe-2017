@@ -1,8 +1,9 @@
 @import views._
 
-@(title: String)
+@(title: String, entry: ScheduleEntry)
 
 <h3 style="padding-bottom: 10px">
+  <p class="schedule-narrow-time"><strong class="schedule-time">@FormatUtil.format(entry.startTime)</strong></p>
   @title
 </h3>
 

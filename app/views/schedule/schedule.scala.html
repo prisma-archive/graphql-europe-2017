@@ -36,11 +36,11 @@
           </div>
           <div class="schedule-content-col">
             @talk match {
-              case t: Talk if t.format == TalkFormat.Special => {@scheduleSpecial(t.title)}
+              case t: Talk if t.format == TalkFormat.Special => {@scheduleSpecial(t.title, t)}
               case t: Talk => {@scheduleTalk(t)}
-              case _: Lunch => {@scheduleSpecial("Lunch")}
-              case _: Break => {@scheduleSpecial("Break")}
-              case _: Registration => {@scheduleSpecial("Registration")}
+              case e: Lunch => {@scheduleSpecial("Lunch", e)}
+              case e: Break => {@scheduleSpecial("Break", e)}
+              case e: Registration => {@scheduleSpecial("Registration", e)}
             }
           </div>
         </div>
