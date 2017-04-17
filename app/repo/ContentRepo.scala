@@ -219,7 +219,7 @@ class ContentRepo @Inject() (config: Configuration) {
     speaker.JohannesSchickling,
     speaker.MichaelHunger,
     speaker.TommyLillehagen,
-    //speaker.BrooksSwinnerton,
+    speaker.BrooksSwinnerton,
     speaker.DanielSchafer,
     speaker.tba
   )
@@ -338,23 +338,14 @@ class ContentRepo @Inject() (config: Configuration) {
       endTime = LocalTime.of(15, 0),
       duration = Duration.ofMinutes(30)),
     Break(LocalTime.of(15, 0), LocalTime.of(15, 20), Duration.ofMinutes(20)),
-//    Talk(
-//      title = "GraphQL Driven Development at GitHub",
-//      description = cleanupText(
-//        """It's been a little over a year since GraphQL was first introduced into GitHub's codebase, but a lot has changed since that first commit. Today, all of GitHub's new features use GraphQL to access data and a public GraphQL API is available for any user to query across the platform.
-//          |
-//          |In this talk Brooks Swinnerton will discuss how GraphQL is changing the way that GitHub engineers develop new features and the challenges of introducing a new query language into a legacy codebase."""),
-//      cardUrl = assetUrl("/talks/brooks-swinnerton.png"),
-//      speakers = List(speaker.BrooksSwinnerton),
-//      format = TalkFormat.Standard,
-//      startTime = LocalTime.of(15, 20),
-//      endTime = LocalTime.of(15, 50),
-//      duration = Duration.ofMinutes(30)),
-    Talk( // TODO: talk
-      title = "TBA",
-      description = "The talk would be announced soon.",
-      cardUrl = assetUrl("/share-graphql-europe.png"),
-      speakers = List(speaker.tba),
+    Talk(
+      title = "Launching GitHub's Public GraphQL API",
+      description = cleanupText(
+        """It's been a little over a year since GraphQL was first introduced into GitHub's codebase, but a lot has changed since that first commit. Today, all of GitHub's new features use GraphQL internally to access data and a public GraphQL API is available for any user to query across the platform.
+          |
+          |In this talk, Brooks Swinnerton will discuss why GitHub made the decision to create a public GraphQL API and the things that they've learned along the way with respect to authorization, schema design, and tooling. But the interesting challenges of a public GraphQL API aren't limited to your codebase; Brooks will also discuss some of the ways that GitHub is working to introduce the new world of GraphQL to its users and integrators."""),
+      cardUrl = assetUrl("/talks/brooks-swinnerton.png"),
+      speakers = List(speaker.BrooksSwinnerton),
       format = TalkFormat.Standard,
       startTime = LocalTime.of(15, 20),
       endTime = LocalTime.of(15, 50),
