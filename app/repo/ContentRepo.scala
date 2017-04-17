@@ -189,7 +189,9 @@ class ContentRepo @Inject() (config: Configuration) {
       company = Some("GitHub"),
       twitter = Some("bswinnerton"),
       github = Some("bswinnerton"),
-      description = None) // TODO: description
+      description = Some(
+        "Brooks Swinnerton is a Platform Engineer at GitHub where he " +
+        "works on their REST API, webhooks and GraphQL API."))
 
     val DanielSchafer = Speaker(
       name = "Daniel Schafer",
@@ -197,7 +199,12 @@ class ContentRepo @Inject() (config: Configuration) {
       company = Some("Facebook, GraphQL co-creator"),
       twitter = Some("dlschafer"),
       github = Some("dschafer"),
-      description = None) // TODO: description
+      description = Some(
+        "Dan Schafer is a software engineer at Facebook and a co-creator of GraphQL. " +
+        "He built the original implementations of both GraphQL Mutations and " +
+        "Subscriptions, including Android and iOS libraries for them. Currently, " +
+        "he's a tech lead on the Android Product Layer at Facebook, focused on " +
+        "using GraphQL to develop a compelling and cohesive Android SDK."))
 
     val tba = Speaker(
       name = "TBA",
