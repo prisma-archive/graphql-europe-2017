@@ -22,7 +22,16 @@ class CacheControlFilter @Inject() (config: Configuration) extends EssentialFilt
       CacheControl → maxAge(1 minute, 30 minutes)
     else if (path startsWith "/assets")
       CacheControl → maxAge(1 hour, 1 day)
-    else if (path == "code-of-conduct" || path == "imprint" || path == "team" || path == "sponsors" || path == "location")
+    else if (path startsWith "/schedule")
+      CacheControl → maxAge(10 minutes, 10 minutes)
+    else if (path startsWith "/speakers")
+      CacheControl → maxAge(10 minutes, 10 minutes)
+    else if (
+        path == "code-of-conduct" ||
+        path == "imprint" ||
+        path == "team" ||
+        path == "sponsors" ||
+        path == "location")
       CacheControl → maxAge(1 hour, 1 day)
     else if (path == "/")
       CacheControl → maxAge(1 minute, 30 minutes)
