@@ -1450,6 +1450,7 @@ footer .navbar-light .navbar-nav .nav-link:active {
 
 .schedule-last .schedule-line {
   height: 20px;
+  min-height: 20px;
 }
 
 .schedule-time {
