@@ -206,6 +206,18 @@ class ContentRepo @Inject() (config: Configuration) {
         "he's a tech lead on the Android Product Layer at Facebook, focused on " +
         "using GraphQL to develop a compelling and cohesive Android SDK."))
 
+    val MinaSmart = Speaker(
+      name = "Mina Smart",
+      photoUrl = Some(assetUrl("/speakers/mina-smart.jpg")),
+      company = Some("Shopify"),
+      twitter = Some("frabnicate"),
+      github = Some("minasmart"),
+      description = Some(
+        "Mina is the Storefront API Lead at Shopify, where she oversees the " +
+        "development of the Storefront API, and its connected SDKs. Outside " +
+        "of work, you can catch Mina skating with Toronto Roller Derby’s " +
+        "Gore-Gore Rollergirls."))
+
     val tba = Speaker(
       name = "TBA",
       photoUrl = Some(assetUrl("/speakers/you.png")),
@@ -228,8 +240,8 @@ class ContentRepo @Inject() (config: Configuration) {
     speaker.TommyLillehagen,
     speaker.BrooksSwinnerton,
     speaker.DanielSchafer,
-    speaker.tba
-  )
+    speaker.MinaSmart,
+    speaker.tba)
 
   val schedule = List[ScheduleEntry](
     Registration(LocalTime.of(8, 0), LocalTime.of(9, 30), Duration.ofHours(1).plusMinutes(30)),
@@ -371,11 +383,14 @@ class ContentRepo @Inject() (config: Configuration) {
       startTime = LocalTime.of(15, 50),
       endTime = LocalTime.of(15, 58),
       duration = Duration.ofMinutes(8)),
-    Talk( // TODO: talk
-      title = "TBA",
-      description = "The talk would be announced soon.",
-      cardUrl = assetUrl("/share-graphql-europe.png"),
-      speakers = List(speaker.tba),
+    Talk(
+      title = "Building a GraphQL client in Javascript",
+      description =
+        "A really quick overview of what drove me, and a small team at shopify, " +
+        "to build our own Relay compliant GraphQL client, and some of the " +
+        "features we were able to develop.",
+      cardUrl = assetUrl("/talks/mina-smart.png"),
+      speakers = List(speaker.MinaSmart),
       format = TalkFormat.Lightning,
       startTime = LocalTime.of(15, 58),
       endTime = LocalTime.of(16, 6),
