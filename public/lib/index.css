@@ -1426,6 +1426,9 @@ footer .navbar-light .navbar-nav .nav-link:active {
   margin: 0;
   padding: 0;
   margin-left: 20px;
+  min-height: 100%;
+  display: block;
+  position: absolute;
 }
 
 .schedule-row {
@@ -1438,6 +1441,7 @@ footer .navbar-light .navbar-nav .nav-link:active {
   width: 50px;
   left: 0;
   top: 0;
+  z-index: 100;
 }
 
 .schedule-first .schedule-line {
