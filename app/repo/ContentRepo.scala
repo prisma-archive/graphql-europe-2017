@@ -183,6 +183,14 @@ class ContentRepo @Inject() (config: Configuration) {
         "Tommy is an engineering director at Hudl where he early on introduced GraphQL " +
         "to the product team. He has been contributing to the GraphQL.NET project since the end of 2015."))
 
+    val BrooksSwinnerton = Speaker(
+      name = "Brooks Swinnerton",
+      photoUrl = Some(assetUrl("/speakers/brooks-swinnerton.jpg")),
+      company = Some("GitHub"),
+      twitter = Some("bswinnerton"),
+      github = Some("bswinnerton"),
+      description = None) // TODO: description
+
     val tba = Speaker(
       name = "TBA",
       photoUrl = Some(assetUrl("/speakers/you.png")),
@@ -203,6 +211,7 @@ class ContentRepo @Inject() (config: Configuration) {
     speaker.JohannesSchickling,
     speaker.MichaelHunger,
     speaker.TommyLillehagen,
+    speaker.BrooksSwinnerton,
     speaker.tba
   )
 
@@ -317,11 +326,14 @@ class ContentRepo @Inject() (config: Configuration) {
       endTime = LocalTime.of(15, 0),
       duration = Duration.ofMinutes(30)),
     Break(LocalTime.of(15, 0), LocalTime.of(15, 20), Duration.ofMinutes(20)),
-    Talk( // TODO: talk
-      title = "TBA",
-      description = "The talk would be announced soon.",
-      cardUrl = assetUrl("/share-graphql-europe.png"),
-      speakers = List(speaker.tba),
+    Talk(
+      title = "GraphQL Driven Development at GitHub",
+      description = cleanupText(
+        """It's been a little over a year since GraphQL was first introduced into GitHub's codebase, but a lot has changed since that first commit. Today, all of GitHub's new features use GraphQL to access data and a public GraphQL API is available for any user to query across the platform.
+          |
+          |In this talk Brooks Swinnerton will discuss how GraphQL is changing the way that GitHub engineers develop new features and the challenges of introducing a new query language into a legacy codebase."""),
+      cardUrl = assetUrl("/talks/brooks-swinnerton.png"), 
+      speakers = List(speaker.BrooksSwinnerton),
       format = TalkFormat.Standard,
       startTime = LocalTime.of(15, 20),
       endTime = LocalTime.of(15, 50),
@@ -392,7 +404,7 @@ class ContentRepo @Inject() (config: Configuration) {
     Break(LocalTime.of(16, 30), LocalTime.of(16, 50), Duration.ofMinutes(20)),
     Talk(
       title = "Panel Discussion",
-      description = "More info will come soon", // TODO: Panel Discussion description
+      description = "More information coming soon.", // TODO: Panel Discussion description
       cardUrl = assetUrl("/share-graphql-europe.png"),
       speakers = Nil, // TODO: Panel Discussion speakers
       format = TalkFormat.PanelDiscussion,
@@ -401,7 +413,7 @@ class ContentRepo @Inject() (config: Configuration) {
       duration = Duration.ofHours(1)),
     Talk(
       title = "Closing Keynote",
-      description = "The talk would be announced soon.", // TODO: description
+      description = "More information coming soon.", // TODO: description
       speakers = List(speaker.LeeByron),
       cardUrl = assetUrl("/talks/lee-byron.png"),
       format = TalkFormat.Standard,

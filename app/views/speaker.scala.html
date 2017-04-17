@@ -15,7 +15,7 @@
   }.getOrElse("")
 
   <div class="speaker-name"><a href="/speakers/@speaker.slug">@speaker.name.toUpperCase</a></div>
-  <div class="speaker-description">@{repo.talksBySpeaker(speaker).headOption.map(_.title).getOrElse("TBA")}</div>
+  <div class="speaker-description">@{repo.talksBySpeaker(speaker).headOption.map(_.title).getOrElse(if (speaker.name == "TBA") speaker.description.get else "TBA")}</div>
 
   @speaker.company.map { c =>
     <div class="speaker-company">@c</div>

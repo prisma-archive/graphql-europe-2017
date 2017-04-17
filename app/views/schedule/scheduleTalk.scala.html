@@ -11,7 +11,7 @@
   @MarkdownUtil.render(talk.shortDescription.getOrElse(talk.description))
 </section>
 
-@if(talk.speakers.nonEmpty) {
+@if(talk.speakers.filterNot(_.stub).nonEmpty) {
   <p>
     <h4 style="padding-top: 20px; padding-bottom: 20px">Speaker@{if (talk.speakers.size > 1) "s" else ""}</h4>
   </p>
