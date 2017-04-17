@@ -84,7 +84,7 @@ class ContentRepo @Inject() (config: Configuration) {
     val LeeByron = Speaker(
       name = "Lee Byron",
       photoUrl = Some(assetUrl("/speakers/lee-byron.jpg")),
-      company = Some("Facebook, GraphQL Co-creator"),
+      company = Some("Facebook, GraphQL co-creator"),
       twitter = Some("leeb"),
       github = Some("leebyron"),
       description = None) // TODO: description
@@ -191,6 +191,14 @@ class ContentRepo @Inject() (config: Configuration) {
       github = Some("bswinnerton"),
       description = None) // TODO: description
 
+    val DanielSchafer = Speaker(
+      name = "Daniel Schafer",
+      photoUrl = Some(assetUrl("/speakers/daniel-schafer.jpg")),
+      company = Some("Facebook, GraphQL co-creator"),
+      twitter = Some("dlschafer"),
+      github = Some("dschafer"),
+      description = None) // TODO: description
+
     val tba = Speaker(
       name = "TBA",
       photoUrl = Some(assetUrl("/speakers/you.png")),
@@ -212,6 +220,7 @@ class ContentRepo @Inject() (config: Configuration) {
     speaker.MichaelHunger,
     speaker.TommyLillehagen,
     //speaker.BrooksSwinnerton,
+    speaker.DanielSchafer,
     speaker.tba
   )
 
@@ -302,11 +311,14 @@ class ContentRepo @Inject() (config: Configuration) {
       endTime = LocalTime.of(12, 0),
       duration = Duration.ofMinutes(30)),
     Lunch(LocalTime.of(12, 0), LocalTime.of(14, 0), Duration.ofHours(2)),
-    Talk( // TODO: talk
-      title = "TBA",
-      description = "The talk would be announced soon.",
-      cardUrl = assetUrl("/share-graphql-europe.png"),
-      speakers = List(speaker.tba),
+    Talk(
+      title = "Five Years of Client GraphQL Infrastructure",
+      description = cleanupText(
+        """When Facebook first started using GraphQL in 2012, “Client GraphQL Infrastructure” meant smashing strings together for the query and a simple JSON parser for the response. Since then, Facebook has developed app-wide SDKs, simplifying how client developers build the entire client based on core principles of GraphQL. From client caches to pagination abstractions, from cross-platform toolchains to generated models, Facebook’s client SDKs have evolved over the last five years to support hundreds of developers and thousands of queries across dozens of apps, and the evolution of these clients has informed the evolution of GraphQL itself.
+          |
+          |This talk will dive into lessons learned from those developments. What abstractions worked, and which ones are now regrettable? How did the evolution of client abstractions inform the development of GraphQL itself? When beginning to use GraphQL on a new client, what are the best practices to ensure developers move as swiftly as possible?"""),
+      cardUrl = assetUrl("/talks/daniel-schafer.png"),
+      speakers = List(speaker.DanielSchafer),
       format = TalkFormat.Standard,
       startTime = LocalTime.of(14, 0),
       endTime = LocalTime.of(14, 30),
