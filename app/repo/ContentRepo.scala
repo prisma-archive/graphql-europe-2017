@@ -201,10 +201,10 @@ class ContentRepo @Inject() (config: Configuration) {
       github = Some("dschafer"),
       description = Some(
         "Dan Schafer is a software engineer at Facebook and a co-creator of GraphQL. " +
-        "He built the original implementations of both GraphQL Mutations and " +
-        "Subscriptions, including Android and iOS libraries for them. Currently, " +
-        "he's a tech lead on the Android Product Layer at Facebook, focused on " +
-        "using GraphQL to develop a compelling and cohesive Android SDK."))
+        "He worked on the implementations of both GraphQL Mutations and Subscriptions, " +
+        "and built the original Android and iOS client libraries for them. Currently, " +
+        "he's a tech lead on the Android Product Layer at Facebook, focused on using " +
+        "GraphQL to develop a compelling and cohesive Android SDK."))
 
     val MinaSmart = Speaker(
       name = "Mina Smart",
