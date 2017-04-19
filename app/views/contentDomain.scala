@@ -102,8 +102,13 @@ case class Talk(
 
   lazy val metaInfo = {
     val speaker = speakers.headOption
+    val by =
+      if (speakers.nonEmpty)
+        " (by " + speakers.map(_.name).sorted.mkString(", ") + ")"
+      else
+        ""
 
-    MetaInfo("Talk: " + title + speaker.fold("")(s ⇒ " (by " + s.name + ")"), Some(cardUrl), speaker.flatMap(_.twitter))
+    MetaInfo("Talk: " + title + by, Some(cardUrl), if (speakers .isEmpty || speakers.size > 1) Some("graphqleu") else speaker.flatMap(_.twitter))
   }
 }
 
