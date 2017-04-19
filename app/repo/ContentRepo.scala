@@ -230,6 +230,18 @@ class ContentRepo @Inject() (config: Configuration) {
         "he's a tech lead on the Android Product Layer at Facebook, focused on using " +
         "GraphQL to develop a compelling and cohesive Android SDK."))
 
+    val BjoernRochel = Speaker(
+      name = "Björn Rochel",
+      photoUrl = Some(assetUrl("/speakers/bjoern-rochel.jpg")),
+      company = Some("XING AG"),
+      twitter = Some("bjoernrochel"),
+      github = Some("bjro"),
+      description = Some(
+        "Björn is the project lead of XING One, XINGs internal GraphQL project. " +
+        "He loves to build software with people for people and is especially fascinated " +
+        "by the organisational leaps that are possible if you combine passionate people, " +
+        "useful technology and lean processes together. "))
+
     val tba = Speaker(
       name = "TBA",
       photoUrl = Some(assetUrl("/speakers/you.png")),
@@ -254,6 +266,7 @@ class ContentRepo @Inject() (config: Configuration) {
     speaker.TommyLillehagen,
     speaker.BrooksSwinnerton,
     speaker.DanielSchafer,
+    speaker.BjoernRochel,
     speaker.tba)
 
   val schedule = List[ScheduleEntry](
@@ -468,9 +481,13 @@ class ContentRepo @Inject() (config: Configuration) {
     Break(LocalTime.of(16, 30), LocalTime.of(16, 50), Duration.ofMinutes(20)),
     Talk(
       title = "Panel Discussion",
-      description = "More information coming soon.", // TODO: Panel Discussion description
+      description = "Adopting GraphQL in existing products and organizations",
       cardUrl = assetUrl("/share-graphql-europe.png"),
-      speakers = Nil, // TODO: Panel Discussion speakers
+      speakers = List(
+        speaker.DanielSchafer,
+        speaker.MinaSmart,
+        speaker.BjoernRochel,
+        speaker.BrooksSwinnerton),
       format = TalkFormat.PanelDiscussion,
       startTime = LocalTime.of(16, 50),
       endTime = LocalTime.of(17, 50),
