@@ -11,10 +11,17 @@
   @MarkdownUtil.render(talk.shortDescription.getOrElse(talk.description))
 </section>
 
+@if(talk.shortDescription.isDefined) {
+  <p><a href="/schedule/@talk.slug">more info</a></p>
+}
+
 @if(talk.speakers.filterNot(_.stub).nonEmpty) {
+  <div style="width: 0; height: 0; padding-top: 15px"></div>
+  <!--
   <p>
     <h4 style="padding-top: 20px; padding-bottom: 20px">Speaker@{if (talk.speakers.size > 1) "s" else ""}</h4>
   </p>
+  -->
 
   @talk.speakers.sortBy(_.slug).map { speaker =>
     @scheduleSpeaker(speaker)

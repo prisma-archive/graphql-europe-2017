@@ -81,6 +81,18 @@ class ContentRepo @Inject() (config: Configuration) {
   )
 
   object speaker {
+    val AlisonJohnston = Speaker(
+      name = "Alison Johnston",
+      photoUrl = Some(assetUrl("/speakers/alison-johnston.jpg")),
+      company = Some("Cardano"),
+      twitter = Some("AlizonJohnston"),
+      github = Some("chookie"),
+      description = Some(cleanupText(
+        """Living in London, at the heart of the silicon roundabout allows me to feed my addiction for software development.  It is my creative outlet and is what gets me out of bed in the morning (most of the time) and into the lush green fields at my new role with Cardano.  It’s one of those chance of a lifetime jobs to take an established company with a whole new business, so more like a startup, and lead the leap onto the web using my experience in many areas from physics, to my own tech startup, consulting, to software for the arts, training and investment banking.
+          |
+          |Please wave hello if you see me in the London Lord Mayors parade as a Freeman of the Worshipful Company of Information Technologists or escaping it all scuba diving around the globe."""
+      )))
+
     val LeeByron = Speaker(
       name = "Lee Byron",
       photoUrl = Some(assetUrl("/speakers/lee-byron.jpg")),
@@ -173,6 +185,18 @@ class ContentRepo @Inject() (config: Configuration) {
           |
           |As a developer Michael enjoys many aspects of programming languages, learning new things every day, participating in exciting and ambitious open source projects and contributing and writing software related books and articles.""")))
 
+    val MinaSmart = Speaker(
+      name = "Mina Smart",
+      photoUrl = Some(assetUrl("/speakers/mina-smart.jpg")),
+      company = Some("Shopify"),
+      twitter = Some("frabnicate"),
+      github = Some("minasmart"),
+      description = Some(
+        "Mina is the Storefront API Lead at Shopify, where she oversees the " +
+        "development of the Storefront API, and its connected SDKs. Outside " +
+        "of work, you can catch Mina skating with Toronto Roller Derby’s " +
+        "Gore-Gore Rollergirls."))
+
     val TommyLillehagen = Speaker(
       name = "Tommy Lillehagen",
       photoUrl = Some(assetUrl("/speakers/tommy-lillehagen.jpg")),
@@ -206,18 +230,6 @@ class ContentRepo @Inject() (config: Configuration) {
         "he's a tech lead on the Android Product Layer at Facebook, focused on using " +
         "GraphQL to develop a compelling and cohesive Android SDK."))
 
-    val MinaSmart = Speaker(
-      name = "Mina Smart",
-      photoUrl = Some(assetUrl("/speakers/mina-smart.jpg")),
-      company = Some("Shopify"),
-      twitter = Some("frabnicate"),
-      github = Some("minasmart"),
-      description = Some(
-        "Mina is the Storefront API Lead at Shopify, where she oversees the " +
-        "development of the Storefront API, and its connected SDKs. Outside " +
-        "of work, you can catch Mina skating with Toronto Roller Derby’s " +
-        "Gore-Gore Rollergirls."))
-
     val tba = Speaker(
       name = "TBA",
       photoUrl = Some(assetUrl("/speakers/you.png")),
@@ -229,6 +241,7 @@ class ContentRepo @Inject() (config: Configuration) {
   }
 
   val speakers = List(
+    speaker.AlisonJohnston,
     speaker.LeeByron,
     speaker.SashkoStubailo,
     speaker.JonasHelfer,
@@ -237,10 +250,10 @@ class ContentRepo @Inject() (config: Configuration) {
     speaker.NettoFarah,
     speaker.JohannesSchickling,
     speaker.MichaelHunger,
+    speaker.MinaSmart,
     speaker.TommyLillehagen,
     speaker.BrooksSwinnerton,
     speaker.DanielSchafer,
-    speaker.MinaSmart,
     speaker.tba)
 
   val schedule = List[ScheduleEntry](
@@ -278,10 +291,15 @@ class ContentRepo @Inject() (config: Configuration) {
           |
           |Many people like to say that GraphQL is a replacement for REST. So a revolution of sorts, not evolution. But what if I told you that GraphQL actually meets all the architectural constraints of REST laid out in Roy Fielding’s PhD dissertation?"""),
       shortDescription = Some(cleanupText(
-        "In this talk I will present a thorough comparison between SOAP, WSDL, oData, REST(ful), " +
-        "Falcor and GraphQL. I will show a small code sample for each of the technologies, " +
-        "present how/where they are being used, and compare them to GraphQL on a number of " +
-        "metrics: Ease-of-use, Type-safety, Documentation, Standardization, Caching, Efficiency, Adoption, ...")),
+        """In this talk I will present a thorough comparison between SOAP, WSDL, oData, REST(ful), Falcor and GraphQL. I will show a small code sample for each of the technologies, present how/where they are being used, and compare them to GraphQL on a number of metrics:
+          |
+          |* Ease-of-use
+          |* Type-safety
+          |* Documentation
+          |* Standardization
+          |* Caching
+          |* Efficiency
+          |* Adoption""")),
       cardUrl = assetUrl("/talks/jonas-helfer.png"),
       speakers = List(speaker.JonasHelfer),
       format = TalkFormat.Standard,
@@ -426,11 +444,23 @@ class ContentRepo @Inject() (config: Configuration) {
       startTime = LocalTime.of(16, 14),
       endTime = LocalTime.of(16, 22),
       duration = Duration.ofMinutes(8)),
-    Talk( // TODO: talk
-      title = "TBA",
-      description = "The talk would be announced soon.",
-      cardUrl = assetUrl("/share-graphql-europe.png"),
-      speakers = List(speaker.tba),
+    Talk(
+      title = "MockQ buddy! Easy API Driven Design and Accurate Documentation with GraphQL",
+      description =
+        cleanupText(
+          """In this talk I will demonstrate how to rapidly get a GraphQL service running with realistic mock data that consumers can develop against and discuss. In parallel we use the same schema to provide the real data and accurate, up-to-date documentation.
+            |
+            |GraphQL fills in so many gaps which Rest leaves you to deal with. At Cardano, GraphQL is integral to our technology reboot. I will cover what I would have really liked when I started with GraphQL, for myself and to sell to management.
+            |
+            |Like with interface driven design for coding, API Driven design allows consumers and producers to agree upon the common API interface then have each team independently start working on either side of this API. Using Node.js, Express, Apollo and GraphQL we'll start with a schema, quickly get a service running with simple mock data then iterate with more accurate and complex mocks. Next, we leave this running for the UI developers to use whilst we start on the real service in parallel. No need for an external service, just start in the code.
+            |
+            |Once released consumers need accurate API documentation and to try it out. Traditional methods like Wiki’s, annotation or codegen such as Swagger still require the developer to update them and of course we all know how often this happens, not! GraphQL’s schema means your documentation comes from the same code used to create the real service. Plus, you get the nice GraphiQL portal built in to your service to view this documentation and try the service."""),
+      shortDescription = Some(cleanupText(
+        """In this talk I will demonstrate how to rapidly get a GraphQL service running with realistic mock data that consumers can develop against and discuss. In parallel we use the same schema to provide the real data and accurate, up-to-date documentation.
+          |
+          |GraphQL fills in so many gaps which Rest leaves you to deal with. At Cardano, GraphQL is integral to our technology reboot. I will cover what I would have really liked when I started with GraphQL, for myself and to sell to management.""")),
+      cardUrl = assetUrl("/talks/alison-johnston.png"),
+      speakers = List(speaker.AlisonJohnston),
       format = TalkFormat.Lightning,
       startTime = LocalTime.of(16, 22),
       endTime = LocalTime.of(16, 30),
