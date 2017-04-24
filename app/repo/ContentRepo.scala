@@ -107,7 +107,11 @@ class ContentRepo @Inject() (config: Configuration) {
       company = Some("Meteor / Apollo"),
       twitter = Some("stubailo"),
       github = Some("stubailo"),
-      description = None) // TODO: description
+      description = Some(
+        "Sashko has been working on open source developer tools for the last 4 years, " +
+        "and most recently has been leading the open source projects from the Apollo team, " +
+        "after writing the very first versions of Apollo Client. Previously, he has worked on " +
+        "JavaScript build tooling and reactive data visualization."))
 
     val JonasHelfer = Speaker(
       name = "Jonas Helfer",
