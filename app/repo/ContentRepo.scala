@@ -37,6 +37,14 @@ class ContentRepo @Inject() (config: Configuration) {
           |
           |Visit [www.commercetools.com](https://commercetools.com) for more information."""))),
     Sponsor(
+      name = "Intuit",
+      sponsorType = SponsorType.Silver,
+      url = "https://www.intuit.com",
+      logoUrl = assetUrl("/sponsor/intuit.svg"),
+      twitter = Some("Intuit"),
+      github = Some("intuit"),
+      description = None),
+    Sponsor(
       name = "GitHub",
       sponsorType = SponsorType.Opportunity,
       url = "https://github.com",

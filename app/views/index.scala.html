@@ -230,17 +230,22 @@
     <div class="row index-s-row" style="padding-top: 0px">
 
       @sponsors.filter(_.sponsorType == SponsorType.Gold).headOption.map { s =>
-        <div class="col-md-4 s-home-cont">
+        <div class="col-md-3 s-home-cont">
           <a href="@s.url" target="_blank"><img class="s-home-logo" src="@s.logoUrl" alt="@s.name" title="@s.name"></a>
         </div>
       }
-      @sponsors.filter(_.sponsorType == SponsorType.Partner).headOption.map { s =>
-        <div class="col-md-4 s-home-cont">
+      @sponsors.filter(_.sponsorType == SponsorType.Silver).headOption.map { s =>
+        <div class="col-md-3 s-home-cont" style="padding-top: 10px">
           <a href="@s.url" target="_blank"><img class="s-home-logo" src="@s.logoUrl" alt="@s.name" title="@s.name"></a>
         </div>
       }
       @sponsors.filter(_.sponsorType == SponsorType.Opportunity).headOption.map { s =>
-        <div class="col-md-4 s-home-cont">
+        <div class="col-md-3 s-home-cont"  style="padding-top: 10px">
+          <a href="@s.url" target="_blank"><img class="s-home-logo" src="@s.logoUrl" alt="@s.name" title="@s.name"></a>
+        </div>
+      }
+      @sponsors.filter(_.sponsorType == SponsorType.Partner).headOption.map { s =>
+        <div class="col-md-3 s-home-cont">
           <a href="@s.url" target="_blank"><img class="s-home-logo" src="@s.logoUrl" alt="@s.name" title="@s.name"></a>
         </div>
       }

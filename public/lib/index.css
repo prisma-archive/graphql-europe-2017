@@ -1350,10 +1350,17 @@ footer .navbar-light .navbar-nav .nav-link:active {
 
 .s-home-cont {
   text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 100%;
+}
+
+.s-home-cont img {
+  vertical-align: middle;
 }
 
 .s-home-logo {
-  max-height: 130px;
+  max-height: 100px;
 }
 
 .s-secondary-logo {
@@ -1511,3 +1518,4 @@ footer .navbar-light .navbar-nav .nav-link:active {
     font-size: 1em;
   }
 }
+
