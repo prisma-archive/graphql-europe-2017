@@ -37,6 +37,14 @@ class ContentRepo @Inject() (config: Configuration) {
           |
           |Visit [www.commercetools.com](https://commercetools.com) for more information."""))),
     Sponsor(
+      name = "Zalando",
+      sponsorType = SponsorType.Gold,
+      url = "https://www.zalando.com",
+      logoUrl = assetUrl("/sponsor/zalando.svg"),
+      twitter = Some("ZalandoTech"),
+      github = Some("zalando"),
+      description = None),
+    Sponsor(
       name = "Intuit",
       sponsorType = SponsorType.Silver,
       url = "https://www.intuit.com",
