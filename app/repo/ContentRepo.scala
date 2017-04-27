@@ -43,7 +43,13 @@ class ContentRepo @Inject() (config: Configuration) {
       logoUrl = assetUrl("/sponsor/zalando.svg"),
       twitter = Some("ZalandoTech"),
       github = Some("zalando"),
-      description = None),
+      description = Some(cleanupText(
+        """Zalando is Europe's leading multi-service online fashion platform that provides
+          |fashion as a service. We make it our mission to predict the infinite points of
+          |interaction between fashion and people - and make them possible using cutting
+          |edge, open-source technologies.
+          |
+          |Join our fast-growing team here: [https://tech.zalando.com/](https://tech.zalando.com/)"""))),
     Sponsor(
       name = "Intuit",
       sponsorType = SponsorType.Silver,
