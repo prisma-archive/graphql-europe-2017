@@ -651,6 +651,13 @@ h2 {
   width: 100%;
 }
 
+.s-logo {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
 @media only screen and (max-width: 1024px) {
   .register-button, .register-button:visited, .register-button:focus {
     padding-left: 21px;
