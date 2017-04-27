@@ -216,8 +216,8 @@ class ContentRepo @Inject() (config: Configuration) {
       twitter = Some("tommylil"),
       github = Some("tlil"),
       description = Some(
-        "Tommy is an engineering director at Hudl where he early on introduced GraphQL " +
-        "to the product team. He has been contributing to the GraphQL.NET project since the end of 2015."))
+        "Tommy is an Engineering Director at Hudl where he introduced GraphQL " +
+        "to the product team early on. He has been contributing to the GraphQL .NET project since the end of 2015."))
 
     val BrooksSwinnerton = Speaker(
       name = "Brooks Swinnerton",
