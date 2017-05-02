@@ -179,8 +179,8 @@ class ContentRepo @Inject() (config: Configuration) {
         "worked as a System Engineer and built large server rooms and got experience with " +
         "networking and infrastructure. Later he started to focus more on application development " +
         "mostly backend services, APIs and overall system architecture. Over the years he has build " +
-        "multiple large scale rest APIs and some GraphQL based as well. Currently he work as a " +
-        "Senior Software Engineer and I leads a project with new GraphQL API Gateway in iflix. " +
+        "multiple large scale rest APIs and some GraphQL based as well. Currently he works as a Senior " +
+        "Software Engineer and leads a project with new GraphQL API Gateway in iflix. " +
         "Where he is solving a lot of interesting issues and where he can benefit from combined knowledge " +
         "and experience with networking, software architecture patterns and API design."))
 
@@ -610,7 +610,7 @@ class ContentRepo @Inject() (config: Configuration) {
       github = Some("dajana"))
   )
 
-  val tickets = List(
+  val tickets = List(                                                                
     Ticket(
       name = "Early Bird",
       price = "179 €",
@@ -622,7 +622,7 @@ class ContentRepo @Inject() (config: Configuration) {
     Ticket(
       name = "Regular",
       price = "229 €",
-      availableUntil = LocalDate.of(2017, Month.MAY, 1),
+      availableUntil = LocalDate.of(2017, Month.MAY, 10),
       availableUntilText = "Available until beginning of May",
       url = conf.ticketsUrl,
       soldOut = false,
