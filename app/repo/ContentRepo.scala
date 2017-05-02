@@ -622,8 +622,8 @@ class ContentRepo @Inject() (config: Configuration) {
     Ticket(
       name = "Regular",
       price = "229 €",
-      availableUntil = LocalDate.of(2017, Month.MAY, 10),
-      availableUntilText = "Available until beginning of May",
+      availableUntil = LocalDate.of(2017, Month.MAY, 14),
+      availableUntilText = "Available until May 14th",
       url = conf.ticketsUrl,
       soldOut = false,
       available = true),
