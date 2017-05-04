@@ -39,8 +39,8 @@ class ContentRepo @Inject() (config: Configuration) {
     Sponsor(
       name = "Zalando",
       sponsorType = SponsorType.Gold,
-      url = "https://www.zalando.com",
-      logoUrl = assetUrl("/sponsor/zalando.svg"),
+      url = "https://tech.zalando.com",
+      logoUrl = assetUrl("/sponsor/zalando.jpg"),
       twitter = Some("ZalandoTech"),
       github = Some("zalando"),
       description = Some(cleanupText(
@@ -49,7 +49,7 @@ class ContentRepo @Inject() (config: Configuration) {
           |interaction between fashion and people - and make them possible using cutting
           |edge, open-source technologies.
           |
-          |Join our fast-growing team here: [https://tech.zalando.com/](https://tech.zalando.com/)"""))),
+          |Join our fast-growing team here: [https://tech.zalando.com](https://tech.zalando.com/)"""))),
     Sponsor(
       name = "Intuit",
       sponsorType = SponsorType.Silver,

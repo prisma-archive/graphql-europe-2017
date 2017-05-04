@@ -234,12 +234,12 @@
         </div>
       }
       @sponsors.filter(_.sponsorType == SponsorType.Silver).headOption.map { s =>
-        <div class="col-md-4 s-home-cont" style="padding-top: 10px">
+        <div class="col-md-4 s-home-cont" style="padding-top: 0px">
           <a href="@s.url" target="_blank"><img class="s-home-logo" src="@s.logoUrl" alt="@s.name" title="@s.name"></a>
         </div>
       }
       @sponsors.filter(_.sponsorType == SponsorType.Opportunity).headOption.map { s =>
-        <div class="col-md-4 s-home-cont"  style="padding-top: 10px">
+        <div class="col-md-4 s-home-cont"  style="padding-top: 0px">
           <a href="@s.url" target="_blank"><img class="s-home-logo" src="@s.logoUrl" alt="@s.name" title="@s.name"></a>
         </div>
       }
@@ -247,7 +247,7 @@
     <div class="row index-s-row" style="padding-top: 40px">
       @sponsors.filter(_.sponsorType == SponsorType.Gold).drop(1).headOption.map { s =>
         <div class="col-md-4 s-home-cont" style="padding-top: 20px">
-          <a href="@s.url" target="_blank"><img class="s-home-logo" src="@s.logoUrl" alt="@s.name" title="@s.name"></a>
+          <a href="@s.url" target="_blank"><img class="s-home-logo" style="width: 100%" src="@s.logoUrl" alt="@s.name" title="@s.name"></a>
         </div>
       }
       @sponsors.filter(_.sponsorType == SponsorType.Bronze).headOption.map { s =>
