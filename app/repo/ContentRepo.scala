@@ -40,7 +40,7 @@ class ContentRepo @Inject() (config: Configuration) {
       name = "Zalando",
       sponsorType = SponsorType.Gold,
       url = "https://tech.zalando.com",
-      logoUrl = assetUrl("/sponsor/zalando.jpg"),
+      logoUrl = assetUrl("/sponsor/zalando.svg"),
       twitter = Some("ZalandoTech"),
       github = Some("zalando"),
       description = Some(cleanupText(
