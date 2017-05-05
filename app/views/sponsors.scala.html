@@ -28,12 +28,11 @@
 
           @if(section.justLogos) {
             <div class="row" style="padding-bottom: 50px">
-              @sectionSponsors.headOption.map { s =>
-                <div class="col-md-4 s-secondary-cont">
+              @sectionSponsors.map { s =>
+                <div class="col-md-@{if (s.name == "Apollo") "6" else "3"} s-secondary-cont">
                   <a href="@s.url" target="_blank"><img class="s-secondary-logo" src="@s.logoUrl" alt="@s.name" title="@s.name"></a>
                 </div>
               }
-              <div class="col-md-8"></div>
             </div>
           } else {
             @sectionSponsors.map { s =>

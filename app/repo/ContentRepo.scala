@@ -83,6 +83,14 @@ class ContentRepo @Inject() (config: Configuration) {
       github = Some("facebook"),
       description = None),
     Sponsor(
+      name = "Apollo",
+      sponsorType = SponsorType.Partner,
+      url = "http://www.apollodata.com",
+      logoUrl = assetUrl("/sponsor/apollo.svg"),
+      twitter = Some("apollographql"),
+      github = Some("apollographql"),
+      description = None),
+    Sponsor(
       name = "Honeypot",
       sponsorType = SponsorType.Organiser,
       url = "https://www.honeypot.io",
