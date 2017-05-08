@@ -32,9 +32,26 @@ class GraphQL @Inject() (system: ActorSystem, config: Configuration, repo: Conte
       |      price
       |    }
       |
+      |    schedule {
+      |      startTime
+      |      duration
+      |      entryType
+      |
+      |      ... on Talk {
+      |        title
+      |        description
+      |
+      |        speakers {
+      |          name
+      |          company
+      |          twitter
+      |          github
+      |        }
+      |      }
+      |    }
+      |
       |    speakers {
       |      name
-      |      talkTitle
       |      company
       |      twitter
       |      github

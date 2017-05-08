@@ -296,15 +296,6 @@ class ContentRepo @Inject() (config: Configuration) {
         "He loves to build software with people for people and is especially fascinated " +
         "by the organisational leaps that are possible if you combine passionate people, " +
         "useful technology and lean processes together. "))
-
-    val tba = Speaker(
-      name = "TBA",
-      photoUrl = Some(assetUrl("/speakers/you.png")),
-      company = None,
-      twitter = None,
-      github = None,
-      description = None,
-      stub = true)
   }
 
   val speakers = List(
@@ -321,8 +312,7 @@ class ContentRepo @Inject() (config: Configuration) {
     speaker.TommyLillehagen,
     speaker.BrooksSwinnerton,
     speaker.DanielSchafer,
-    speaker.BjoernRochel,
-    speaker.tba)
+    speaker.BjoernRochel)
 
   val schedule = List[ScheduleEntry](
     Registration(LocalTime.of(8, 0), LocalTime.of(9, 30), Duration.ofHours(1).plusMinutes(30)),

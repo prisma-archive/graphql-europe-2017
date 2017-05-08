@@ -15,8 +15,7 @@ class Application @Inject() (config: Configuration, repo: ContentRepo) extends C
   val conf = config.underlying.as[Config]("graphqlEurope")
 
   def index = Action { implicit req ⇒
-    val speakers = repo.speakers.sortBy(_.slug).filterNot(_.stub) :+
-      Speaker("TBA", None, None, None, None, Some("More speakers would be announced soon"))
+    val speakers = repo.speakers.sortBy(_.slug).filterNot(_.stub)
     
     Ok(views.html.index(actualConf, speakers, repo.sponsors, repo.tickets, repo.venue, repo: ContentRepo, req.queryString.contains("dark"), req.queryString.contains("topLogo")))
   }
