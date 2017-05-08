@@ -37,6 +37,19 @@ class ContentRepo @Inject() (config: Configuration) {
           |
           |Visit [www.commercetools.com](https://commercetools.com) for more information."""))),
     Sponsor(
+      name = "Neo4j",
+      sponsorType = SponsorType.Gold,
+      url = "https://neo4j.com",
+      logoUrl = assetUrl("/sponsor/neo4j.svg"),
+      twitter = Some("neo4j"),
+      github = Some("neo4j"),
+      description = Some(cleanupText(
+        """Neo4j is an open-source, native graph database that leverages data and its relationships.
+          |When GraphQL makes you realize that your domain is a graph, then Neo4j can store your application data graph without resolver or data mapping pains.
+          |Come by our booth during the conference to see how you can build friction-free GraphQL APIs backed by a scalable graph database -we’d love to hear your feedback.
+          |
+          |We would also love to invite you to hack on data representing the GraphQL community from Twitter, StackOverflow, Meetup and GitHub."""))),
+    Sponsor(
       name = "Zalando",
       sponsorType = SponsorType.Gold,
       url = "https://tech.zalando.com",
