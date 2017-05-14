@@ -636,8 +636,8 @@ class ContentRepo @Inject() (config: Configuration) {
       availableUntil = LocalDate.of(2017, Month.MAY, 14),
       availableUntilText = "Available until May 14th",
       url = conf.ticketsUrl,
-      soldOut = false,
-      available = true),
+      soldOut = true,
+      available = false),
     Ticket(
       name = "Late Bird",
       price = "309 €",
@@ -645,7 +645,7 @@ class ContentRepo @Inject() (config: Configuration) {
       availableUntilText = "Last chance to get a ticket",
       url = conf.ticketsUrl,
       soldOut = false,
-      available = false)
+      available = true)
   )
 
   val venue = Venue(
