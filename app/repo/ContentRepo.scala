@@ -406,6 +406,16 @@ class ContentRepo @Inject() (config: Configuration) {
       endTime = LocalTime.of(12, 0),
       duration = Duration.ofMinutes(30)),
     Lunch(LocalTime.of(12, 0), LocalTime.of(14, 0), Duration.ofHours(2)),
+//    Lunch(LocalTime.of(12, 0), LocalTime.of(13, 55), Duration.ofHours(2)),
+//    Talk(
+//      title = "Sponsor introduction",
+//      description = cleanupText("Our sponsor commercetools will shortly introduce itself."),
+//      cardUrl = assetUrl("/share-graphql-europe.png"),
+//      speakers = Nil,
+//      format = TalkFormat.Special,
+//      startTime = LocalTime.of(13, 55),
+//      endTime = LocalTime.of(14, 0),
+//      duration = Duration.ofMinutes(5)),
     Talk(
       title = "Five Years of Client GraphQL Infrastructure",
       description = cleanupText(
