@@ -29,7 +29,6 @@
           </div>
           <div class="schedule-line-col">
             @talk match {
-              case t: Talk if t.format == TalkFormat.Special => {<img src="@routes.Assets.versioned(s"image/schedule-dot1.svg")" class="schedule-dot">}
               case t: Talk => {<img src="@routes.Assets.versioned(s"image/schedule-dot.svg")" class="schedule-dot">}
               case x => {<img src="@routes.Assets.versioned(s"image/schedule-dot1.svg")" class="schedule-dot">}
             }
@@ -38,7 +37,6 @@
           </div>
           <div class="schedule-content-col">
             @talk match {
-              case t: Talk if t.format == TalkFormat.Special => {@scheduleSpecial(t.title, t)}
               case t: Talk => {@scheduleTalk(t)}
               case e: Lunch => {@scheduleSpecial("Lunch", e)}
               case e: Break => {@scheduleSpecial("Break", e)}

@@ -296,6 +296,14 @@ class ContentRepo @Inject() (config: Configuration) {
         "He loves to build software with people for people and is especially fascinated " +
         "by the organisational leaps that are possible if you combine passionate people, " +
         "useful technology and lean processes together. "))
+
+    val ChadFowler = Speaker(
+      name = "Chad Fowler",
+      photoUrl = Some(assetUrl("/speakers/chad-fowler.jpg")),
+      company = Some("Microsoft/BlueYard"),
+      twitter = Some("chadfowler"),
+      github = Some("chad"),
+      description = Some("Venture Partner with @BlueYard. Divisional CTO with @Microsoft. Musician."))
   }
 
   val speakers = List(
@@ -312,7 +320,8 @@ class ContentRepo @Inject() (config: Configuration) {
     speaker.TommyLillehagen,
     speaker.BrooksSwinnerton,
     speaker.DanielSchafer,
-    speaker.BjoernRochel)
+    speaker.BjoernRochel,
+    speaker.ChadFowler)
 
   val schedule = List[ScheduleEntry](
     Registration(LocalTime.of(8, 0), LocalTime.of(9, 30), Duration.ofHours(1).plusMinutes(30)),
@@ -320,7 +329,7 @@ class ContentRepo @Inject() (config: Configuration) {
       title = "Opening",
       description = "Opening of the GraphQL-Europe conference",
       cardUrl = assetUrl("/share-graphql-europe.png"),
-      speakers = Nil,
+      speakers = List(speaker.ChadFowler),
       format = TalkFormat.Special,
       startTime = LocalTime.of(9, 30),
       endTime = LocalTime.of(9, 40),
@@ -542,7 +551,8 @@ class ContentRepo @Inject() (config: Configuration) {
         speaker.DanielSchafer,
         speaker.MinaSmart,
         speaker.BjoernRochel,
-        speaker.BrooksSwinnerton),
+        speaker.BrooksSwinnerton,
+        speaker.ChadFowler),
       format = TalkFormat.PanelDiscussion,
       startTime = LocalTime.of(16, 50),
       endTime = LocalTime.of(17, 50),
@@ -560,7 +570,7 @@ class ContentRepo @Inject() (config: Configuration) {
       title = "Closing Remarks",
       description = "Closing Remarks",
       cardUrl = assetUrl("/share-graphql-europe.png"),
-      speakers = Nil,
+      speakers = List(speaker.ChadFowler),
       format = TalkFormat.Special,
       startTime = LocalTime.of(18, 20),
       endTime = LocalTime.of(18, 30),
