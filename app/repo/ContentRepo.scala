@@ -573,7 +573,20 @@ class ContentRepo @Inject() (config: Configuration) {
       format = TalkFormat.Special,
       startTime = LocalTime.of(18, 20),
       endTime = LocalTime.of(18, 30),
-      duration = Duration.ofMinutes(10))
+      duration = Duration.ofMinutes(10)),
+    Talk(
+      title = "GraphQL Community Party!",
+      description = cleanupText(
+        """**Fitcher's Vogel**
+          |
+          |Warschauer Straße 26<br>
+          |10243 Berlin"""),
+      cardUrl = assetUrl("/share-graphql-europe.png"),
+      speakers = Nil,
+      format = TalkFormat.Special,
+      startTime = LocalTime.of(18, 30),
+      endTime = LocalTime.of(22, 0),
+      duration = Duration.ofHours(3).plusMinutes(30))
   )
 
   val team = List(
