@@ -72,6 +72,14 @@ class ContentRepo @Inject() (config: Configuration) {
       github = Some("intuit"),
       description = None),
     Sponsor(
+      name = "OK GROW!",
+      sponsorType = SponsorType.Silver,
+      url = "https://www.okgrow.com",
+      logoUrl = assetUrl("/sponsor/okgrow.svg"),
+      twitter = Some("ok_grow"),
+      github = Some("okgrow"),
+      description = None),
+    Sponsor(
       name = "N26",
       sponsorType = SponsorType.Bronze,
       url = "https://n26.com",
