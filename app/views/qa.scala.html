@@ -1,0 +1,34 @@
+@import views._
+
+@(config: Config)
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    @meta(config, None)
+
+    <title>GraphQL-Europe Q/A</title>
+
+    @font()
+
+    @libsTop(config.cdn)
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("lib/index.css")">
+  </head>
+  <body style="width: 100%; height: 99vh; overflow: hidden;">
+    <iframe src="https://handsup-63347.firebaseapp.com"
+      style="border: none; width: 100%; height: 100%"
+    ></iframe>
+
+    @libsBottom(config.cdn)
+    <script>
+        window.graphCoolProjectKey = "@config.graphCoolProjectKey";
+        window.supportEmail = "@config.supportEmail";
+    </script>
+
+    <script src="@routes.Assets.versioned("lib/index.js")"></script>
+
+    @ga(config.gaCode)
+    @smooch(config.smoochApiKey)
+  </body>
+</html>

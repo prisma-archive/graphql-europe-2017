@@ -20,6 +20,10 @@ class Application @Inject() (config: Configuration, repo: ContentRepo) extends C
     Ok(views.html.index(actualConf, speakers, repo.sponsors, repo.tickets, repo.venue, repo: ContentRepo, req.queryString.contains("dark"), req.queryString.contains("topLogo")))
   }
 
+  def qa = Action { implicit req ⇒
+    Ok(views.html.qa(actualConf))
+  }
+
   def codeOfConduct = Action(implicit req ⇒ Ok(views.html.codeOfConduct(actualConf)))
   def imprint = Action(implicit req ⇒ Ok(views.html.imprint(actualConf)))
   def team = Action(implicit req ⇒ Ok(views.html.team(actualConf, repo.team)))

@@ -9,6 +9,7 @@ GET         /imprint               controllers.Application.imprint
 GET         /team                  controllers.Application.team
 GET         /sponsors              controllers.Application.sponsors
 GET         /location              controllers.Application.location
+GET         /qa                    controllers.Application.qa
 
 GET         /schedule              controllers.Schedule.index
 GET         /schedule/:slug        controllers.Schedule.talk(slug)
