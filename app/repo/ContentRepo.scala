@@ -392,6 +392,7 @@ class ContentRepo @Inject() (config: Configuration) {
         "about how you can add GraphQL to your existing architecture without having to change " +
         "your existing technology investments.",
       cardUrl = assetUrl("/talks/sashko-stubailo.png"),
+      slidesUrl = Some("https://www.slideshare.net/sashko1/adding-graphql-to-your-existing-architecture"),
       speakers = List(speaker.SashkoStubailo),
       format = TalkFormat.Standard,
       startTime = LocalTime.of(10, 10),
@@ -417,6 +418,7 @@ class ContentRepo @Inject() (config: Configuration) {
           |
           |Imagine the average user having a low budget phone with slow internet connection wanting to watch his favourite TV shows. Of course the video is static and delivered via CDN but what about API which is crucial for smooth content navigation. And imagine that your closest datacenter reachable from Africa is in Frankfurt. There are tons of network and distribution issues that we needed to solve to bring fast user experience. I will talk about our approach and what we learned on the way to solve this."""),
       cardUrl = assetUrl("/talks/jakub-riedl.png"),
+      slidesUrl = Some("https://www.slideshare.net/JakubRiedl/graphql-distribution"),
       speakers = List(speaker.JakubRiedl),
       format = TalkFormat.Standard,
       startTime = LocalTime.of(11, 30),
@@ -453,6 +455,7 @@ class ContentRepo @Inject() (config: Configuration) {
           |
           |This talk goes beyond the basic configuration of a GraphQL endpoint with Rails. I’ll cover topics such ActiveRecord Query optimization, performance monitoring, batching and share some of the challenges we ran into while building a GraphQL API that serves over 10 thousand queries per minute."""),
       cardUrl = assetUrl("/talks/netto-farah.png"),
+      slidesUrl = Some("https://speakerdeck.com/nettofarah/rescuing-legacy-codebases-with-graphql-1"),
       speakers = List(speaker.NettoFarah),
       format = TalkFormat.Standard,
       startTime = LocalTime.of(14, 30),
@@ -466,6 +469,7 @@ class ContentRepo @Inject() (config: Configuration) {
           |
           |In this talk, Brooks Swinnerton will discuss why GitHub made the decision to create a public GraphQL API and the things that they've learned along the way with respect to authorization, schema design, and tooling. But the interesting challenges of a public GraphQL API aren't limited to your codebase; Brooks will also discuss some of the ways that GitHub is working to introduce the new world of GraphQL to its users and integrators."""),
       cardUrl = assetUrl("/talks/brooks-swinnerton.png"),
+      slidesUrl = Some("https://speakerdeck.com/bswinnerton/launching-githubs-public-graphql-api"),
       speakers = List(speaker.BrooksSwinnerton),
       format = TalkFormat.Standard,
       startTime = LocalTime.of(15, 20),
@@ -523,6 +527,7 @@ class ContentRepo @Inject() (config: Configuration) {
         "value for both internal API consumers and third-parties wanting to " +
         "interface with our systems.",
       cardUrl = assetUrl("/talks/tommy-lillehagen.png"),
+      slidesUrl = Some("https://drive.google.com/file/d/0BwHmsxco56hyRkxTQ2pVbEs2ZnM/view"),
       speakers = List(speaker.TommyLillehagen),
       format = TalkFormat.Lightning,
       startTime = LocalTime.of(16, 14),
@@ -544,6 +549,7 @@ class ContentRepo @Inject() (config: Configuration) {
           |
           |GraphQL fills in so many gaps which Rest leaves you to deal with. At Cardano, GraphQL is integral to our technology reboot. I will cover what I would have really liked when I started with GraphQL, for myself and to sell to management.""")),
       cardUrl = assetUrl("/talks/alison-johnston.png"),
+      slidesUrl = Some("https://docs.google.com/presentation/d/1MXV33k7SZhDAyhbaobVXF41hmEoRQ84scJPaSR4qMU4/pub?start=false&loop=false&delayms=3000&slide=id.p"),
       speakers = List(speaker.AlisonJohnston),
       format = TalkFormat.Lightning,
       startTime = LocalTime.of(16, 22),
@@ -685,7 +691,7 @@ class ContentRepo @Inject() (config: Configuration) {
       availableUntilText = "Last chance to get a ticket",
       url = conf.ticketsUrl,
       soldOut = false,
-      available = true)
+      available = false)
   )
 
   val venue = Venue(

@@ -96,6 +96,7 @@ case class Talk(
   endTime: LocalTime,
   duration: Duration,
   speakers: List[Speaker],
+  slidesUrl: Option[String] = None,
   shortDescription: Option[String] = None
 ) extends ScheduleEntry(ScheduleEntryType.Talk) with WithSlug {
   lazy val slug = title.replaceAll("\\s+", "-").replaceAll("[^a-zA-Z0-9\\-]", "").toLowerCase
