@@ -376,6 +376,7 @@ class ContentRepo @Inject() (config: Configuration) {
           |* Efficiency
           |* Adoption""")),
       cardUrl = assetUrl("/talks/jonas-helfer.png"),
+      slidesUrl = Some("https://speakerdeck.com/helfer/graphql-evolution-or-revolution"),
       speakers = List(speaker.JonasHelfer),
       format = TalkFormat.Standard,
       startTime = LocalTime.of(9, 40),
