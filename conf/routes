@@ -11,6 +11,9 @@ GET         /sponsors              controllers.Application.sponsors
 GET         /location              controllers.Application.location
 GET         /qa                    controllers.Application.qa
 
+GET         /2017                  controllers.Application.year2017
+GET         /2017/videos           controllers.Application.year2017videos
+
 GET         /schedule              controllers.Schedule.index
 GET         /schedule/:slug        controllers.Schedule.talk(slug)
 GET         /speakers              controllers.Schedule.speakers

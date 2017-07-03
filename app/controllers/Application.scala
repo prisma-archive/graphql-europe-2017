@@ -24,6 +24,14 @@ class Application @Inject() (config: Configuration, repo: ContentRepo) extends C
     Ok(views.html.qa(actualConf))
   }
 
+  def year2017 = Action {
+    Redirect(routes.Application.index())
+  }
+
+  def year2017videos = Action { implicit req ⇒
+    Ok(views.html.videos(actualConf))
+  }
+
   def codeOfConduct = Action(implicit req ⇒ Ok(views.html.codeOfConduct(actualConf)))
   def imprint = Action(implicit req ⇒ Ok(views.html.imprint(actualConf)))
   def team = Action(implicit req ⇒ Ok(views.html.team(actualConf, repo.team)))
