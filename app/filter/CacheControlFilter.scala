@@ -5,12 +5,13 @@ import javax.inject.{Inject, Singleton}
 
 import play.api.Configuration
 import play.api.mvc.{EssentialAction, EssentialFilter}
-import play.api.libs.iteratee.Execution.Implicits.trampoline
 
+import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
 
 @Singleton
-class CacheControlFilter @Inject() (config: Configuration) extends EssentialFilter {
+class CacheControlFilter @Inject() (config: Configuration, executionContext: ExecutionContext) extends EssentialFilter {
+  implicit val ec = executionContext
   val cacheEnabled = config.getBoolean("cacheEnabled") getOrElse true
 
   def header(path: String): (String, String) =
